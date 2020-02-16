@@ -9,7 +9,8 @@
     "start": "next start src",
     "lint": "node_modules/.bin/eslint --ext .tsx .",
     "lint:fix": "node_modules/.bin/eslint --fix --ext .tsx .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "now-build": "next build"
   },
   "repository": {
     "type": "git",
