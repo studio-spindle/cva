@@ -1,4 +1,6 @@
+/* eslint-disable jsx-a11y/anchor-has-content */
 import { FC, useState } from 'react';
+import Link from 'next/link';
 import {
   AppBar,
   Grid,
@@ -7,46 +9,51 @@ import {
   Divider,
   Drawer,
   Theme,
-  CssBaseline,
 } from '@material-ui/core';
-import { useTheme, makeStyles } from '@material-ui/core/styles';
-import { Menu as MenuIcon, ChevronLeft as ChevronLeftIcon, ChevronRight as ChevronRightIcon } from '@material-ui/icons';
+import { makeStyles } from '@material-ui/core/styles';
+import { Menu as MenuIcon, Cancel as CancelIcon } from '@material-ui/icons';
 import Meta from './Meta';
+import Logo from './Logo';
 import MainMenu from './MainMenu';
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme: Theme) => ({
+  '@global': {
+    body: {
+      backgroundColor: '#F4F6FF',
+    },
+  },
   root: {
     display: 'flex',
   },
   appBar: {
+    boxShadow: 'none',
+    backgroundColor: 'transparent',
+  },
+  appBarFull: {
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
   },
-  appBarShift: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    marginRight: drawerWidth,
-  },
   hide: {
     display: 'none',
+  },
+  link: {
+    textDecoration: 'none',
   },
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
   },
   drawerPaper: {
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: theme.palette.primary.main,
     width: drawerWidth,
   },
   drawerHeader: {
-    padding: theme.spacing(1),
+    paddingTop: theme.spacing(1),
+    paddingBottom: theme.spacing(1),
   },
   content: {
     flexGrow: 1,
@@ -60,8 +67,54 @@ const useStyles = makeStyles((theme: Theme) => ({
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
-    marginRight: 0,
   },
+  menuIcon: {
+    marginTop: theme.spacing(1),
+    '&:hover': {
+      transition: 'transform 100ms ease-in',
+      transform: 'rotate(-90deg)',
+    },
+  },
+  closeIcon: {
+    color: 'white',
+    marginRight: theme.spacing(2),
+    '&:hover': {
+      transition: 'transform 100ms ease-in',
+      transform: 'rotate(-90deg)',
+    },
+  },
+  largeIcon: {
+    width: 35,
+    height: 35,
+  },
+  footer: {
+    marginTop: theme.spacing(15),
+    paddingTop: theme.spacing(10),
+    paddingBottom: theme.spacing(10),
+    backgroundColor: '#eee',
+  },
+  [theme.breakpoints.only('xs')]: {
+    footer: {
+      marginTop: theme.spacing(5),
+    },
+  },
+  [theme.breakpoints.up('sm')]: {
+    contentShift: {
+      marginRight: drawerWidth,
+    },
+    appBarShift: {
+      marginRight: drawerWidth,
+      transition: theme.transitions.create(['margin', 'width'], {
+        easing: theme.transitions.easing.easeOut,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+      width: `calc(100% - ${drawerWidth}px)`,
+    },
+    footer: {
+      marginTop: theme.spacing(15),
+    },
+  },
+
 }));
 
 interface LayoutProps {
@@ -73,7 +126,6 @@ const Layout: FC<LayoutProps> = (({
   siteTitle, siteDescription, children,
 }) => {
   const classes = useStyles({});
-  const theme = useTheme();
   const [open, setOpen] = useState(false);
 
   const handleDrawerOpen = (): void => {
@@ -87,30 +139,48 @@ const Layout: FC<LayoutProps> = (({
   return (
     <>
       <Meta siteTitle={siteTitle} siteDescription={siteDescription} />
-      <CssBaseline />
       <AppBar
         position="static"
-        className={open ? classes.appBarShift : classes.appBar}
+        className={`${classes.appBar} ${open ? classes.appBarShift : classes.appBarFull}`}
       >
         <Toolbar>
-          <Grid container alignItems="flex-start" justify="flex-end">
-            <IconButton
-              edge="end"
-              color="inherit"
-              aria-label="menu"
-              onClick={handleDrawerOpen}
-              className={open ? classes.hide : ''}
-            >
-              <MenuIcon />
-            </IconButton>
+          <Grid container alignItems="flex-start" justify="space-between">
+            <Grid item>
+              <Link href="/">
+                <a className={classes.link}>
+                  <Logo />
+                </a>
+              </Link>
+            </Grid>
+            <Grid item>
+              <IconButton
+                aria-label="menu"
+                color="primary"
+                edge="end"
+                onClick={handleDrawerOpen}
+                className={`${classes.menuIcon} ${open ? classes.hide : ''}`}
+              >
+                <MenuIcon className={classes.largeIcon} />
+              </IconButton>
+            </Grid>
           </Grid>
         </Toolbar>
       </AppBar>
       <main
-        className={open ? classes.content : classes.contentShift}
+        className={open ? classes.contentShift : classes.content}
       >
         {children}
       </main>
+      <footer className={classes.footer}>
+        <Grid container justify="space-around">
+          <Grid item>
+            ...
+          </Grid>
+          <Grid item>
+            © 2020 Creating Value Alliance
+          </Grid>
+        </Grid>
+      </footer>
       <Drawer
         className={classes.drawer}
         variant="persistent"
@@ -122,8 +192,8 @@ const Layout: FC<LayoutProps> = (({
       >
         <div className={classes.drawerHeader}>
           <Grid container alignItems="flex-start" justify="flex-end">
-            <IconButton onClick={handleDrawerClose}>
-              {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+            <IconButton className={classes.closeIcon} onClick={handleDrawerClose}>
+              <CancelIcon className={classes.largeIcon} />
             </IconButton>
           </Grid>
         </div>

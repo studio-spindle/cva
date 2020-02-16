@@ -21,10 +21,15 @@ const markdownVision = `
   ### Who and what are we inspiring to change?
 `;
 
+const markdownParticipants = `
+  ## Participants information
+`;
+
 const About: NextPage<AboutProps> = ({ title }) => (
   <Layout siteTitle={title}>
     <ReactMarkdown source={markdownMission} />
     <ReactMarkdown source={markdownVision} />
+    <ReactMarkdown source={markdownParticipants} />
   </Layout>
 );
 

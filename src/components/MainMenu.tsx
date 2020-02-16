@@ -1,29 +1,46 @@
 import { FC } from 'react';
-import { List, ListItem } from '@material-ui/core';
+import { List, ListItem, makeStyles, Theme } from '@material-ui/core';
 import Link from './Link';
 
 const pages = [
   { title: 'Home', href: '/' },
-  { title: 'Participants', href: '/participants' },
+  { title: 'Blog', href: '/blog' },
   { title: 'Call for papers', href: '/call-for-papers' },
-  { title: 'About', href: '/about' },
   { title: 'Events', href: '/events' },
+  { title: 'About', href: '/about' },
   { title: 'Contact', href: '/contact' },
 ];
 
-const MainMenu: FC = () => (
-  <List component="nav" aria-label="main main-navigation">
-    {pages.map(({ href, title }) => (
-      <ListItem
-        button
-        component={Link}
-        href={href}
-        key={title}
-      >
-        {title}
-      </ListItem>
-    ))}
-  </List>
-);
+const useStyles = makeStyles((theme: Theme) => ({
+  listItem: {
+    color: 'white',
+    fontFamily: "'Quicksand', georgia, sans-serif",
+    padding: `${theme.spacing(2)}px ${theme.spacing(3)}px`,
+    '&:hover': {
+      color: 'white',
+      backgroundColor: theme.palette.primary.dark,
+      cursor: 'pointer',
+    },
+  },
+}));
+
+const MainMenu: FC = () => {
+  const classes = useStyles({});
+  return (
+    <List component="nav" aria-label="main main-navigation">
+      {pages.map(({ href, title }) => (
+        <ListItem
+          button
+          component={Link}
+          href={href}
+          key={title}
+          className={classes.listItem}
+        >
+          {title}
+        </ListItem>
+      ))}
+    </List>
+  );
+};
 
 export default MainMenu;

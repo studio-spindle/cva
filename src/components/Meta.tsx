@@ -17,7 +17,7 @@ const Meta: FC<Meta> = ({ siteTitle, siteDescription }) => (
     </Head>
     <style jsx global>
       {`
-        @import url('https://fonts.googleapis.com/css?family=Nunito:700,900|PT+Sans:400,700&display=swap');
+        @import url('https://fonts.googleapis.com/css?family=Quicksand:700,900|Lora:400,700&display=swap');
       `}
     </style>
   </>
