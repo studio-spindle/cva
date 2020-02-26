@@ -1,7 +1,8 @@
 import { FC, useEffect, useState } from 'react';
-import { Container, Grid, Typography, Theme } from '@material-ui/core';
+import { Container, Grid, Typography, Theme, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { CSSTransition } from 'react-transition-group';
+import { ArrowForward } from '@material-ui/icons';
 
 const animationTimout = 500;
 
@@ -90,6 +91,7 @@ const Jumbo: FC = () => {
             >
               {intro}
             </Typography>
+            <Button color="primary" variant="contained" endIcon={<ArrowForward />}>Testing</Button>
           </Grid>
         </CSSTransition>
       </Grid>

@@ -44,7 +44,7 @@ const Index: NextPage<IndexProps> = ({ title, description }) => {
       <Jumbo />
       <Container maxWidth="lg">
         <Grid container direction="row" justify="space-around">
-          <Grid item xs={12} md={4} className={`${classes.card} ${classes.cardHighlight}`}>
+          <Grid item xs={12} md={4} className={`${classes.card}`}>
             <h2>Call for papers</h2>
             <p>Generic information...</p>
             {/* eslint-disable-next-line max-len */}

@@ -8,11 +8,11 @@ const theme = createMuiTheme({
   shadows: ['none'],
   palette: {
     primary: {
-      main: '#F35026',
-      dark: '#B63210',
+      main: '#FE9715',
     },
     secondary: {
-      main: '#8AC7BB',
+      main: '#7407FC',
+      dark: '#44029B',
     },
     error: {
       main: red.A400,
@@ -57,6 +57,11 @@ const theme = createMuiTheme({
       root: {
         disableRipple: true,
         disableTouchRipple: true,
+      },
+    },
+    MuiButton: {
+      containedPrimary: {
+        color: 'white',
       },
     },
     MuiTypography: {

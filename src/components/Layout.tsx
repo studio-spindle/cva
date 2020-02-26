@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     flexShrink: 0,
   },
   drawerPaper: {
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: theme.palette.secondary.dark,
     width: drawerWidth,
   },
   drawerHeader: {
@@ -155,7 +155,7 @@ const Layout: FC<LayoutProps> = (({
             <Grid item>
               <IconButton
                 aria-label="menu"
-                color="primary"
+                color="secondary"
                 edge="end"
                 onClick={handleDrawerOpen}
                 className={`${classes.menuIcon} ${open ? classes.hide : ''}`}

@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     padding: `${theme.spacing(2)}px ${theme.spacing(3)}px`,
     '&:hover': {
       color: 'white',
-      backgroundColor: theme.palette.primary.dark,
+      backgroundColor: theme.palette.secondary.main,
       cursor: 'pointer',
     },
   },
