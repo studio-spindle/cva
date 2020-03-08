@@ -3,6 +3,7 @@ title: "The coastal red giants"
 author: Watson & Crick
 date: 2019-07-10
 hero_image: ../static/bali-15.jpg
+categories: ['artificial intelligence']
 ---
 
 # Live demo

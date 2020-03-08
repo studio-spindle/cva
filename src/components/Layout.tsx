@@ -11,7 +11,7 @@ import {
   Theme,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { Menu as MenuIcon, Cancel as CancelIcon } from '@material-ui/icons';
+import { MenuRounded as MenuIcon, CancelRounded as CancelIcon } from '@material-ui/icons';
 import Meta from './Meta';
 import Logo from './Logo';
 import MainMenu from './MainMenu';

@@ -62,6 +62,7 @@ const theme = createMuiTheme({
     MuiButton: {
       containedPrimary: {
         color: 'white',
+        padding: '1rem 1.5rem',
       },
     },
     MuiTypography: {

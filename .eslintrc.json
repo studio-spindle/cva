@@ -21,7 +21,8 @@
       "components": [ "Link" ],
       "specialLink": [ "hrefLeft", "hrefRight" ],
       "aspects": [ "invalidHref", "preferButton" ]
-    }]
+    }],
+    "react/jsx-one-expression-per-line": "off"
   },
   "globals": {
     "React": "writable"
