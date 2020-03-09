@@ -11,7 +11,14 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-const PromoListItem: FC = ({ children }, key) => {
+interface PromoListItemProps {
+  key: string;
+}
+
+const PromoListItem: FC<PromoListItemProps> = ({
+  children,
+  key,
+}) => {
   const classes: ClassNameMap<string> = useStyles({});
   return (
     <li key={key} className={classes.root}>

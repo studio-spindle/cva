@@ -45,24 +45,30 @@ const EventTemplate: NextPage<EventTemplateProps> = ({ siteTitle, content, data 
   const markdownBody: string = content;
   const frontmatter: PostEvent = data;
 
-  const { title, intro, location, city, address, date, timeStampEpoch } = frontmatter;
+  const {
+    title,
+    intro,
+    location,
+    city,
+    address,
+    date,
+    timeStampEpoch,
+  } = frontmatter;
 
   return (
     <Layout siteTitle={siteTitle}>
-      <Container className={classes.container} maxWidth="lg">
+      <Container component="article" className={classes.container} maxWidth="lg">
         <Grid container direction="row" justify="space-around">
           <Grid item xs={12} md={8}>
-            <article>
-              <Typography variant="overline" display="block">
-                {date}, <Year timeStamp={timeStampEpoch} />
-              </Typography>
-              <Typography variant="h2" component="h1" className={classes.smallGutter}>
-                {title}
-              </Typography>
-              <Typography className={classes.mediumGutter}>{intro}</Typography>
-              <Box component="div" className={`${classes.divider} ${classes.mediumGutter}`} />
-              <ReactMarkdown source={markdownBody} />
-            </article>
+            <Typography variant="overline" display="block">
+              {date}, <Year timeStamp={timeStampEpoch} />
+            </Typography>
+            <Typography variant="h2" component="h1" className={classes.smallGutter}>
+              {title}
+            </Typography>
+            <Typography className={classes.mediumGutter}>{intro}</Typography>
+            <Box component="div" className={`${classes.divider} ${classes.mediumGutter}`} />
+            <ReactMarkdown source={markdownBody} />
           </Grid>
         </Grid>
       </Container>

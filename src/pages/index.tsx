@@ -1,4 +1,5 @@
 import { NextPage } from 'next';
+import Link from 'next/link';
 import matter from 'gray-matter';
 import { Grid, Container, Typography, Button, Theme } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -36,8 +37,8 @@ function importAll<T>(webpackContext: __WebpackModuleApi.RequireContext): Data<T
 
 const useStyles = makeStyles((theme: Theme) => ({
   section: {
-    paddingTop: theme.spacing(12),
-    paddingBottom: theme.spacing(12),
+    paddingTop: theme.spacing(6),
+    paddingBottom: theme.spacing(6),
   },
   sectionFirst: {
     marginTop: theme.spacing(9),
@@ -69,6 +70,12 @@ const useStyles = makeStyles((theme: Theme) => ({
       width: '100%',
     },
   },
+  eventMainInfo: {
+    marginBottom: theme.spacing(6),
+  },
+  horizontalAction: {
+    marginTop: theme.spacing(6),
+  },
 }));
 
 interface IndexProps {
@@ -88,17 +95,19 @@ const Index: NextPage<IndexProps> = ({ title, description }) => {
 
       <section className={`${classes.section} ${classes.sectionFirst}`}>
         <Container className={classes.container} maxWidth="lg">
-          <Grid container direction="row" justify="space-around">
-            <Grid item xs={12} md={4}>
+          <Grid container direction="row" justify="space-evenly" alignItems="center">
+            <Grid item xs={12} md={4} className={classes.eventMainInfo}>
               <Typography variant="h3" component="h2" gutterBottom>
                 Upcoming Events
               </Typography>
               <Typography variant="body1" gutterBottom>
                 Connect with thinkers for <em>inspiration</em> and new <em>opportunities</em>.
               </Typography>
-              <Button color="secondary" variant="contained" endIcon={<ArrowForwardRounded />}>
-                View all events
-              </Button>
+              <Link href="/events" passHref>
+                <Button color="secondary" variant="contained" endIcon={<ArrowForwardRounded />}>
+                  View all events
+                </Button>
+              </Link>
             </Grid>
             <Grid item xs={12} md={6}>
               <EventList posts={events} />
@@ -108,19 +117,32 @@ const Index: NextPage<IndexProps> = ({ title, description }) => {
       </section>
 
       <section className={classes.section}>
-        <Container className={classes.container} maxWidth="lg">
-          <Grid container direction="row" justify="space-around">
-            <Grid item xs={12} md={4}>
-              <Typography variant="h3" component="h2" gutterBottom>
+        <Container className={classes.container} fixed maxWidth="lg">
+          <Grid container direction="row" justify="center" alignItems="center">
+            <Grid item xs={12}>
+              <Typography variant="h3" component="h2" align="center" gutterBottom>
                 Learn about value thinking
               </Typography>
-              <Typography>
-                Learn how you can transform your business into a<em>customer centric organisation</em> that{' '}
-                <em>creates sustainable value</em>.
-              </Typography>
             </Grid>
-            <Grid item xs={12} md={4}>
+          </Grid>
+          <Grid container>
+            <Grid item xs={12}>
               <BlogList posts={posts} />
+            </Grid>
+          </Grid>
+          <Grid
+            container
+            direction="row"
+            justify="center"
+            alignItems="center"
+            className={classes.horizontalAction}
+          >
+            <Grid item>
+              <Link href="/blog" passHref>
+                <Button color="secondary" variant="contained" endIcon={<ArrowForwardRounded />}>
+                  View All Blogposts
+                </Button>
+              </Link>
             </Grid>
           </Grid>
         </Container>

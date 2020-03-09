@@ -5,9 +5,8 @@ import Link from './Link';
 const pages = [
   { title: 'Home', href: '/' },
   { title: 'Blog', href: '/blog' },
-  { title: 'Call for papers', href: '/call-for-papers' },
   { title: 'Events', href: '/events' },
-  { title: 'About', href: '/about' },
+  { title: 'Article', href: '/articles' },
   { title: 'Contact', href: '/contact' },
 ];
 

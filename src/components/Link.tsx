@@ -45,7 +45,15 @@ const Link: FC<LinkPropsBase> = (props: LinkProps) => {
     return <NextComposed className={className} ref={innerRef} href={href} {...other} />;
   }
 
-  return <MuiLink component={NextComposed} className={className} ref={innerRef} href={href as string} {...other} />;
+  return (
+    <MuiLink
+      component={NextComposed}
+      className={className}
+      ref={innerRef}
+      href={href as string}
+      {...other}
+    />
+  );
 };
 
 // eslint-disable-next-line max-len

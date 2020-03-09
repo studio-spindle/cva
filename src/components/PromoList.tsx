@@ -6,11 +6,17 @@ const useStyles = makeStyles(() => ({
   root: {
     listStyleType: 'none',
     margin: '0',
+    padding: '0',
   },
 }));
 
-const PromoList: FC = ({ children }) => {
+interface BlogListProps {
+  vertical?: boolean;
+}
+
+const PromoList: FC<BlogListProps> = ({ children }) => {
   const classes: ClassNameMap<string> = useStyles({});
+
   return (
     <ul className={classes.root}>
       {children}

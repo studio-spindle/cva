@@ -1,30 +1,20 @@
 import { FC } from 'react';
-import { Typography, Theme } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import { ClassNameMap } from '@material-ui/core/styles/withStyles';
 import Tags from './Tags';
 import Tag from './Tag';
 import PromoList from './PromoList';
 import PromoListItem from './PromoListItem';
 import { Data, PostBlog } from '../shared.types';
+import Card from './Card';
 
 interface BlogListProps {
   posts: Data<PostBlog>[];
 }
 
-const useStyles = makeStyles((theme: Theme) => ({
-  promoListTitle: {
-    paddingBottom: theme.spacing(1),
-  },
-}));
-
-const BlogList: FC<BlogListProps> = ({ posts }) => {
-  const classes: ClassNameMap<string> = useStyles({});
-  return (
-    <PromoList>
-      {posts.map(({ document: { data }, slug }) => (
-        <PromoListItem key={slug}>
-          <Typography className={classes.promoListTitle}>{data.title}</Typography>
+const BlogList: FC<BlogListProps> = ({ posts }) => (
+  <PromoList>
+    {posts.map(({ document: { data }, slug }) => (
+      <PromoListItem key={slug}>
+        <Card showIntro slug={`/blog/${slug}`} {...data}>
           {data.categories && (
             <Tags>
               {data.categories.map((category) => (
@@ -32,10 +22,10 @@ const BlogList: FC<BlogListProps> = ({ posts }) => {
               ))}
             </Tags>
           )}
-        </PromoListItem>
-      ))}
-    </PromoList>
-  );
-};
+        </Card>
+      </PromoListItem>
+    ))}
+  </PromoList>
+);
 
 export default BlogList;

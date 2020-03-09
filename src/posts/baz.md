@@ -1,10 +1,10 @@
 ---
 title: "Another blog title"
+intro: "A short intro of just a few words."
 author: John
-date: 2019-09-10
+authorImageUrl: "/images/Marcel-Kwakernaak.jpg"
+date: "2019-09-10"
 categories: ['Society']
 ---
 
-# Some kind of blog title
-
-This is also some content in the body
+This is the body of this blog item

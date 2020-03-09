@@ -4,7 +4,9 @@ type Category = 'software development' | 'agile' | 'society';
 
 export interface PostBlog {
   title: string;
+  intro: string;
   author: string;
+  authorImageUrl?: string;
   date: string;
   timeStamp: number;
   categories: Array<Category>;
