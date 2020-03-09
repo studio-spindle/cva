@@ -1,18 +1,21 @@
 import { NextPage } from 'next';
-import matter, { GrayMatterFile } from 'gray-matter';
+import matter from 'gray-matter';
 import { Grid, Container, Typography, Button, Theme } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { ClassNameMap } from '@material-ui/core/styles/withStyles';
+import { ArrowForwardRounded } from '@material-ui/icons';
 import Layout from '../components/Layout';
 import Jumbo from '../components/Jumbo';
 import BlogList from '../components/BlogList';
 import EventList from '../components/EventList';
-import { Data, PostEvent, PostBlog } from '../shared.types';
-import { ArrowForwardRounded } from '@material-ui/icons';
+import { DocumentFrontMatter, Data, PostEvent, PostBlog } from '../shared.types';
 
-interface DocumentFrontMatter<T> extends GrayMatterFile<Buffer> {
-  data: T;
-  orig: Buffer;
+function removeExtension(filePath: string): string {
+  return filePath
+    .replace(/^.*[\\]/, '')
+    .split('.')
+    .slice(0, -1)
+    .join('.');
 }
 
 function importAll<T>(webpackContext: __WebpackModuleApi.RequireContext): Data<T>[] {
@@ -20,7 +23,7 @@ function importAll<T>(webpackContext: __WebpackModuleApi.RequireContext): Data<T
     (fileUrl): Data<T> => {
       const body = webpackContext(fileUrl);
 
-      const slug: string = fileUrl;
+      const slug: string = removeExtension(fileUrl);
       const document = matter(body.default) as DocumentFrontMatter<T>;
 
       return {

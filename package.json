@@ -1,7 +1,10 @@
 {
   "name": "cva",
   "version": "1.0.0",
-  "description": "",
+  "description": "A blog which uses Markdown and a Weaviate Knowledge graph to populate the content.",
+  "keywords": [
+    "Weaviate", "GraphQL", "Markdown", "React"
+  ],
   "main": "index.js",
   "scripts": {
     "dev": "next src",

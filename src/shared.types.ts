@@ -1,3 +1,5 @@
+import { GrayMatterFile } from 'gray-matter';
+
 type Category = 'software development' | 'agile' | 'society';
 
 export interface PostBlog {
@@ -26,4 +28,9 @@ export interface Data<T> {
     excerpt?: string;
   };
   slug: string;
+}
+
+export interface DocumentFrontMatter<T> extends GrayMatterFile<Buffer> {
+  data: T;
+  orig: Buffer;
 }

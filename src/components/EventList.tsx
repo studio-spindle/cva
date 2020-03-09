@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Typography, Theme, Paper, Box } from '@material-ui/core';
+import { Typography, Theme, Paper, Box, CardActionArea, CardContent } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { ClassNameMap } from '@material-ui/core/styles/withStyles';
 import { LocationOn as LocationOnIcon } from '@material-ui/icons';
@@ -7,6 +7,7 @@ import PromoList from './PromoList';
 import PromoListItem from './PromoListItem';
 import { Data, PostEvent } from '../shared.types';
 import Year from './Year';
+import Link from './Link';
 
 interface EventListProps {
   posts: Data<PostEvent>[];
@@ -25,11 +26,19 @@ const useStyles = makeStyles((theme: Theme) => ({
   elevateOnHover: {
     boxShadow: theme.shadows[10],
   },
+  cardActionArea: {
+    color: theme.palette.text.primary,
+  },
+  iconLocation: {
+    color: theme.palette.text.secondary,
+  },
+  smallGutter: {
+    marginBottom: theme.spacing(1),
+  },
 }));
 
 const EventList: FC<EventListProps> = ({ posts }) => {
   const classes: ClassNameMap<string> = useStyles({});
-  console.log(posts);
 
   const sortedPosts: Data<PostEvent>[] = posts.sort((post, nextPost) => {
     return nextPost.document.data.timeStampEpoch - post.document.data.timeStampEpoch;
@@ -49,19 +58,32 @@ const EventList: FC<EventListProps> = ({ posts }) => {
                 otherEvents ? classes.flatPaper : ''
               }`}
             >
-              <Typography variant="overline" display="block">
-                {date}, <Year timeStamp={timeStampEpoch} />
-              </Typography>
-              <Typography component="h3" variant="h5" className={classes.promoListTitle}>
-                {title}
-              </Typography>
-              {firstEvent && <Typography variant="body2" gutterBottom>{intro}</Typography>}
+              <CardActionArea
+                className={classes.cardActionArea}
+                component={Link}
+                disableRipple
+                href={`/events/${slug}`}
+              >
+                <CardContent>
+                  <Typography variant="overline" display="block">
+                    {date}, <Year timeStamp={timeStampEpoch} />
+                  </Typography>
+                  <Typography component="h3" variant="h5" className={`${classes.promoListTitle} ${classes.smallGutter}`}>
+                    {title}
+                  </Typography>
+                  {firstEvent && (
+                    <Typography variant="body2" className={classes.smallGutter}>
+                      {intro}
+                    </Typography>
+                  )}
+                </CardContent>
+              </CardActionArea>
               <Box alignItems="center" display="flex">
-                <Box>
-                  <LocationOnIcon />
+                <Box mr={.5}>
+                  <LocationOnIcon className={classes.iconLocation} />
                 </Box>
                 <Box>
-                  <Typography variant="overline">{location}</Typography>
+                  <Typography color="textSecondary" variant="overline">{location}</Typography>
                 </Box>
               </Box>
             </Paper>
