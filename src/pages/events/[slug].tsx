@@ -32,6 +32,16 @@ const useStyles = makeStyles((theme: Theme) => ({
       margin: `0 ${theme.spacing(4)}`,
     },
   },
+  [theme.breakpoints.down('sm')]: {
+    firstContent: {
+      marginTop: theme.spacing(5),
+    },
+  },
+  [theme.breakpoints.up('md')]: {
+    firstContent: {
+      marginTop: theme.spacing(8),
+    },
+  },
 }));
 
 interface EventTemplateProps {
@@ -40,7 +50,7 @@ interface EventTemplateProps {
   content: string;
 }
 
-const EventTemplate: NextPage<EventTemplateProps> = ({ siteTitle, content, data }) => {
+const EventTemplate: NextPage<EventTemplateProps> = ({ content, data }) => {
   const classes: ClassNameMap<string> = useStyles({});
   const markdownBody: string = content;
   const frontmatter: PostEvent = data;
@@ -56,9 +66,9 @@ const EventTemplate: NextPage<EventTemplateProps> = ({ siteTitle, content, data 
   } = frontmatter;
 
   return (
-    <Layout siteTitle={siteTitle}>
+    <Layout siteTitle={title}>
       <Container component="article" className={classes.container} maxWidth="lg">
-        <Grid container direction="row" justify="space-around">
+        <Grid component="article" container direction="row" justify="space-around" className={classes.firstContent}>
           <Grid item xs={12} md={8}>
             <Typography variant="overline" display="block">
               {date}, <Year timeStamp={timeStampEpoch} />

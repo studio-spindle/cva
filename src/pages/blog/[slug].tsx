@@ -6,6 +6,8 @@ import { ClassNameMap } from '@material-ui/core/styles/withStyles';
 import { makeStyles } from '@material-ui/core/styles';
 import Layout from '../../components/Layout';
 import { DocumentFrontMatter, PostBlog } from '../../shared.types';
+import Tags from '../../components/Tags';
+import Tag from '../../components/Tag';
 
 const useStyles = makeStyles((theme: Theme) => ({
   container: {
@@ -17,6 +19,15 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   small: {
     fontSize: '1rem',
+  },
+  divider: {
+    borderBottom: `1px solid ${theme.palette.divider}`,
+  },
+  smallGutter: {
+    marginBottom: theme.spacing(1),
+  },
+  mediumGutter: {
+    marginBottom: theme.spacing(4),
   },
   author: {
     marginBottom: theme.spacing(4),
@@ -31,12 +42,12 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   [theme.breakpoints.down('sm')]: {
     firstContent: {
-      marginTop: theme.spacing(6),
+      marginTop: theme.spacing(5),
     },
   },
   [theme.breakpoints.up('md')]: {
     firstContent: {
-      marginTop: theme.spacing(12),
+      marginTop: theme.spacing(6),
     },
   },
 }));
@@ -47,7 +58,7 @@ interface BlogTemplateProps {
   content: string;
 }
 
-const BlogTemplate: NextPage<BlogTemplateProps> = ({ siteTitle, content, data }) => {
+const BlogTemplate: NextPage<BlogTemplateProps> = ({ content, data }) => {
   const classes: ClassNameMap<string> = useStyles({});
   const markdownBody: string = content;
   const frontmatter: PostBlog = data;
@@ -58,35 +69,44 @@ const BlogTemplate: NextPage<BlogTemplateProps> = ({ siteTitle, content, data })
     authorImageUrl,
     author,
     date,
+    categories,
   } = frontmatter;
 
   return (
-    <Layout siteTitle={siteTitle}>
+    <Layout siteTitle={title}>
       <Container className={classes.container} maxWidth="lg">
-        <Grid component="article" alignItems="center" container className={classes.firstContent} direction="column" justify="center">
-          <Grid item>
-            <Typography variant="overline">Category Name</Typography>
-            <Typography variant="h1" gutterBottom>
+        <Grid component="article" container direction="row" justify="space-around" className={classes.firstContent}>
+          <Grid item xs={12} md={8}>
+            <Typography variant="h2" component="h1" className={classes.smallGutter}>
               {title}
             </Typography>
             <Typography className={classes.intro} gutterBottom>
               {intro}
             </Typography>
-            <Grid alignItems="center" className={classes.author} container>
-              {authorImageUrl && (
-                <Grid item>
-                  <div className={classes.profileImage}>
-                    <img src={authorImageUrl} alt="" />
-                  </div>
-                </Grid>
-              )}
+            <Grid alignItems="center" justify="space-between" className={classes.author} container>
               <Grid item>
-                <Typography className={classes.small}>{author}</Typography>
-                <Typography className={classes.small}>{date}</Typography>
+                <Box alignItems="center" display="flex" flexDirection="row">
+                  {authorImageUrl && (
+                    <Box className={classes.profileImage}>
+                      <img src={authorImageUrl} alt="" />
+                    </Box>
+                  )}
+                  <Box>
+                    <Typography className={classes.small}>{author}</Typography>
+                    <Typography className={classes.small}>{date}</Typography>
+                  </Box>
+                </Box>
+              </Grid>
+              <Grid item>
+                {categories && (
+                  <Tags>
+                    {categories.map((category) => (
+                      <Tag key={category}>{category}</Tag>
+                    ))}
+                  </Tags>
+                )}
               </Grid>
             </Grid>
-          </Grid>
-          <Grid item>
             <Box component="div" className={`${classes.divider} ${classes.mediumGutter}`} />
             <ReactMarkdown source={markdownBody} />
           </Grid>
