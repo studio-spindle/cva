@@ -6,7 +6,7 @@ const pages = [
   { title: 'Home', href: '/' },
   { title: 'Blog', href: '/blog' },
   { title: 'Events', href: '/events' },
-  { title: 'Article', href: '/articles' },
+  { title: 'Articles', href: '/articles' },
   { title: 'Contact', href: '/contact' },
 ];
 
