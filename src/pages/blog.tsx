@@ -13,14 +13,33 @@ const useStyles = makeStyles((theme: Theme) => ({
     paddingLeft: theme.spacing(4),
     paddingRight: theme.spacing(4),
   },
+  smallGutter: {
+    marginBottom: theme.spacing(1),
+  },
+  [theme.breakpoints.down('sm')]: {
+    firstContent: {
+      marginTop: theme.spacing(5),
+    },
+  },
+  [theme.breakpoints.up('md')]: {
+    firstContent: {
+      marginTop: theme.spacing(8),
+    },
+  },
 }));
 
 const Blog: NextPage<BlogProps> = ({ title }) => {
   const classes = useStyles({});
   return (
-    <Layout siteTitle={title}>
+    <Layout siteTitle="Blog">
       <Container className={classes.container} maxWidth="lg" fixed>
-        <p>This will be the overview of the blog page</p>
+        <Grid component="article" container direction="row" justify="space-around" className={classes.firstContent}>
+          <div>
+            <Typography variant="h2" component="h1" className={classes.smallGutter}>
+              Blog
+            </Typography>
+          </div>
+        </Grid>
       </Container>
     </Layout>
   );
