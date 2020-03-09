@@ -27,17 +27,20 @@ interface PageProps {
   title: string;
 }
 
-const Page: FC<PageProps> = ({ title }) => {
+const Page: FC<PageProps> = ({ children, title }) => {
   const classes = useStyles({});
   return (
     <Layout siteTitle={title}>
       <Container component="article" className={classes.container} maxWidth="lg">
-        <Grid component="article" container direction="row" justify="space-around" className={classes.firstContent}>
-          <div>
-            <Typography variant="h2" component="h1" className={classes.smallGutter}>
+        <Grid container component="article" direction="column" justify="center" className={classes.firstContent}>
+          <Grid item>
+            <Typography variant="h2" component="h1" align="center" gutterBottom>
               {title}
             </Typography>
-          </div>
+          </Grid>
+          <Grid item>
+            {children}
+          </Grid>
         </Grid>
       </Container>
     </Layout>
