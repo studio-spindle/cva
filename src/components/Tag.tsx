@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     padding: theme.spacing(1),
     '&:not(:last-child)': {
       marginRight: '.5rem',
-    }
+    },
   },
 }));
 

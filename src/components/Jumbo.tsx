@@ -9,9 +9,8 @@ const animationTimout = 500;
 const useStyles = makeStyles((theme: Theme) => ({
   container: {
     paddingTop: theme.spacing(3),
-    paddingRight: theme.spacing(6),
-    paddingBottom: theme.spacing(3),
-    paddingLeft: theme.spacing(6),
+    paddingLeft: theme.spacing(4),
+    paddingRight: theme.spacing(4),
   },
   title: {
     marginTop: theme.spacing(3),
@@ -35,10 +34,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     transition: `all ${animationTimout}ms ease-in`,
   },
   [theme.breakpoints.up('md')]: {
-    container: {
-      paddingLeft: theme.spacing(0.5),
-      paddingRight: theme.spacing(0.5),
-    },
     jumbo: {
       paddingTop: '2%',
       paddingBottom: '2%',
@@ -67,8 +62,8 @@ const Jumbo: FC = () => {
     return (): void => window.clearInterval(timeout);
   }, []);
   return (
-    <Container maxWidth="md" className={classes.container}>
-      <Grid container direction="row" justify="flex-start">
+    <Container maxWidth="lg" className={classes.container}>
+      <Grid container direction="row" justify="space-around">
         <CSSTransition
           in={inProp}
           timeout={animationTimout}

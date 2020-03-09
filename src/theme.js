@@ -5,7 +5,6 @@ const typeBody = "'Lora', arial, serif";
 const typeTitle = "'Quicksand', georgia, sans-serif";
 
 const theme = createMuiTheme({
-  shadows: ['none'],
   palette: {
     primary: {
       main: '#FE9715',
@@ -44,6 +43,9 @@ const theme = createMuiTheme({
     body1: {
       fontSize: '1.5rem',
     },
+    body2: {
+      fontSize: '1.25rem',
+    },
     button: {
       fontFamily: typeTitle,
     },
@@ -60,6 +62,12 @@ const theme = createMuiTheme({
       },
     },
     MuiButton: {
+      contained: {
+        boxShadow: 'none',
+        // '&:hover': {
+        //   boxShadow: 'none',
+        // },
+      },
       containedPrimary: {
         color: 'white',
         padding: '1rem 1.5rem',

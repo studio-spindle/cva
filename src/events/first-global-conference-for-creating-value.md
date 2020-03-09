@@ -1,11 +1,11 @@
 ---
-title: "Third global conference on creating value"
-intro: "This is a small intro that is displayed on the card. You can add a bit of information which a visitor can scan easily."
-location: "Ecole Des Ponts Business School"
-city: "Paris, France"
+title: "1st Global conference For Creating Value"
+intro: "This is a small intro that is only displayed on the upcoming event."
+location: "Leicester Castle Business School"
+city: "Leicester, UK"
 address: "6-8 Avenue Blaise Pascal, 77420 Champs-sur-Marne, France"
-date: "June 2-3"
-timeStampEpoch: 1591092000
+date: "May 23-24"
+timeStampEpoch: 1527069600
 ---
 
 # Third global conference on creating value

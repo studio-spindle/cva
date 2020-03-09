@@ -1,16 +1,27 @@
 type Category = 'software development' | 'agile' | 'society';
 
-export interface Post {
+export interface PostBlog {
   title: string;
   author: string;
-  date: Date;
+  date: string;
+  timeStamp: number;
   categories: Array<Category>;
 }
 
-export interface Data {
+export interface PostEvent {
+  title: string;
+  intro: string;
+  location: string;
+  city: string;
+  address: string;
+  date: string;
+  timeStampEpoch: number;
+}
+
+export interface Data<T> {
   document: {
     content: string;
-    data: Post;
+    data: T;
     isEmpty?: boolean;
     excerpt?: string;
   };

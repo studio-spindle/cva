@@ -1,14 +1,15 @@
 import { FC } from 'react';
 import { Typography, Theme } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { ClassNameMap } from '@material-ui/core/styles/withStyles';
 import Tags from './Tags';
 import Tag from './Tag';
 import PromoList from './PromoList';
 import PromoListItem from './PromoListItem';
-import { Data } from '../shared.types';
+import { Data, PostBlog } from '../shared.types';
 
-interface BlogPosts {
-  posts: Data[];
+interface BlogListProps {
+  posts: Data<PostBlog>[];
 }
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -17,9 +18,8 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-const BlogList: FC<BlogPosts> = ({ posts }) => {
-  const classes = useStyles({});
-  console.log(posts);
+const BlogList: FC<BlogListProps> = ({ posts }) => {
+  const classes: ClassNameMap<string> = useStyles({});
   return (
     <PromoList>
       {posts.map(({ document: { data }, slug }) => (

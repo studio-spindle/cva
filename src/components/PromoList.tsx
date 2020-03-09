@@ -1,8 +1,8 @@
 import { FC } from 'react';
-import { Theme } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { ClassNameMap } from '@material-ui/core/styles/withStyles';
 
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     listStyleType: 'none',
     margin: '0',
@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 const PromoList: FC = ({ children }) => {
-  const classes = useStyles({});
+  const classes: ClassNameMap<string> = useStyles({});
   return (
     <ul className={classes.root}>
       {children}
