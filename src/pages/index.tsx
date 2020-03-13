@@ -1,6 +1,5 @@
 import { NextPage } from 'next';
 import Link from 'next/link';
-import matter from 'gray-matter';
 import { Grid, Container, Typography, Button, Theme } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { ClassNameMap } from '@material-ui/core/styles/withStyles';
@@ -9,31 +8,10 @@ import Layout from '../components/Layout';
 import Jumbo from '../components/Jumbo';
 import BlogList from '../components/BlogList';
 import EventList from '../components/EventList';
-import { DocumentFrontMatter, Data, PostEvent, PostBlog } from '../shared.types';
-
-function removeExtension(filePath: string): string {
-  return filePath
-    .replace(/^.*[\\]/, '')
-    .split('.')
-    .slice(0, -1)
-    .join('.');
-}
-
-function importAll<T>(webpackContext: __WebpackModuleApi.RequireContext): Data<T>[] {
-  return webpackContext.keys().map(
-    (fileUrl): Data<T> => {
-      const body = webpackContext(fileUrl);
-
-      const slug: string = removeExtension(fileUrl);
-      const document = matter(body.default) as DocumentFrontMatter<T>;
-
-      return {
-        slug,
-        document,
-      };
-    },
-  );
-}
+import Loading from '../components/Loading';
+import { Data, PostEvent, PostBlog } from '../shared.types';
+import usePosts from '../hooks/usePosts';
+import useEvents from '../hooks/useEvents';
 
 const useStyles = makeStyles((theme: Theme) => ({
   section: {
@@ -86,8 +64,8 @@ interface IndexProps {
 const Index: NextPage<IndexProps> = ({ title, description }) => {
   const classes: ClassNameMap<string> = useStyles({});
 
-  const posts: Data<PostBlog>[] = importAll(require.context('../posts', true, /\.md$/));
-  const events: Data<PostEvent>[] = importAll(require.context('../events', true, /\.md$/));
+  const posts: Data<PostBlog>[] = usePosts();
+  const events: Data<PostEvent>[] = useEvents();
 
   return (
     <Layout siteTitle={title} siteDescription={description}>
@@ -109,9 +87,12 @@ const Index: NextPage<IndexProps> = ({ title, description }) => {
                 </Button>
               </Link>
             </Grid>
-            <Grid item xs={12} md={6}>
-              <EventList posts={events} />
-            </Grid>
+            {events === null && <Loading />}
+            {events && (
+              <Grid item xs={12} md={6}>
+                <EventList posts={events} />
+              </Grid>
+            )}
           </Grid>
         </Container>
       </section>
@@ -125,26 +106,31 @@ const Index: NextPage<IndexProps> = ({ title, description }) => {
               </Typography>
             </Grid>
           </Grid>
-          <Grid container>
-            <Grid item xs={12}>
-              <BlogList posts={posts} />
-            </Grid>
-          </Grid>
-          <Grid
-            container
-            direction="row"
-            justify="center"
-            alignItems="center"
-            className={classes.horizontalAction}
-          >
-            <Grid item>
-              <Link href="/blog" passHref>
-                <Button color="secondary" variant="contained" endIcon={<ArrowForwardRounded />}>
-                  View All Blogposts
-                </Button>
-              </Link>
-            </Grid>
-          </Grid>
+          {posts === null && <Loading />}
+          {posts && (
+            <>
+              <Grid container>
+                <Grid item xs={12}>
+                  <BlogList posts={posts} />
+                </Grid>
+              </Grid>
+              <Grid
+                container
+                direction="row"
+                justify="center"
+                alignItems="center"
+                className={classes.horizontalAction}
+              >
+                <Grid item>
+                  <Link href="/blog" passHref>
+                    <Button color="secondary" variant="contained" endIcon={<ArrowForwardRounded />}>
+                      View All Blogposts
+                    </Button>
+                  </Link>
+                </Grid>
+              </Grid>
+            </>
+          )}
         </Container>
       </section>
     </Layout>
