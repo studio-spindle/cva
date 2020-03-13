@@ -1,0 +1,90 @@
+{
+    "actions": {
+        "classes": [],
+        "type": "action"
+    },
+    "things": {
+        "type": "thing",
+        "classes": [
+            {
+                "class": "Article",
+                "vectorizeClassName": false,
+                "description": "A person such as humans or personality known through culture",
+                "keywords": [],
+                "properties": [
+                    {
+                        "name": "year",
+                        "vectorizePropertyName": false,
+                        "description": "The year in which this article was published",
+                        "dataType": [
+                            "int"
+                        ],
+                        "cardinality": "atMostOne",
+                        "keywords": []
+                    }, {
+                        "name": "volume",
+                        "vectorizePropertyName": false,
+                        "description": "The volume of this article",
+                        "dataType": [
+                            "int"
+                        ],
+                        "cardinality": "atMostOne",
+                        "keywords": []
+                    }, {
+                        "name": "issue",
+                        "vectorizePropertyName": false,
+                        "description": "The issue of this article",
+                        "dataType": [
+                            "int"
+                        ],
+                        "cardinality": "atMostOne",
+                        "keywords": []
+                    }, {
+                        "name": "doi",
+                        "vectorizePropertyName": false,
+                        "index": false,
+                        "description": "The DOI of this article",
+                        "dataType": [
+                            "string"
+                        ],
+                        "cardinality": "atMostOne",
+                        "keywords": []
+                    },
+                    {
+                        "name": "journal",
+                        "vectorizePropertyName": false,
+                        "index": false,
+                        "description": "The journal of this article",
+                        "dataType": [
+                            "string"
+                        ],
+                        "cardinality": "atMostOne",
+                        "keywords": []
+                    },
+                    {
+                        "name": "title",
+                        "vectorizePropertyName": false,
+                        "index": false,
+                        "description": "The abstract of this article",
+                        "dataType": [
+                            "string"
+                        ],
+                        "cardinality": "atMostOne",
+                        "keywords": []
+                    },
+                    {
+                        "name": "abstract",
+                        "vectorizePropertyName": false,
+                        "index": true,
+                        "description": "The abstract of this article",
+                        "dataType": [
+                            "text"
+                        ],
+                        "cardinality": "atMostOne",
+                        "keywords": []
+                    }
+                ]
+            }
+        ]
+    }
+}
