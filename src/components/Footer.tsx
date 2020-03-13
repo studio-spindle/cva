@@ -37,12 +37,12 @@ const Footer: FC = () => {
         <Grid container justify="space-between">
           <Grid item>
             <Typography variant="body2">
-              <small className={classes.copyrightText}>© {new Date().getFullYear()} Creating Value Alliance</small>
+              <small className={classes.copyrightText}>
+                © {new Date().getFullYear()} Creating Value Alliance
+              </small>
             </Typography>
           </Grid>
-          <Grid item>
-            ...
-          </Grid>
+          <Grid item>...</Grid>
         </Grid>
       </Container>
     </footer>

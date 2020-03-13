@@ -58,9 +58,9 @@ const EventTemplate: NextPage<EventTemplateProps> = ({ content, data }) => {
   const {
     title,
     intro,
-    location,
-    city,
-    address,
+    // location,
+    // city,
+    // address,
     date,
     timeStampEpoch,
   } = frontmatter;
