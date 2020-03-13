@@ -78,6 +78,16 @@ const theme = createMuiTheme({
         marginBottom: '3rem',
       },
     },
+    MuiInputLabel: {
+      root: {
+        fontSize: '1rem',
+      },
+    },
+    MuiOutlinedInput: {
+      root: {
+        fontSize: '1rem',
+      },
+    },
   },
 });
 

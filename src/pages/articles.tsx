@@ -10,9 +10,14 @@ const Articles: NextPage = () => (
       justify="center"
       alignItems="center"
     >
-      <Grid item>
+      <Grid xs={12} md={6} item>
         <form>
-          <TextField id="outlined-basic" label="Search for Articles" variant="outlined" />
+          <TextField
+            id="outlined-basic"
+            label="Search for Articles"
+            variant="outlined"
+            fullWidth
+          />
         </form>
       </Grid>
     </Grid>
