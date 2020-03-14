@@ -114,13 +114,7 @@ const Index: NextPage<IndexProps> = ({ title, description }) => {
                   <BlogList posts={posts} />
                 </Grid>
               </Grid>
-              <Grid
-                container
-                direction="row"
-                justify="center"
-                alignItems="center"
-                className={classes.horizontalAction}
-              >
+              <Grid container direction="row" justify="center" alignItems="center" className={classes.horizontalAction}>
                 <Grid item>
                   <Link href="/blog" passHref>
                     <Button color="secondary" variant="contained" endIcon={<ArrowForwardRounded />}>
