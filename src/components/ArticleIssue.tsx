@@ -1,6 +1,7 @@
-import { FC, useEffect } from 'react';
+import { FC, Fragment, useEffect, useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
+import { makeStyles } from '@material-ui/core/styles';
 import { ExpandMore as ExpandMoreIcon } from '@material-ui/icons';
 import {
   ExpansionPanel,
@@ -9,6 +10,8 @@ import {
   Grid,
   Typography,
   Box,
+  Divider,
+  Theme,
 } from '@material-ui/core';
 import Loading from './Loading';
 
@@ -23,6 +26,11 @@ interface Article {
   abstract: string;
 }
 
+interface Volume {
+  volume: string;
+  articles: Article[];
+}
+
 interface ArticlesData {
   Get: {
     Things: {
@@ -32,20 +40,13 @@ interface ArticlesData {
 }
 
 const GET_BY_ISSUE = gql`
-  query getArticlesByIssue($issue: String, $year: String) {
+  query getArticlesByIssue($issue: String) {
     Get {
       Things {
         Article(where: {
-          operator: And,
-          operands: [{
-            path: ["issue"],
-            operator: Equal,
-            valueString: $issue
-          },{
-            path: ["year"],
-            operator: Equal,
-            valueString: $year
-          }]
+          path: ["issue"],
+          operator: Equal,
+          valueString: $issue
         }) {
           issue
           title
@@ -71,12 +72,36 @@ const byYear = (a, b): number => {
   return 0;
 };
 
+function truncateString(str, num): string {
+  if (str.length <= num) {
+    return str;
+  }
+  return `${str.slice(0, num)  }...`;
+}
+
+const useStyles = makeStyles((theme: Theme) => ({
+  articleIssue: {
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2),
+  },
+  articleTitle: {
+    fontSize: '1.5rem',
+    marginBottom: '1rem',
+  },
+  articleAbstract: {
+    fontSize: '1.2rem',
+    lineHeight: '2rem',
+    marginBottom: '1rem',
+  },
+}));
+
 interface ArticleIssueProps {
-  year: string;
   issue: string;
 }
 
-const ArticleIssue: FC<ArticleIssueProps> = ({ year, issue }) => {
+const ArticleIssue: FC<ArticleIssueProps> = ({ issue }) => {
+  const classes = useStyles({});
+  const [articlesPerVolume, setArticlesPerVolume] = useState([]);
   const {
     loading,
     error,
@@ -84,7 +109,6 @@ const ArticleIssue: FC<ArticleIssueProps> = ({ year, issue }) => {
   } = useQuery<ArticlesData>(GET_BY_ISSUE, {
     variables: {
       issue,
-      year,
     },
   });
 
@@ -95,40 +119,79 @@ const ArticleIssue: FC<ArticleIssueProps> = ({ year, issue }) => {
   useEffect(() => {
     async function getData() {
       const editions: Article[] = await data?.Get.Things.Article.sort(byYear);
-      console.log(editions);
-      return editions;
+      if (editions) {
+        const uniqueVolumesSet: Set<string> = new Set(
+          editions.map((singleArticle) => singleArticle.volume),
+        );
+        const uniqueVolumes: string[] = [...Array.from(uniqueVolumesSet)];
+        const articlesInVolumes: Volume[] = [];
+        uniqueVolumes.forEach((volume) => {
+          articlesInVolumes.push({
+            volume,
+            articles: editions.filter((article): boolean => article.volume === volume),
+          });
+        });
+        return articlesInVolumes.reverse();
+      }
+      return null;
     }
-    getData();
+    getData().then((filteredArticles) => {
+      setArticlesPerVolume(filteredArticles);
+    });
   }, [data]);
 
   return (
-    <Grid container direction="row" justify="center">
+    <Grid className={classes.articleIssue} container direction="row" justify="center">
       {loading && <Loading />}
       {error && <p>There was an error loading the articles. Please try again later.</p>}
-      {data && (
+      {articlesPerVolume && articlesPerVolume.length !== 0 && (
         <>
-          <Grid xs={12} md={4} item>
-            <Typography display="inline" variant="h5" component="p">Issue: {issue}</Typography>
-            {' '}
-            <Typography display="inline" variant="h5" component="p">Year: {year}</Typography>
+          <Grid xs={12} md={4} lg={3} item>
+            <Typography variant="h5" component="p" gutterBottom>Issue: {issue}</Typography>
           </Grid>
-          <Grid xs={12} md={8} item>
-            <ExpansionPanel>
-              <ExpansionPanelSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1a-content"
-                id="panel1a-header"
-              >
-                Articles...
-              </ExpansionPanelSummary>
-              <ExpansionPanelDetails style={{ flexDirection: 'column' }}>
-                {data.Get.Things.Article.map(({ title }) => (
-                  <Box display="flex" component="article" key={title}>
-                    <Typography variant="h6" component="h2">{title}</Typography>
-                  </Box>
-                ))}
-              </ExpansionPanelDetails>
-            </ExpansionPanel>
+          <Grid xs={12} md={8} lg={9} item>
+            {articlesPerVolume.map(({ volume, articles }) => (
+              <Fragment key={volume}>
+                <ExpansionPanel>
+                  <ExpansionPanelSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel1a-content"
+                    id="panel1a-header"
+                  >
+                    <Typography variant="overline">Volume: {volume}</Typography>
+                  </ExpansionPanelSummary>
+                  <ExpansionPanelDetails style={{ flexDirection: 'column' }}>
+                    {articles.map(({ title, year, abstract, doi, uuid }, index) => {
+                      const lastItem: boolean = index === articles.length - 1;
+                      const firstItem: boolean = index === 0;
+                      return (
+                        <Fragment key={`${volume}-${title}`}>
+                          <Box pt={firstItem ? 1 : 4} mt={2} pb={3} mb={3}>
+                            <Typography className={classes.articleTitle} component="h2">{title}</Typography>
+                            <Typography className={classes.articleAbstract}>
+                              {truncateString(abstract, 240)}
+                            </Typography>
+                            <Grid
+                              container
+                              direction="row"
+                              justify="space-between"
+                              alignItems="center"
+                            >
+                              <Grid item><Typography variant="button" component="span" color="textSecondary">Year: {year}</Typography></Grid>
+                              <Grid item><Typography variant="button" component="span" color="textSecondary">UUID: {uuid}</Typography></Grid>
+                              <Grid item><Typography variant="button" component="span" color="textSecondary">DOI: {doi}</Typography></Grid>
+                            </Grid>
+                          </Box>
+                          {!lastItem && (
+                            <Divider />
+                          )}
+                        </Fragment>
+                      );
+                    })}
+                  </ExpansionPanelDetails>
+                </ExpansionPanel>
+              </Fragment>
+            ))}
           </Grid>
         </>
       )}
