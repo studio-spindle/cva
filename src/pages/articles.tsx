@@ -14,29 +14,38 @@ const useStyles = makeStyles((theme: Theme) => ({
   body: {
     marginTop: theme.spacing(4),
   },
+  noResults: {
+    marginTop: theme.spacing(4),
+    marginBottom: theme.spacing(8),
+  },
 }));
 
 const Articles: NextPage = () => {
+  const classes = useStyles({});
   const [searchResults, setSearchResults] = useState();
   const [noSearchResults, setNoSearchResults] = useState(false);
-  const classes = useStyles({});
+  const [searchTerm, setSearchTerm] = useState();
 
   const handleSearch = ({ noResults, articles }): void => {
     setNoSearchResults(noResults);
     setSearchResults(articles);
   };
 
+  const handleSearchTermUpdate = (term): void => {
+    setSearchTerm(term);
+  };
+
   return (
     <Page title="Articles">
       <Grid className={classes.hero} container direction="row" justify="center" alignItems="center">
         <Grid xs={12} md={6} item>
-          <FuzzySearch searchEventTriggered={handleSearch} />
+          <FuzzySearch onSearchSubmit={handleSearch} onSearchTermUpdate={handleSearchTermUpdate} />
         </Grid>
       </Grid>
       {searchResults && (
         <Grid className={classes.hero} container direction="row" justify="center" alignItems="center">
           <Grid xs={12} md={8} item>
-            <Typography variant="subtitle2">{searchResults.length} results found</Typography>
+            <Typography variant="subtitle2">{searchResults.length} results found for &quot;{searchTerm}&quot;</Typography>
           </Grid>
           <Grid xs={12} md={8} item>
             {searchResults.map((article, index) => {
@@ -55,9 +64,9 @@ const Articles: NextPage = () => {
         </Grid>
       )}
       {noSearchResults && (
-        <Grid container direction="row" justify="center" alignItems="center">
+        <Grid className={classes.noResults} container direction="row" justify="center" alignItems="center">
           <Grid xs={12} item>
-            <Typography align="center"><strong>No Results found.</strong></Typography>
+            <Typography align="center"><strong>No Results found for &quot;{searchTerm}&quot;.</strong></Typography>
           </Grid>
         </Grid>
       )}
