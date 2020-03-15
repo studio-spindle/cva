@@ -1,9 +1,9 @@
 import { ChangeEvent, FC, FormEvent, useEffect, useState } from 'react';
 import { TextField, Button, Box, Theme } from '@material-ui/core';
+import { Search as SearchIcon } from '@material-ui/icons';
 import { makeStyles } from '@material-ui/core/styles';
 import { useLazyQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
-import { Search as SearchIcon } from '@material-ui/icons';
 import { Article } from '../shared.types';
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -67,6 +67,10 @@ const FuzzySearch: FC<FuzzySearchProps> = ({ onSearchSubmit, onSearchTermUpdate 
     }
   };
 
+  const handleInputFocus = (): void => {
+    setFieldError(false);
+  };
+
   const handleSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault();
     const formData: FormData = new FormData(event.currentTarget);
@@ -77,16 +81,17 @@ const FuzzySearch: FC<FuzzySearchProps> = ({ onSearchSubmit, onSearchTermUpdate 
 
   useEffect((): void => {
     if (data) {
+      setFieldError(false);
       onSearchSubmit({
         noResults: false,
-        articles: data?.Get?.Things?.Article
+        articles: data?.Get?.Things?.Article,
       });
     }
     if (error) {
       setFieldError(true);
       onSearchSubmit({ noResults: true });
     }
-  }, [term, data, error, onSearchSubmit]);
+  }, [data, error, onSearchSubmit]);
 
   return (
     <form onSubmit={handleSubmit}>
@@ -97,10 +102,12 @@ const FuzzySearch: FC<FuzzySearchProps> = ({ onSearchSubmit, onSearchTermUpdate 
             name="searchTerm"
             label="Search for Articles"
             variant="outlined"
+            type="search"
             fullWidth
             error={fieldError}
             value={term}
             onChange={handleInputChange}
+            onFocus={handleInputFocus}
           />
         </Box>
         <Box alignSelf="center" ml={2}>

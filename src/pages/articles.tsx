@@ -1,6 +1,7 @@
 import { NextPage } from 'next';
 import { Fragment, useState } from 'react';
-import { Box, Grid, Typography, Theme, Divider } from '@material-ui/core';
+import { Button, Box, Grid, Typography, Theme, Divider } from '@material-ui/core';
+import { Clear as ClearIcon } from '@material-ui/icons';
 import { makeStyles } from '@material-ui/core/styles';
 import Page from '../components/Page';
 import FuzzySearch from '../components/FuzzySearch';
@@ -17,6 +18,9 @@ const useStyles = makeStyles((theme: Theme) => ({
   noResults: {
     marginTop: theme.spacing(4),
     marginBottom: theme.spacing(8),
+  },
+  closeIconContainer: {
+    marginLeft: 'auto',
   },
 }));
 
@@ -35,6 +39,10 @@ const Articles: NextPage = () => {
     setSearchTerm(term);
   };
 
+  const handleClear = (): void => {
+    console.log('clear please...')
+  };
+
   return (
     <Page title="Articles">
       <Grid className={classes.hero} container direction="row" justify="center" alignItems="center">
@@ -45,7 +53,14 @@ const Articles: NextPage = () => {
       {searchResults && (
         <Grid className={classes.hero} container direction="row" justify="center" alignItems="center">
           <Grid xs={12} md={8} item>
-            <Typography variant="subtitle2">{searchResults.length} results found for &quot;{searchTerm}&quot;</Typography>
+            <Box display="flex">
+              <Box alignSelf="center">
+                <Typography component="span" variant="subtitle2">{searchResults.length} results found for &quot;{searchTerm}&quot;</Typography>
+              </Box>
+              <Box alignSelf="center" className={classes.closeIconContainer}>
+                <Button startIcon={<ClearIcon />} onClick={handleClear}>Clear</Button>
+              </Box>
+            </Box>
           </Grid>
           <Grid xs={12} md={8} item>
             {searchResults.map((article, index) => {
