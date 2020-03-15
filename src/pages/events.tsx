@@ -1,24 +1,25 @@
 import { NextPage } from 'next';
+import Page from '../components/Page';
+import useEvents from '../hooks/useEvents';
+import { Data, PostEvent } from '../shared.types';
+import Loading from '../components/Loading';
+import EventList from '../components/EventList';
 
-import Layout from '../components/Layout';
+const Blog: NextPage = () => {
+  const events: Data<PostEvent>[] = useEvents();
+  return (
+    <Page title="Events">
+      <p>(example: https://pontsbschool.com/creating-value/)</p>
+      <h2>Buy tickets</h2>
+      <h2>Apply to participate: ... </h2>
+      <p>Be part of ...</p>
+      <h3>Get involved</h3>
+      <p>Submit a ...</p>
+      <h2>Form with suggestions: ...</h2>
+      {events === null && <Loading />}
+      {events && <EventList posts={events} />}
+    </Page>
+  );
+};
 
-interface EventsProps {
-  title: string;
-}
-
-const Events: NextPage<EventsProps> = ({ title }) => (
-  <Layout siteTitle={title}>
-    <p>Events page</p>
-    <p>(example: https://pontsbschool.com/creating-value/)</p>
-    <h2>Buy tickets</h2>
-    <p></p>
-    <h2>Apply to participate: ... </h2>
-    <p>Be part of ...</p>
-    <h3>Get involved</h3>
-    <p>Submit a ...</p>
-    <h2>Form with suggestions: ...</h2>
-    <p></p>
-  </Layout>
-);
-
-export default Events;
+export default Blog;

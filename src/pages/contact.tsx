@@ -1,15 +1,10 @@
 import { NextPage } from 'next';
+import Page from '../components/Page';
 
-import Layout from '../components/Layout';
-
-interface ContactProps {
-  title: string;
-}
-
-const Contact: NextPage<ContactProps> = ({ title }) => (
-  <Layout siteTitle={title}>
-    <p>Contact page</p>
-  </Layout>
+const Contact: NextPage = () => (
+  <Page title="Contact">
+    <p>...</p>
+  </Page>
 );
 
 export default Contact;

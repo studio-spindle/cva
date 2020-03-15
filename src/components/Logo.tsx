@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     paddingBottom: theme.spacing(2),
   },
   logo: {
-    width: '250px',
+    width: '245px',
   },
   logoColorOne: {
     fill: '#10B253',

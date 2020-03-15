@@ -11,10 +11,11 @@ import {
   Theme,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { Menu as MenuIcon, Cancel as CancelIcon } from '@material-ui/icons';
+import { MenuRounded as MenuIcon, CancelRounded as CancelIcon } from '@material-ui/icons';
 import Meta from './Meta';
 import Logo from './Logo';
 import MainMenu from './MainMenu';
+import Footer from './Footer';
 
 const drawerWidth = 240;
 
@@ -87,17 +88,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     width: 35,
     height: 35,
   },
-  footer: {
-    marginTop: theme.spacing(15),
-    paddingTop: theme.spacing(10),
-    paddingBottom: theme.spacing(10),
-    backgroundColor: '#eee',
-  },
-  [theme.breakpoints.only('xs')]: {
-    footer: {
-      marginTop: theme.spacing(5),
-    },
-  },
   [theme.breakpoints.up('sm')]: {
     contentShift: {
       marginRight: drawerWidth,
@@ -110,11 +100,7 @@ const useStyles = makeStyles((theme: Theme) => ({
       }),
       width: `calc(100% - ${drawerWidth}px)`,
     },
-    footer: {
-      marginTop: theme.spacing(15),
-    },
   },
-
 }));
 
 interface LayoutProps {
@@ -171,16 +157,7 @@ const Layout: FC<LayoutProps> = (({
       >
         {children}
       </main>
-      <footer className={classes.footer}>
-        <Grid container justify="space-around">
-          <Grid item>
-            ...
-          </Grid>
-          <Grid item>
-            © 2020 Creating Value Alliance
-          </Grid>
-        </Grid>
-      </footer>
+      <Footer />
       <Drawer
         className={classes.drawer}
         variant="persistent"

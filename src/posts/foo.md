@@ -1,12 +1,12 @@
 ---
 title: "The coastal red giants"
 author: Watson & Crick
-date: 2019-07-10
+authorImageUrl: "/images/Marcel-Kwakernaak.jpg"
+date: "2019-07-10"
+intro: "This is some intro text"
 hero_image: ../static/bali-15.jpg
+categories: ['artificial intelligence']
 ---
-
-# Live demo
-Changes are automatically rendered as you type.
 
 ## Table of Contents
 * Implements [GitHub Flavored Markdown](https://github.github.com/gfm/)

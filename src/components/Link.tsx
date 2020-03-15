@@ -7,9 +7,7 @@ import MuiLink, { LinkProps as MuiLinkProps } from '@material-ui/core/Link';
 type NextComposedProps = Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'> & NextLinkProps;
 
 const NextComposed = forwardRef<HTMLAnchorElement, NextComposedProps>((props, ref) => {
-  const {
-    as, href, replace, scroll, passHref, shallow, prefetch, ...other
-  } = props;
+  const { as, href, replace, scroll, passHref, shallow, prefetch, ...other } = props;
 
   return (
     <NextLink
@@ -37,9 +35,7 @@ export type LinkProps = LinkPropsBase & NextComposedProps & Omit<MuiLinkProps, '
 // A styled version of the Next.js Link component:
 // https://nextjs.org/docs/#with-link
 const Link: FC<LinkPropsBase> = (props: LinkProps) => {
-  const {
-    href, activeClassName = 'active', className: classNameProps, innerRef, naked, ...other
-  } = props;
+  const { href, activeClassName = 'active', className: classNameProps, innerRef, naked, ...other } = props;
 
   const router = useRouter();
   const pathname = typeof href === 'string' ? href : href.pathname;
