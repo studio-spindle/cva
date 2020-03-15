@@ -64,10 +64,10 @@
                     {
                         "name": "title",
                         "vectorizePropertyName": false,
-                        "index": false,
+                        "index": true,
                         "description": "The abstract of this article",
                         "dataType": [
-                            "string"
+                            "text"
                         ],
                         "cardinality": "atMostOne",
                         "keywords": []
