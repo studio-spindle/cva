@@ -9,22 +9,12 @@ import {
   ExpansionPanelDetails,
   Grid,
   Typography,
-  Box,
   Divider,
-  Theme,
+  Theme, Box,
 } from '@material-ui/core';
+import ArticleDetail from './ArticleDetail';
 import Loading from './Loading';
-
-interface Article {
-  issue: number;
-  title: string;
-  year: number;
-  doi: string;
-  journal: string;
-  volume: string;
-  uuid: string;
-  abstract: string;
-}
+import { Article } from '../shared.types';
 
 interface Volume {
   volume: string;
@@ -68,26 +58,10 @@ const byYear = (a, b): number => {
   return 0;
 };
 
-function truncateString(str, num): string {
-  if (str.length <= num) {
-    return str;
-  }
-  return `${str.slice(0, num)}...`;
-}
-
 const useStyles = makeStyles((theme: Theme) => ({
   articleIssue: {
     paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(2),
-  },
-  articleTitle: {
-    fontSize: '1.5rem',
-    marginBottom: '1rem',
-  },
-  articleAbstract: {
-    fontSize: '1.2rem',
-    lineHeight: '2rem',
-    marginBottom: '1rem',
   },
 }));
 
@@ -155,35 +129,13 @@ const ArticleIssue: FC<ArticleIssueProps> = ({ issue }) => {
                     <Typography variant="overline">Volume: {volume}</Typography>
                   </ExpansionPanelSummary>
                   <ExpansionPanelDetails style={{ flexDirection: 'column' }}>
-                    {articles.map(({ title, year, abstract, doi, uuid }, index) => {
+                    {articles.map((article, index) => {
                       const lastItem: boolean = index === articles.length - 1;
                       const firstItem: boolean = index === 0;
                       return (
-                        <Fragment key={`${volume}-${title}`}>
+                        <Fragment key={`${volume}-${article.uuid}`}>
                           <Box pt={firstItem ? 1 : 4} mt={2} pb={3} mb={3}>
-                            <Typography className={classes.articleTitle} component="h2">
-                              {title}
-                            </Typography>
-                            <Typography className={classes.articleAbstract}>
-                              {truncateString(abstract, 240)}
-                            </Typography>
-                            <Grid container direction="row" justify="space-between" alignItems="center">
-                              <Grid item>
-                                <Typography variant="button" component="span" color="textSecondary">
-                                  Year: {year}
-                                </Typography>
-                              </Grid>
-                              <Grid item>
-                                <Typography variant="button" component="span" color="textSecondary">
-                                  UUID: {uuid}
-                                </Typography>
-                              </Grid>
-                              <Grid item>
-                                <Typography variant="button" component="span" color="textSecondary">
-                                  DOI: {doi}
-                                </Typography>
-                              </Grid>
-                            </Grid>
+                            <ArticleDetail article={article} />
                           </Box>
                           {!lastItem && <Divider />}
                         </Fragment>

@@ -1,11 +1,11 @@
 import { NextPage } from 'next';
-import { useState } from 'react';
-import { useApolloClient } from '@apollo/react-hooks';
-import { Grid, Typography, Theme } from '@material-ui/core';
+import { Fragment, useState } from 'react';
+import { Box, Grid, Typography, Theme, Divider } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Page from '../components/Page';
-import FuzzySearch, { SEARCH_QUERY_ARTICLES } from '../components/FuzzySearch';
+import FuzzySearch from '../components/FuzzySearch';
 import ArticleIssue from '../components/ArticleIssue';
+import ArticleDetail from '../components/ArticleDetail';
 
 const useStyles = makeStyles((theme: Theme) => ({
   hero: {
@@ -17,17 +17,13 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 const Articles: NextPage = () => {
-  const client = useApolloClient();
   const [searchResults, setSearchResults] = useState();
+  const [noSearchResults, setNoSearchResults] = useState(false);
   const classes = useStyles({});
 
-  const handleSearch = (): void => {
-    const { searchQueryArticles } = client.readQuery({
-      query: SEARCH_QUERY_ARTICLES,
-    });
-    if (searchQueryArticles) {
-      setSearchResults(searchQueryArticles);
-    }
+  const handleSearch = ({ noResults, articles }): void => {
+    setNoSearchResults(noResults);
+    setSearchResults(articles);
   };
 
   return (
@@ -39,12 +35,29 @@ const Articles: NextPage = () => {
       </Grid>
       {searchResults && (
         <Grid className={classes.hero} container direction="row" justify="center" alignItems="center">
-          <Grid xs={12} md={6} item>
-            {searchResults.map(({ title, uuid }) => (
-              <div key={uuid}>
-                <Typography>{title}</Typography>
-              </div>
-            ))}
+          <Grid xs={12} md={8} item>
+            <Typography variant="subtitle2">{searchResults.length} results found</Typography>
+          </Grid>
+          <Grid xs={12} md={8} item>
+            {searchResults.map((article, index) => {
+              const lastItem: boolean = index === searchResults.length - 1;
+              const firstItem: boolean = index === 0;
+              return (
+                <Fragment key={`${article.uuid}`}>
+                  <Box pt={firstItem ? 1 : 4} mt={2} pb={3} mb={3}>
+                    <ArticleDetail article={article} />
+                  </Box>
+                  {!lastItem && <Divider />}
+                </Fragment>
+              );
+            })}
+          </Grid>
+        </Grid>
+      )}
+      {noSearchResults && (
+        <Grid container direction="row" justify="center" alignItems="center">
+          <Grid xs={12} item>
+            <Typography align="center"><strong>No Results found.</strong></Typography>
           </Grid>
         </Grid>
       )}

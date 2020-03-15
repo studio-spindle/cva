@@ -36,3 +36,14 @@ export interface DocumentFrontMatter<T> extends GrayMatterFile<Buffer> {
   data: T;
   orig: Buffer;
 }
+
+export interface Article {
+  issue: number;
+  title: string;
+  year: number;
+  doi: string;
+  journal: string;
+  volume: string;
+  uuid: string;
+  abstract: string;
+}
