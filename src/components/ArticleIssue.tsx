@@ -43,11 +43,7 @@ const GET_BY_ISSUE = gql`
   query getArticlesByIssue($issue: String) {
     Get {
       Things {
-        Article(where: {
-          path: ["issue"],
-          operator: Equal,
-          valueString: $issue
-        }) {
+        Article(where: { path: ["issue"], operator: Equal, valueString: $issue }) {
           issue
           title
           year
@@ -76,7 +72,7 @@ function truncateString(str, num): string {
   if (str.length <= num) {
     return str;
   }
-  return `${str.slice(0, num)  }...`;
+  return `${str.slice(0, num)}...`;
 }
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -102,11 +98,7 @@ interface ArticleIssueProps {
 const ArticleIssue: FC<ArticleIssueProps> = ({ issue }) => {
   const classes = useStyles({});
   const [articlesPerVolume, setArticlesPerVolume] = useState([]);
-  const {
-    loading,
-    error,
-    data,
-  } = useQuery<ArticlesData>(GET_BY_ISSUE, {
+  const { loading, error, data } = useQuery<ArticlesData>(GET_BY_ISSUE, {
     variables: {
       issue,
     },
@@ -135,7 +127,7 @@ const ArticleIssue: FC<ArticleIssueProps> = ({ issue }) => {
       }
       return null;
     }
-    getData().then((filteredArticles) => {
+    getData().then((filteredArticles): void => {
       setArticlesPerVolume(filteredArticles);
     });
   }, [data]);
@@ -147,7 +139,9 @@ const ArticleIssue: FC<ArticleIssueProps> = ({ issue }) => {
       {articlesPerVolume && articlesPerVolume.length !== 0 && (
         <>
           <Grid xs={12} md={4} lg={3} item>
-            <Typography variant="h5" component="p" gutterBottom>Issue: {issue}</Typography>
+            <Typography variant="h5" component="p" gutterBottom>
+              Issue: {issue}
+            </Typography>
           </Grid>
           <Grid xs={12} md={8} lg={9} item>
             {articlesPerVolume.map(({ volume, articles }) => (
@@ -167,24 +161,31 @@ const ArticleIssue: FC<ArticleIssueProps> = ({ issue }) => {
                       return (
                         <Fragment key={`${volume}-${title}`}>
                           <Box pt={firstItem ? 1 : 4} mt={2} pb={3} mb={3}>
-                            <Typography className={classes.articleTitle} component="h2">{title}</Typography>
+                            <Typography className={classes.articleTitle} component="h2">
+                              {title}
+                            </Typography>
                             <Typography className={classes.articleAbstract}>
                               {truncateString(abstract, 240)}
                             </Typography>
-                            <Grid
-                              container
-                              direction="row"
-                              justify="space-between"
-                              alignItems="center"
-                            >
-                              <Grid item><Typography variant="button" component="span" color="textSecondary">Year: {year}</Typography></Grid>
-                              <Grid item><Typography variant="button" component="span" color="textSecondary">UUID: {uuid}</Typography></Grid>
-                              <Grid item><Typography variant="button" component="span" color="textSecondary">DOI: {doi}</Typography></Grid>
+                            <Grid container direction="row" justify="space-between" alignItems="center">
+                              <Grid item>
+                                <Typography variant="button" component="span" color="textSecondary">
+                                  Year: {year}
+                                </Typography>
+                              </Grid>
+                              <Grid item>
+                                <Typography variant="button" component="span" color="textSecondary">
+                                  UUID: {uuid}
+                                </Typography>
+                              </Grid>
+                              <Grid item>
+                                <Typography variant="button" component="span" color="textSecondary">
+                                  DOI: {doi}
+                                </Typography>
+                              </Grid>
                             </Grid>
                           </Box>
-                          {!lastItem && (
-                            <Divider />
-                          )}
+                          {!lastItem && <Divider />}
                         </Fragment>
                       );
                     })}

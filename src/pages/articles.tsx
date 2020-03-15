@@ -1,7 +1,10 @@
 import { NextPage } from 'next';
-import { TextField, Grid, Typography, Theme } from '@material-ui/core';
+import { useState } from 'react';
+import { useApolloClient } from '@apollo/react-hooks';
+import { Grid, Typography, Theme } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Page from '../components/Page';
+import FuzzySearch, { SEARCH_QUERY_ARTICLES } from '../components/FuzzySearch';
 import ArticleIssue from '../components/ArticleIssue';
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -14,26 +17,48 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 const Articles: NextPage = () => {
+  const client = useApolloClient();
+  const [searchResults, setSearchResults] = useState();
   const classes = useStyles({});
+
+  const handleSearch = (): void => {
+    const { searchQueryArticles } = client.readQuery({
+      query: SEARCH_QUERY_ARTICLES,
+    });
+    if (searchQueryArticles) {
+      setSearchResults(searchQueryArticles);
+    }
+  };
 
   return (
     <Page title="Articles">
       <Grid className={classes.hero} container direction="row" justify="center" alignItems="center">
         <Grid xs={12} md={6} item>
-          <form>
-            <TextField disabled id="outlined-basic" label="Search for Articles" variant="outlined" fullWidth />
-          </form>
+          <FuzzySearch searchEventTriggered={handleSearch} />
         </Grid>
       </Grid>
-      <Grid className={classes.body} container direction="row" justify="center" alignItems="center">
-        <Grid xs={12} item>
-          <Typography gutterBottom>Journal of Creating Value</Typography>
+      {searchResults && (
+        <Grid className={classes.hero} container direction="row" justify="center" alignItems="center">
+          <Grid xs={12} md={6} item>
+            {searchResults.map(({ title, uuid }) => (
+              <div key={uuid}>
+                <Typography>{title}</Typography>
+              </div>
+            ))}
+          </Grid>
         </Grid>
-        <Grid xs={12} item>
-          <ArticleIssue issue="2" />
-          <ArticleIssue issue="1" />
+      )}
+      {!searchResults && (
+        <Grid className={classes.body} container direction="row" justify="center" alignItems="center">
+          <Grid xs={12} item>
+            <Typography gutterBottom>Journal of Creating Value</Typography>
+          </Grid>
+          <Grid xs={12} item>
+            <ArticleIssue issue="2" />
+            <ArticleIssue issue="1" />
+          </Grid>
         </Grid>
-      </Grid>
+      )}
     </Page>
   );
 };
