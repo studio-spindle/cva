@@ -1,10 +1,6 @@
 
 # Creating Value Alliance
 
-The Creating Value Alliance website. 
-
----
-
 ## Client
 
 ```
