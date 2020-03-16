@@ -48,7 +48,7 @@ const GET_BY_ISSUE = gql`
   }
 `;
 
-const byYear = (a, b): number => {
+const byYear = (a: { year: number }, b: { year: number }): number => {
   if (a.year < b.year) {
     return -1;
   }
@@ -71,7 +71,7 @@ interface ArticleIssueProps {
 
 const ArticleIssue: FC<ArticleIssueProps> = ({ issue }) => {
   const classes = useStyles({});
-  const [articlesPerVolume, setArticlesPerVolume] = useState([]);
+  const [articlesPerVolume, setArticlesPerVolume] = useState<Volume[] | null>([]);
   const { loading, error, data } = useQuery<ArticlesData>(GET_BY_ISSUE, {
     variables: {
       issue,
@@ -84,7 +84,7 @@ const ArticleIssue: FC<ArticleIssueProps> = ({ issue }) => {
 
   useEffect(() => {
     async function getData() {
-      const editions: Article[] = await data?.Get.Things.Article.sort(byYear);
+      const editions: Article[] | undefined = await data?.Get.Things.Article.sort(byYear);
       if (editions) {
         const uniqueVolumesSet: Set<string> = new Set(
           editions.map((singleArticle) => singleArticle.volume),

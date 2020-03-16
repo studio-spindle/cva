@@ -64,8 +64,8 @@ interface IndexProps {
 const Index: NextPage<IndexProps> = ({ title, description }) => {
   const classes: ClassNameMap<string> = useStyles({});
 
-  const posts: Data<PostBlog>[] = usePosts();
-  const events: Data<PostEvent>[] = useEvents();
+  const posts: Data<PostBlog>[] | null = usePosts();
+  const events: Data<PostEvent>[] | null = useEvents();
 
   return (
     <Layout siteTitle={title} siteDescription={description}>

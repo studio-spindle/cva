@@ -3,6 +3,7 @@ import { forwardRef, FC } from 'react';
 import { useRouter } from 'next/router';
 import NextLink, { LinkProps as NextLinkProps } from 'next/link';
 import MuiLink, { LinkProps as MuiLinkProps } from '@material-ui/core/Link';
+import NodeURL from 'url';
 
 type NextComposedProps = Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'> & NextLinkProps;
 
@@ -28,6 +29,7 @@ interface LinkPropsBase {
   activeClassName?: string;
   innerRef?: React.Ref<HTMLAnchorElement>;
   naked?: boolean;
+  href: string | NodeURL.Url;
 }
 
 export type LinkProps = LinkPropsBase & NextComposedProps & Omit<MuiLinkProps, 'href'>;

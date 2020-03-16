@@ -6,7 +6,7 @@ import Loading from '../components/Loading';
 import EventList from '../components/EventList';
 
 const Blog: NextPage = () => {
-  const events: Data<PostEvent>[] = useEvents();
+  const events: Data<PostEvent>[] | null = useEvents();
   return (
     <Page title="Events">
       <p>(example: https://pontsbschool.com/creating-value/)</p>

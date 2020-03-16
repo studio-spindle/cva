@@ -6,7 +6,7 @@ import BlogList from '../components/BlogList';
 import Loading from '../components/Loading';
 
 const Blog: NextPage = () => {
-  const posts: Data<PostBlog>[] = usePosts();
+  const posts: Data<PostBlog>[] | null = usePosts();
   return (
     <Page title="Blog">
       {posts === null && <Loading />}

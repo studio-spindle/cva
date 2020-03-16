@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import importAllMarkdown from '../importAllMarkdown';
 import { Data, PostBlog } from '../shared.types';
 
-function usePosts(): Data<PostBlog>[] {
+function usePosts(): Data<PostBlog>[] | null {
   const [posts, setPosts] = useState<Data<PostBlog>[] | null>(null);
 
   useEffect(() => {

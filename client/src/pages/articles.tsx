@@ -7,6 +7,7 @@ import Page from '../components/Page';
 import FuzzySearch from '../components/FuzzySearch';
 import ArticleIssue from '../components/ArticleIssue';
 import ArticleDetail from '../components/ArticleDetail';
+import { Article } from '../shared.types';
 
 const useStyles = makeStyles((theme: Theme) => ({
   hero: {
@@ -24,23 +25,28 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
+interface HandleSearchArgs {
+  noResults: boolean;
+  articles?: Article[] | undefined;
+}
+
 const Articles: NextPage = () => {
   const classes = useStyles({});
-  const [searchResults, setSearchResults] = useState();
-  const [noSearchResults, setNoSearchResults] = useState(false);
-  const [searchTerm, setSearchTerm] = useState();
+  const [searchResults, setSearchResults] = useState<Article[] | undefined>();
+  const [noSearchResults, setNoSearchResults] = useState<boolean>(false);
+  const [searchTerm, setSearchTerm] = useState<string | undefined>();
 
-  const handleSearch = ({ noResults, articles }): void => {
+  const handleSearch = ({ noResults, articles }: HandleSearchArgs): void => {
     setNoSearchResults(noResults);
     setSearchResults(articles);
   };
 
-  const handleSearchTermUpdate = (term): void => {
+  const handleSearchTermUpdate = (term: string): void => {
     setSearchTerm(term);
   };
 
   const handleClear = (): void => {
-    console.log('clear please...')
+    console.log('clear please...');
   };
 
   return (

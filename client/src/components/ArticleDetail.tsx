@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-function truncateString(str, num): string {
+function truncateString(str: string, num: number): string {
   if (str.length <= num) {
     return str;
   }
