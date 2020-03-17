@@ -7,20 +7,26 @@ Project:
 - [Material UI](https://material-ui.com/) - React components for faster and easier web development
 - [Docker](https://www.docker.com/) - Only used for spinning up the articles
 
-## SSR
-
-T.b.d.
-
 ## Development
 
 To start developing your application run `yarn dev`. This starts the development server on `http://localhost:3000`.
 
 Visit `http://localhost:3000` to view your application.
 
-Note: This will not start a Weaviate instance which you will need for the Article page.
+This will not start a Weaviate instance which you will need for the Article page.
 
-## Dev Deployment
+To start a weaviate navigate to **the root of this project** and run docker compose with the relevant services:
 
-[Zeit](https://zeit.co/) is used to quickly be able to deploy a new visual style of the website for user acceptance testing. 
+```bash
+# Install the docker containers
+$ docker build ./weaviate --no-cache
 
-This will be removed in the future and replaced for a deploy on a development server using the Docker setup.
+# then run the containers necessary for a Weaviate
+$ docker-compose up contextionary esvector etcd weaviate
+```
+
+Now if you open `http://localhost:3000/articles` you are able to see the articles rendered in the front-end.
+
+## SSR
+
+T.b.d.

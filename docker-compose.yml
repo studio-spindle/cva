@@ -56,13 +56,19 @@ services:
     - 8080:8080
     restart: on-failure:0
     volumes:
-    - ./config.yaml:/config.yaml
+    - ./weaviate/config.yaml:/config.yaml
   cva:
-    build: .
+    build: weaviate
     environment:
     - weaviate_host=http://weaviate.com:8080
     depends_on:
     - weaviate
     links:
     - "weaviate:weaviate.com"
+  client:
+    build: ./client
+    depends_on:
+    - cva
+    ports:
+      - "3000:3000"
 version: '3.4'

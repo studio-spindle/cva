@@ -1,33 +1,32 @@
 
 # Creating Value Alliance
 
-## Client
+The scientific papers (Articles) are stored in a [knowledge graph](https://www.semi.technology/documentation/weaviate/current/about/philosophy.html). The tool used is [Weaviate](https://github.com/semi-technologies/weaviate).
 
+- [Building this application](#building-a-production-build)
+- [Development](#development)
+- [Deployment](#deployment)
+
+## Building a production build
+
+To start this application first build the client:
+
+```bash
+$ docker-compose build --no-cache
+
+# run all the services
+$ docker-compose up
 ```
-$ cd ./client
-# build the docker instance
-$ docker build . -t cva
-# run the docker container
-$ docker run -p 3000:3000 cva
-```
+
+_Note: Once the download (+/- 1.6 GB) of the instance is done, your local Weaviate instance will install. This might take a while. Once it's done you can run it on `http://localhost:8080/v1/meta`._
+_Note: also anytime the config, data or client changes re-run previous command in the corresponding directory_
 
 Now you can open the client in the browser window by opening `http://localhost:3000/` in your browser.
 
-## Scientific papers (Articles)
+## Development
 
-The scientific papers are stored in a [knowledge graph](https://www.semi.technology/documentation/weaviate/current/about/philosophy.html). The tool used is [Weaviate](https://github.com/semi-technologies/weaviate).
+For developing the user interface navigate to the `./client` folder. In that folder you will find a readme with instructions on how to run this application.
 
-## Docker
+## Deployment
 
-```sh
-$ cd ./weaviate
-# This is needed anytime the config or data changes
-$ docker-compose build --no-cache
-```
-
-Once the download (+/- 1.6 GB) of the instance is done, your local Weaviate instance will install. This might take a while. Once it's done you can run it on `http://localhost:8080/v1/meta`.
-
-```
-# You can use -d to run as deamon
-$ docker-compose up -d
-```
+T.B.D.
