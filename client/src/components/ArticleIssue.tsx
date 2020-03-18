@@ -83,7 +83,7 @@ const ArticleIssue: FC<ArticleIssueProps> = ({ issue }) => {
   }
 
   useEffect(() => {
-    async function getData() {
+    async function getData(): Promise<Volume[] | null> {
       const editions: Article[] | undefined = await data?.Get.Things.Article.sort(byYear);
       if (editions) {
         const uniqueVolumesSet: Set<string> = new Set(

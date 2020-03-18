@@ -76,7 +76,7 @@ const BlogTemplate: NextPage<BlogTemplateProps> = ({ content, data }) => {
     <Layout siteTitle={title}>
       <Container className={classes.container} maxWidth="lg">
         <Grid component="article" container direction="row" justify="space-around" className={classes.firstContent}>
-          <Grid item xs={12} md={8}>
+          <Grid item xs={12} md={6}>
             <Typography variant="h2" component="h1" className={classes.smallGutter}>
               {title}
             </Typography>
@@ -117,7 +117,7 @@ const BlogTemplate: NextPage<BlogTemplateProps> = ({ content, data }) => {
 };
 
 BlogTemplate.getInitialProps = async (context: NextPageContext): Promise<BlogTemplateProps> => {
-  const { countryCode, slug } = context.query;
+  const { slug } = context.query;
   const content = await import(`../../posts/NL/${slug}.md`);
   const config = await import('../../data/config.json');
   const data = matter(content.default) as DocumentFrontMatter<PostBlog>;

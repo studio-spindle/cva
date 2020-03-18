@@ -17,12 +17,12 @@ import Logo from './Logo';
 import MainMenu from './MainMenu';
 import Footer from './Footer';
 
-const drawerWidth = 240;
+export const drawerWidth = 240;
 
 const useStyles = makeStyles((theme: Theme) => ({
   '@global': {
     body: {
-      backgroundColor: '#F4F6FF',
+      backgroundColor: '#fefefe',
     },
   },
   root: {
@@ -157,7 +157,7 @@ const Layout: FC<LayoutProps> = (({
       >
         {children}
       </main>
-      <Footer />
+      <Footer shift={open} />
       <Drawer
         className={classes.drawer}
         variant="persistent"

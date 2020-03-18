@@ -1,13 +1,12 @@
 import { NextPage } from 'next';
-import Link from 'next/link';
-import { Grid, Container, Typography, Button, Theme } from '@material-ui/core';
+import { Grid, Container, Typography, Theme } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { ClassNameMap } from '@material-ui/core/styles/withStyles';
-import { ArrowForwardRounded } from '@material-ui/icons';
 import Layout from '../components/Layout';
 import Jumbo from '../components/Jumbo';
 import EventList from '../components/EventList';
 import Loading from '../components/Loading';
+import CountryList from '../components/CountryList';
 import { Data, PostEvent } from '../shared.types';
 import useEvents from '../hooks/useEvents';
 
@@ -18,7 +17,34 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   sectionFirst: {
     marginTop: theme.spacing(9),
-    backgroundColor: theme.palette.grey[300],
+    position: 'relative',
+    background: "url('./images/backgrounds/cva-emblem.svg')",
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: '60vw -27rem',
+    backgroundSize: '65rem 65rem',
+    '&:after': {
+      content: '""',
+      position: 'absolute',
+      backgroundImage: "url('./images/backgrounds/large-ecole-des-ponts-business-school.jpg')",
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      top: 0,
+      left: 0,
+      bottom: 0,
+      right: 0,
+      zIndex: -2,
+    },
+    '&:before': {
+      content: '""',
+      position: 'absolute',
+      opacity: '0.92',
+      background: 'linear-gradient(33deg, rgba(238,238,238,1) 0%, rgba(255,255,255,1) 51%, rgba(252,252,252,1) 100%)',
+      top: 0,
+      left: 0,
+      bottom: 0,
+      right: 0,
+      zIndex: -1,
+    },
   },
   container: {
     paddingLeft: theme.spacing(4),
@@ -52,6 +78,10 @@ const useStyles = makeStyles((theme: Theme) => ({
   horizontalAction: {
     marginTop: theme.spacing(6),
   },
+  lastSectionHeading: {
+    marginTop: theme.spacing(5),
+    marginBottom: theme.spacing(4),
+  },
 }));
 
 interface IndexProps {
@@ -79,7 +109,7 @@ const Index: NextPage<IndexProps> = ({ title, description }) => {
                 Connect with thinkers for <em>inspiration</em> and new <em>opportunities</em>.
               </Typography>
               {/* <Link href="/events" passHref>
-                <Button color="secondary" variant="contained" endIcon={<ArrowForwardRounded />}>
+                <Button color="primary" variant="contained" endIcon={<ArrowForwardRounded />}>
                   View all events
                 </Button>
               </Link> */}
@@ -96,43 +126,13 @@ const Index: NextPage<IndexProps> = ({ title, description }) => {
 
       <section className={classes.section}>
         <Container className={classes.container} fixed maxWidth="lg">
-          <Grid container direction="row" justify="center" alignItems="center">
+          <Grid container direction="row" justify="center" alignItems="center" className={classes.lastSectionHeading}>
             <Grid item xs={12}>
               <Typography variant="h3" component="h2" align="center" gutterBottom>
                 Learn about value thinking
               </Typography>
             </Grid>
-          </Grid>
-          <Grid container>
-            <Grid item xs={12} md={4}>
-              <Typography variant="h4" component="h3">
-                Netherlands
-              </Typography>
-              <Typography gutterBottom>
-                A little text
-              </Typography>
-              <Link href="/posts" passHref>
-                <Button color="secondary" variant="contained" endIcon={<ArrowForwardRounded />}>
-                  View all posts
-                </Button>
-              </Link>
-            </Grid>
-            <Grid item xs={12} md={4}>
-              <Typography variant="h4" component="h3">
-                Denmark (coming soon)
-              </Typography>
-              <Typography>
-                A little text
-              </Typography>
-            </Grid>
-            <Grid item xs={12} md={4}>
-              <Typography variant="h4" component="h3">
-                Japan (coming soon)
-              </Typography>
-              <Typography>
-                A little text
-              </Typography>
-            </Grid>
+            <CountryList />
           </Grid>
         </Container>
       </section>

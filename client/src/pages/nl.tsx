@@ -1,4 +1,5 @@
 import { NextPage } from 'next';
+import { Container } from '@material-ui/core';
 import Page from '../components/Page';
 import { Data, PostBlog } from '../shared.types';
 import usePosts from '../hooks/usePosts';
@@ -6,13 +7,15 @@ import BlogList from '../components/BlogList';
 import Loading from '../components/Loading';
 
 const Blog: NextPage = () => {
-  const posts: Data<PostBlog>[] | null = usePosts('nl');
+  const posts: Data<PostBlog>[] | null = usePosts('NL');
   return (
     <Page title="Netherlands">
-      {posts === null && <Loading />}
-      {posts && (
-        <BlogList posts={posts} />
-      )}
+      <Container maxWidth="md">
+        {posts === null && <Loading />}
+        {posts && (
+          <BlogList posts={posts} />
+        )}
+      </Container>
     </Page>
   );
 };

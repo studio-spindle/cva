@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { Theme, Grid, Typography, Container } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { drawerWidth } from './Layout';
 
 const useStyles = makeStyles((theme: Theme) => ({
   footer: {
@@ -27,12 +28,24 @@ const useStyles = makeStyles((theme: Theme) => ({
       marginTop: theme.spacing(15),
     },
   },
+  footerShift: {
+    marginRight: drawerWidth,
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+    width: `calc(100% - ${drawerWidth}px)`,
+  },
 }));
 
-const Footer: FC = () => {
+interface FooterProps {
+  shift: boolean;
+}
+
+const Footer: FC<FooterProps> = ({ shift }) => {
   const classes = useStyles({});
   return (
-    <footer className={classes.footer}>
+    <footer className={`${classes.footer} ${shift ? classes.footerShift : ''}`}>
       <Container className={classes.container} maxWidth="lg">
         <Grid container justify="space-between">
           <Grid item>
@@ -42,7 +55,6 @@ const Footer: FC = () => {
               </small>
             </Typography>
           </Grid>
-          <Grid item>...</Grid>
         </Grid>
       </Container>
     </footer>
