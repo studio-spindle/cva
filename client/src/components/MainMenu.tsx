@@ -4,7 +4,7 @@ import Link from './Link';
 
 const pages = [
   { title: 'Home', href: '/' },
-  { title: 'Blog', href: '/blog' },
+  { title: 'Countries', href: '/countries' },
   { title: 'Events', href: '/events' },
   { title: 'Articles', href: '/articles' },
   { title: 'Contact', href: '/contact' },

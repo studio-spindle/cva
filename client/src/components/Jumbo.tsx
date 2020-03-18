@@ -3,6 +3,7 @@ import { Container, Grid, Typography, Theme, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { CSSTransition } from 'react-transition-group';
 import { ArrowForwardRounded } from '@material-ui/icons';
+import Link from 'next/link';
 
 const animationTimout = 500;
 
@@ -79,9 +80,11 @@ const Jumbo: FC = () => {
             <Typography className={classes.intro} gutterBottom>
               {intro}
             </Typography>
-            <Button color="primary" variant="contained" endIcon={<ArrowForwardRounded />}>
-              Sign up for a Master Class
-            </Button>
+            <Link href="/events" passHref>
+              <Button color="primary" variant="contained" endIcon={<ArrowForwardRounded />}>
+                View upcoming events
+              </Button>
+            </Link>
           </Grid>
         </CSSTransition>
       </Grid>

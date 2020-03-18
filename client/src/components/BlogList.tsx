@@ -14,7 +14,7 @@ const BlogList: FC<BlogListProps> = ({ posts }) => (
   <PromoList>
     {posts.map(({ document: { data }, slug }) => (
       <PromoListItem key={slug}>
-        <Card showIntro slug={`/blog/${slug}`} {...data}>
+        <Card showIntro slug={`/nl/${slug}`} {...data}>
           {data.categories && (
             <Tags>
               {data.categories.map((category) => (

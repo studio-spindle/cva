@@ -6,11 +6,9 @@ import { ClassNameMap } from '@material-ui/core/styles/withStyles';
 import { ArrowForwardRounded } from '@material-ui/icons';
 import Layout from '../components/Layout';
 import Jumbo from '../components/Jumbo';
-import BlogList from '../components/BlogList';
 import EventList from '../components/EventList';
 import Loading from '../components/Loading';
-import { Data, PostEvent, PostBlog } from '../shared.types';
-import usePosts from '../hooks/usePosts';
+import { Data, PostEvent } from '../shared.types';
 import useEvents from '../hooks/useEvents';
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -64,7 +62,6 @@ interface IndexProps {
 const Index: NextPage<IndexProps> = ({ title, description }) => {
   const classes: ClassNameMap<string> = useStyles({});
 
-  const posts: Data<PostBlog>[] | null = usePosts();
   const events: Data<PostEvent>[] | null = useEvents();
 
   return (
@@ -81,11 +78,11 @@ const Index: NextPage<IndexProps> = ({ title, description }) => {
               <Typography variant="body1" gutterBottom>
                 Connect with thinkers for <em>inspiration</em> and new <em>opportunities</em>.
               </Typography>
-              <Link href="/events" passHref>
+              {/* <Link href="/events" passHref>
                 <Button color="secondary" variant="contained" endIcon={<ArrowForwardRounded />}>
                   View all events
                 </Button>
-              </Link>
+              </Link> */}
             </Grid>
             {events === null && <Loading />}
             {events && (
@@ -106,25 +103,37 @@ const Index: NextPage<IndexProps> = ({ title, description }) => {
               </Typography>
             </Grid>
           </Grid>
-          {posts === null && <Loading />}
-          {posts && (
-            <>
-              <Grid container>
-                <Grid item xs={12}>
-                  <BlogList posts={posts} />
-                </Grid>
-              </Grid>
-              <Grid container direction="row" justify="center" alignItems="center" className={classes.horizontalAction}>
-                <Grid item>
-                  <Link href="/blog" passHref>
-                    <Button color="secondary" variant="contained" endIcon={<ArrowForwardRounded />}>
-                      View All Blogposts
-                    </Button>
-                  </Link>
-                </Grid>
-              </Grid>
-            </>
-          )}
+          <Grid container>
+            <Grid item xs={12} md={4}>
+              <Typography variant="h4" component="h3">
+                Netherlands
+              </Typography>
+              <Typography gutterBottom>
+                A little text
+              </Typography>
+              <Link href="/posts" passHref>
+                <Button color="secondary" variant="contained" endIcon={<ArrowForwardRounded />}>
+                  View all posts
+                </Button>
+              </Link>
+            </Grid>
+            <Grid item xs={12} md={4}>
+              <Typography variant="h4" component="h3">
+                Denmark (coming soon)
+              </Typography>
+              <Typography>
+                A little text
+              </Typography>
+            </Grid>
+            <Grid item xs={12} md={4}>
+              <Typography variant="h4" component="h3">
+                Japan (coming soon)
+              </Typography>
+              <Typography>
+                A little text
+              </Typography>
+            </Grid>
+          </Grid>
         </Container>
       </section>
     </Layout>
