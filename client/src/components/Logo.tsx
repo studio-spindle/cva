@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     width: '245px',
   },
   logoColorOne: {
-    fill: '#10B253',
+    fill: '#5BBF8C',
   },
   logoColorOneDark: {
     fill: theme.palette.secondary.dark,

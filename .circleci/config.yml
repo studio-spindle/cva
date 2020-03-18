@@ -14,10 +14,11 @@ jobs:
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/mongo:3.4.4
 
-    working_directory: ~/repo
+    working_directory: ~/repo/client
 
     steps:
-      - checkout
+      - checkout:
+          path: ~/repo
 
       # Download and cache dependencies
       - restore_cache:
@@ -33,15 +34,19 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      - run: yarn lint
+      - run: yarn lintTs
+      - run: yarn lintEs
       # - run: yarn test
       # - run: yarn test:coverage
 
-  deploy:
+  deployProd:
+    branches:
+      only:
+        - master
     docker:
       - image: google/cloud-sdk
-      steps:
-        - run: |
+    steps:
+      - run: |
           gcloud config set project $PROJECTPROD
           gcloud compute ssh --zone $ZONE $MACHINE -- 'cd /home/cva && docker build -t cva . && docker restart cva'
           gcloud compute url-maps invalidate-cdn-cache $PROJECTPROD --host www.creatingvalue.co --path "/*" --async
