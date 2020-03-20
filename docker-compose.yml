@@ -71,4 +71,18 @@ services:
     - cva
     ports:
       - "3000:3000"
+  nginx: 
+    depends_on: 
+      - weaviate
+      - client
+    environment: 
+      - NGINX_PORT=2222
+    image: nginx
+    links: 
+      - "weaviate:weaviate.com"
+      - "client:website.com"
+    ports: 
+      - "2222:2222"
+    volumes: 
+      - "./nginx.conf:/etc/nginx/conf.d/default.conf"
 version: '3.4'
