@@ -7,51 +7,52 @@ import PromoListItem from './PromoListItem';
 import { Data, PostEvent } from '../shared.types';
 import Card from './Card';
 
-interface EventListProps {
-  posts: Data<PostEvent>[];
-}
+import { eventDetails as upcomingConferenceDetails } from '../pages/events/third-global-conference-on-creating-value';
 
-const EventList: FC<EventListProps> = ({ posts }) => {
-  const sortedPosts: Data<PostEvent>[] = posts.sort(
-    (post, nextPost) => nextPost.document.data.timeStampEpoch - post.document.data.timeStampEpoch,
-  );
-
-  const amountOfPosts = 3;
-  return (
-    <PromoList>
-      {sortedPosts.slice(0, amountOfPosts).map(
-        (
-          {
-            document: {
-              data: { location },
-              data,
-            },
-            slug,
-          },
-          index,
-        ) => {
-          const firstEvent = index === 0;
-
-          return (
-            <PromoListItem key={slug}>
-              <Card highlight={firstEvent} showIntro={firstEvent} slug={`/events/${slug}`} {...data}>
-                <Box alignItems="center" display="flex">
-                  <Box mr={0.5}>
-                    <LocationOnIcon color="secondary" />
-                  </Box>
-                  <Box>
-                    <Typography color="secondary" variant="overline">
-                      {location}
-                    </Typography>
-                  </Box>
-                </Box>
-              </Card>
-            </PromoListItem>
-          );
-        },
-      )}
-    </PromoList>
-  );
-};
+const EventList: FC = () => (
+  <PromoList>
+    <PromoListItem>
+      <Card
+        highlight
+        showIntro
+        slug="/events/third-global-conference-on-creating-value"
+        title={upcomingConferenceDetails.title}
+        intro={upcomingConferenceDetails.intro}
+        location={upcomingConferenceDetails.location}
+        date="October 20 and 21st"
+      >
+        <Box alignItems="center" display="flex">
+          <Box mr={0.5}>
+            <LocationOnIcon color="secondary" />
+          </Box>
+          <Box>
+            <Typography color="secondary" variant="overline">
+              {upcomingConferenceDetails.location}
+            </Typography>
+          </Box>
+        </Box>
+      </Card>
+    </PromoListItem>
+    {/* <PromoListItem>
+      <Card
+        slug="/events/first-global-conference-on-creating-value"
+        title="1st Global conference For Creating Value"
+        intro="This is a small intro that is and is about the upcoming event."
+        date="May 23-24"
+      >
+        <Box alignItems="center" display="flex">
+          <Box mr={0.5}>
+            <LocationOnIcon color="secondary" />
+          </Box>
+          <Box>
+            <Typography color="secondary" variant="overline">
+              {location}
+            </Typography>
+          </Box>
+        </Box>
+      </Card>
+    </PromoListItem> */}
+  </PromoList>
+);
 
 export default EventList;

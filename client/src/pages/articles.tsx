@@ -3,7 +3,7 @@ import { Fragment, useState } from 'react';
 import { Button, Box, Grid, Typography, Theme, Divider } from '@material-ui/core';
 import { Clear as ClearIcon } from '@material-ui/icons';
 import { makeStyles } from '@material-ui/core/styles';
-import Page from '../components/Page';
+import Page from '../templates/Page';
 import FuzzySearch from '../components/FuzzySearch';
 import ArticleIssue from '../components/ArticleIssue';
 import ArticleDetail from '../components/ArticleDetail';

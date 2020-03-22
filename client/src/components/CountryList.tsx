@@ -8,13 +8,24 @@ const useStyles = makeStyles((theme: Theme) => ({
   countryTitle: {
     marginBottom: theme.spacing(2),
   },
+  [theme.breakpoints.down('sm')]: {
+    countryCard: {
+      paddingTop: theme.spacing(4),
+      paddingBottom: theme.spacing(4),
+    },
+  },
+  [theme.breakpoints.up('md')]: {
+    countryCard: {
+      padding: theme.spacing(4),
+    },
+  },
 }));
 
 const CountryList: FC = () => {
   const classes = useStyles({});
   return (
     <Grid container alignItems="stretch">
-      <Grid item xs={12} md={4}>
+      <Grid item xs={12} md={4} className={classes.countryCard}>
         <Typography variant="h4" component="h3" className={classes.countryTitle}>
           Netherlands
         </Typography>
@@ -27,7 +38,7 @@ const CountryList: FC = () => {
           </Button>
         </Link>
       </Grid>
-      <Grid item xs={12} md={4}>
+      <Grid item xs={12} md={4} className={classes.countryCard}>
         <Typography variant="h4" component="h3" className={classes.countryTitle}>
           Denmark
           <SuperText>(Coming soon)</SuperText>
@@ -36,7 +47,7 @@ const CountryList: FC = () => {
           A little text
         </Typography>
       </Grid>
-      <Grid item xs={12} md={4}>
+      <Grid item xs={12} md={4} className={classes.countryCard}>
         <Typography variant="h4" component="h3" className={classes.countryTitle}>
           Japan
           <SuperText>(Coming soon)</SuperText>

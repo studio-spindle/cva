@@ -8,6 +8,7 @@ import Layout from '../../components/Layout';
 import { DocumentFrontMatter, PostBlog } from '../../shared.types';
 import Tags from '../../components/Tags';
 import Tag from '../../components/Tag';
+import ProfileImage from '../../components/ProfileImage';
 
 const useStyles = makeStyles((theme: Theme) => ({
   container: {
@@ -31,14 +32,6 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   author: {
     marginBottom: theme.spacing(4),
-  },
-  profileImage: {
-    width: '5rem',
-    marginRight: theme.spacing(3),
-    '& img': {
-      borderRadius: '50%',
-      width: '100%',
-    },
   },
   [theme.breakpoints.down('sm')]: {
     firstContent: {
@@ -87,9 +80,7 @@ const BlogTemplate: NextPage<BlogTemplateProps> = ({ content, data }) => {
               <Grid item>
                 <Box alignItems="center" display="flex" flexDirection="row">
                   {authorImageUrl && (
-                    <Box className={classes.profileImage}>
-                      <img src={authorImageUrl} alt="" />
-                    </Box>
+                    <ProfileImage imageUrl={authorImageUrl} alt="Image of Marcel Kwakernaak" />
                   )}
                   <Box>
                     <Typography className={classes.small}>{author}</Typography>

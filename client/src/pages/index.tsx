@@ -5,53 +5,19 @@ import { ClassNameMap } from '@material-ui/core/styles/withStyles';
 import Layout from '../components/Layout';
 import Jumbo from '../components/Jumbo';
 import EventList from '../components/EventList';
-import Loading from '../components/Loading';
 import CountryList from '../components/CountryList';
-import { Data, PostEvent } from '../shared.types';
-import useEvents from '../hooks/useEvents';
+import Section from '../components/Section';
 
 const useStyles = makeStyles((theme: Theme) => ({
-  section: {
-    paddingTop: theme.spacing(6),
-    paddingBottom: theme.spacing(6),
-  },
-  sectionFirst: {
-    marginTop: theme.spacing(9),
-    position: 'relative',
-    background: "url('./images/backgrounds/cva-emblem.svg')",
-    backgroundRepeat: 'no-repeat',
-    backgroundPosition: '60vw -27rem',
-    backgroundSize: '65rem 65rem',
-    '&:after': {
-      content: '""',
-      position: 'absolute',
-      backgroundImage: "url('./images/backgrounds/large-ecole-des-ponts-business-school.jpg')",
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      top: 0,
-      left: 0,
-      bottom: 0,
-      right: 0,
-      zIndex: -2,
-    },
-    '&:before': {
-      content: '""',
-      position: 'absolute',
-      opacity: '0.92',
-      background: 'linear-gradient(33deg, rgba(238,238,238,1) 0%, rgba(255,255,255,1) 51%, rgba(252,252,252,1) 100%)',
-      top: 0,
-      left: 0,
-      bottom: 0,
-      right: 0,
-      zIndex: -1,
-    },
-  },
   container: {
     paddingLeft: theme.spacing(4),
     paddingRight: theme.spacing(4),
   },
   buttonReadMore: {
     marginRight: '10px',
+  },
+  white: {
+    color: 'white',
   },
   card: {
     marginTop: theme.spacing(6),
@@ -92,20 +58,18 @@ interface IndexProps {
 const Index: NextPage<IndexProps> = ({ title, description }) => {
   const classes: ClassNameMap<string> = useStyles({});
 
-  const events: Data<PostEvent>[] | null = useEvents();
-
   return (
     <Layout siteTitle={title} siteDescription={description}>
       <Jumbo />
 
-      <section className={`${classes.section} ${classes.sectionFirst}`}>
+      <Section first>
         <Container className={classes.container} maxWidth="lg">
           <Grid container direction="row" justify="space-evenly" alignItems="center">
             <Grid item xs={12} md={4} className={classes.eventMainInfo}>
-              <Typography variant="h3" component="h2" gutterBottom>
-                Upcoming Events
+              <Typography className={classes.white} variant="h3" component="h2" gutterBottom>
+                Events
               </Typography>
-              <Typography variant="body1" gutterBottom>
+              <Typography className={classes.white} variant="body1" gutterBottom>
                 Connect with thinkers for <em>inspiration</em> and new <em>opportunities</em>.
               </Typography>
               {/* <Link href="/events" passHref>
@@ -114,17 +78,14 @@ const Index: NextPage<IndexProps> = ({ title, description }) => {
                 </Button>
               </Link> */}
             </Grid>
-            {events === null && <Loading />}
-            {events && (
-              <Grid item xs={12} md={6}>
-                <EventList posts={events} />
-              </Grid>
-            )}
+            <Grid item xs={12} md={6}>
+              <EventList />
+            </Grid>
           </Grid>
         </Container>
-      </section>
+      </Section>
 
-      <section className={classes.section}>
+      <Section>
         <Container className={classes.container} fixed maxWidth="lg">
           <Grid container direction="row" justify="center" alignItems="center" className={classes.lastSectionHeading}>
             <Grid item xs={12}>
@@ -135,7 +96,7 @@ const Index: NextPage<IndexProps> = ({ title, description }) => {
             <CountryList />
           </Grid>
         </Container>
-      </section>
+      </Section>
     </Layout>
   );
 };

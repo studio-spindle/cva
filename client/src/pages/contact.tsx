@@ -1,6 +1,6 @@
 import { NextPage } from 'next';
 import { Grid, Typography } from '@material-ui/core';
-import Page from '../components/Page';
+import Page from '../templates/Page';
 
 const Contact: NextPage = () => (
   <Page title="Contact">

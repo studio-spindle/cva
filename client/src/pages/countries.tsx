@@ -1,5 +1,5 @@
 import { NextPage } from 'next';
-import Page from '../components/Page';
+import Page from '../templates/Page';
 import CountryList from '../components/CountryList';
 
 const Blog: NextPage = () => (

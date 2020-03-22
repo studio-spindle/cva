@@ -5,7 +5,7 @@ import Link from './Link';
 const pages = [
   { title: 'Home', href: '/' },
   { title: 'Countries', href: '/countries' },
-  { title: 'Events', href: '/events' },
+  { title: 'Upcoming Event', href: '/events/third-global-conference-on-creating-value' },
   { title: 'Articles', href: '/articles' },
   { title: 'Contact', href: '/contact' },
 ];

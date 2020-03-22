@@ -1,6 +1,6 @@
 import { NextPage } from 'next';
 import { Container } from '@material-ui/core';
-import Page from '../components/Page';
+import Page from '../templates/Page';
 import { Data, PostBlog } from '../shared.types';
 import usePosts from '../hooks/usePosts';
 import BlogList from '../components/BlogList';
