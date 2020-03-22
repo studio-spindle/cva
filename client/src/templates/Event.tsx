@@ -189,7 +189,7 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
         <Grid container direction="row">
           <Grid item xs={12} md={6} className={`${classes.infoBlock} ${classes.infoBlockSecondary}`}>
             <Typography className={`${classes.titleMega} ${classes.white}`} component="h2" gutterBottom>
-              About the Online<br />Converence
+              About the Online<br />Conference
             </Typography>
             <Box mb={4}>
               <Divider color="white" />
@@ -610,13 +610,13 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
               <Grid item xs={12} md={4}>
                 <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center">
                   <Box pb={3}>
-                    <ProfileImage imageUrl="/images/events/EDP/Guatam_Mahajan.jpeg" alt="Guatam Mahajan" large />
+                    <ProfileImage imageUrl="/images/events/EDP/Gautam_Mahajan.jpeg" alt="Gautam Mahajan" large />
                   </Box>
                   <Box>
-                    <Typography component="h3" variant="h4" className={classes.smallGutter}>Guatam Mahajan</Typography>
+                    <Typography component="h3" variant="h4" className={classes.smallGutter}>Gautam Mahajan</Typography>
                   </Box>
                   <Box>
-                    <a href="https://www.linkedin.com/in/mahajancvf/" title="Linked-in of Guatam Mahajan">
+                    <a href="https://www.linkedin.com/in/mahajancvf/" title="Linked-in of Gautam Mahajan">
                       <LinkedInIcon className={classes.iconJumbo} />
                     </a>
                   </Box>
