@@ -1,5 +1,14 @@
 import { FC } from 'react';
-import { Container, Grid, Theme, Typography, Box, Button, Hidden } from '@material-ui/core';
+import {
+  Container,
+  Grid,
+  Theme,
+  Typography,
+  Box,
+  Button,
+  Hidden,
+  Link,
+} from '@material-ui/core';
 import { LinkedIn as LinkedInIcon } from '@material-ui/icons';
 import { makeStyles } from '@material-ui/core/styles';
 import { ClassNameMap } from '@material-ui/core/styles/withStyles';
@@ -10,6 +19,9 @@ import ProfileImage from '../components/ProfileImage';
 import Divider from '../components/Divider';
 import Speaker from '../components/Speaker';
 import Truncate from '../components/Truncate';
+
+import WeezeEvent from '../third-party/WeezeEvent';
+import MailchimpSubscribe from '../third-party/MailchimpSubscribe';
 
 const useStyles = makeStyles((theme: Theme) => ({
   '@global': {
@@ -92,6 +104,9 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   infoBlockPrimary: {
     backgroundColor: theme.palette.primary.main,
+  },
+  intergrationBlock: {
+    padding: theme.spacing(8),
   },
   eventMeta: {
     paddingTop: theme.spacing(2),
@@ -212,7 +227,9 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
               </Grid>
               <Grid item xs={12} md={3}>
                 <Box className={classes.CTAContainer} display="flex">
-                  <Button variant="contained" color="primary">Get Tickets</Button>
+                  <Link href="#anchor-integrations">
+                    <Button variant="contained" color="primary">Get Tickets</Button>
+                  </Link>
                 </Box>
               </Grid>
             </Grid>
@@ -252,7 +269,7 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
               place online on <strong>June 2-3</strong>, 2020, as a prelude to the physical
               conference that will be held later in the year in Paris in October 2020.
             </Typography>
-            <Typography className={classes.white}>
+            <Typography className={classes.white} gutterBottom>
               By using a <strong>digital format</strong> for the postponed event, participants
               can join into a range of live keynotes, panel, paper and expert discussions and
               other conference tracks. The condensed, facilitated and video recorded activities
@@ -260,6 +277,9 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
               their knowledge, get inspired and immerse in <strong>virtual networking</strong>{' '}
               with other attendees from across the globe.
             </Typography>
+            <Link href="#anchor-integrations">
+              <Button variant="contained" color="primary">Subscribe to this event</Button>
+            </Link>
           </Grid>
           <Grid item xs={12} md={6} className={`${classes.infoBlock} ${classes.infoBlockPrimary}`}>
             <Typography className={`${classes.titleMega} ${classes.white}`} component="h2" gutterBottom>
@@ -288,7 +308,7 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
                 </Hidden>
               </Grid>
             </Box>
-            <Typography className={classes.white}>
+            <Typography className={classes.white} gutterBottom>
               Ecole des Ponts Business School and the Creating Value Alliance are proud to
               invite you to the Third Global Conference on Creating Value that will take place
               in Paris on June 2 and 3, 2020. Building on the foundations of the previous global
@@ -611,6 +631,25 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
                   — Oscar Wilde
                 </Typography>
               </Box>
+            </Grid>
+          </Grid>
+        </Section>
+
+        <div id="anchor-integrations" />
+
+        <Section backgroundColor="white" noPadding>
+          <Grid container direction="row">
+            <Grid xs={10} lg={6} item className={classes.intergrationBlock}>
+              <Typography variant="h4" gutterBottom>
+                Subscribe for the Online Conference
+              </Typography>
+              <MailchimpSubscribe />
+            </Grid>
+            <Grid xs={10} lg={6} item className={classes.intergrationBlock}>
+              <Typography variant="h4" gutterBottom>
+                Tickets for the Conference
+              </Typography>
+              <WeezeEvent />
             </Grid>
           </Grid>
         </Section>

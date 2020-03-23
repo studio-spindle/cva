@@ -4,7 +4,7 @@ import { PostEvent } from '../../shared.types';
 
 export const eventDetails: PostEvent = {
   title: 'Third Global Conference on Creating Value',
-  intro: 'This is a small intro that is displayed. You can add a bit of information which a visitor can scan easily.',
+  intro: 'What does it mean to create value in constantly changing environment',
   location: 'Ecole Des Ponts Business School',
   city: 'Paris, France',
   address: '6-8 Avenue Blaise Pascal, 77420 Champs-sur-Marne, France',

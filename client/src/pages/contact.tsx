@@ -4,8 +4,8 @@ import Page from '../templates/Page';
 import SuperText from '../components/SuperText';
 
 const mailAddresses = [
-  { name: 'Naam Achternaam', mailAddress: 'naam@CVA.co' },
-  { name: 'Nog een link', mailAddress: 'naam@CVA.co' },
+  { name: 'Marcel Kwakernaak Founding director', mailAddress: 'm.kwakernaak@cva.co' },
+  { name: 'Martijn Rademakers Founding director', mailAddress: 'm.rademakers@cva.co' },
 ];
 
 const Contact: NextPage = () => (

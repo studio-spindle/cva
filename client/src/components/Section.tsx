@@ -28,24 +28,13 @@ const useStyles = makeStyles((theme: Theme) => ({
       right: 0,
       zIndex: -2,
     },
-    // '&:before': {
-    //   content: '""',
-    //   position: 'absolute',
-    //   opacity: '0.92',
-    //   background:
-    //     'linear-gradient(33deg, rgba(238,238,238,1) 0%,
-    //     rgba(255,255,255,1) 51%, rgba(252,252,252,1) 100%)',
-    //   top: 0,
-    //   left: 0,
-    //   bottom: 0,
-    //   right: 0,
-    //   zIndex: -1,
-    // },
   },
   [theme.breakpoints.down('sm')]: {
     section: {
-      paddingTop: theme.spacing(4),
-      paddingBottom: theme.spacing(4),
+      '&:not(.noPadding)': {
+        paddingTop: theme.spacing(4),
+        paddingBottom: theme.spacing(4),
+      },
     },
     sectionFirst: {
       '&:after': {
@@ -55,8 +44,10 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   [theme.breakpoints.up('md')]: {
     section: {
-      paddingTop: theme.spacing(12),
-      paddingBottom: theme.spacing(12),
+      '&:not(.noPadding)': {
+        paddingTop: theme.spacing(12),
+        paddingBottom: theme.spacing(12),
+      },
     },
   },
   [theme.breakpoints.only('md')]: {
@@ -80,13 +71,15 @@ type backgroundColor = 'secondary' | 'white';
 interface SectionProps {
   first?: boolean;
   backgroundColor?: backgroundColor;
+  noPadding?: boolean;
 }
 
-const Section: FC<SectionProps> = ({ children, first, backgroundColor }) => {
+const Section: FC<SectionProps> = ({ children, first, backgroundColor, noPadding }) => {
   const classes = useStyles({});
   return (
     <section className={`
       ${classes.section}
+      ${noPadding && 'noPadding'}
       ${first && classes.sectionFirst}
       ${backgroundColor === 'secondary' && classes.backgroundSecondary}
       ${backgroundColor === 'white' && classes.backgroundWhite}
