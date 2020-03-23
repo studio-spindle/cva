@@ -1,8 +1,8 @@
 
 import { FC } from 'react';
-import { Box, Theme, makeStyles } from '@material-ui/core';
+import { Box, makeStyles } from '@material-ui/core';
 
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles(() => ({
   profileImage: {
     width: '5rem',
     '& img': {

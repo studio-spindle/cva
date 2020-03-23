@@ -14,10 +14,24 @@ import Truncate from '../components/Truncate';
 const useStyles = makeStyles((theme: Theme) => ({
   '@global': {
     body: {
-      backgroundImage: "url('/images/events/EDP/background_paris_street.jpg')",
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       backgroundAttachment: 'fixed',
+    },
+    [theme.breakpoints.down('sm')]: {
+      body: {
+        backgroundImage: "url('/images/events/EDP/background_louvre_sm.jpg')",
+      },
+    },
+    [theme.breakpoints.only('md')]: {
+      body: {
+        backgroundImage: "url('/images/events/EDP/background_louvre_lg.jpg')",
+      },
+    },
+    [theme.breakpoints.up('lg')]: {
+      body: {
+        backgroundImage: "url('/images/events/EDP/background_louvre_xxl.jpg')",
+      },
     },
     footer: {
       marginTop: [['0'], '!important'],
@@ -152,7 +166,7 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
   const { title, location } = data;
 
   return (
-    <Layout siteTitle={title}>
+    <Layout siteTitle={title} invertHeader>
       <Container component="article" className={classes.container} maxWidth={false} disableGutters>
 
         <Grid container direction="row" justify="space-around" className={classes.firstContent}>
@@ -160,9 +174,11 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
             <Box className={classes.logo}>
               <img src="/images/events/EDP/logo_EDP.svg" alt="Logo Ecole des ponts business school" />
             </Box>
-            <Typography component="h1" className={`${classes.titleMega} ${classes.white}`} gutterBottom>
-              {title}
-            </Typography>
+            <Box maxWidth="800px">
+              <Typography component="h1" className={`${classes.titleMega} ${classes.white}`} gutterBottom>
+                {title}
+              </Typography>
+            </Box>
             <Divider color="white" gutterBottom />
             <Grid container>
               <Grid item xs={6} md={4}>
@@ -201,7 +217,8 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
                 </Grid>
                 <Grid item xs={6} md={4} className={`${classes.eventMeta} ${classes.eventMetaBorderLeft}`}>
                   <Typography variant="body2" className={classes.white}>
-                    09:00 am (C.E.T.)
+                    09:00 am<br />
+                    (C.E.T.)
                   </Typography>
                 </Grid>
                 <Hidden mdDown>
@@ -223,7 +240,7 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
               can join into a range of live keynotes, panel, paper and expert discussions and
               other conference tracks. The condensed, facilitated and video recorded activities
               will enable participants to either synchronously or asynchronously share and expand
-              their knowledge, get inspired and immerse in <strong>virtual networking</strong>
+              their knowledge, get inspired and immerse in <strong>virtual networking</strong>{' '}
               with other attendees from across the globe.
             </Typography>
           </Grid>
@@ -241,7 +258,8 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
                 </Grid>
                 <Grid item xs={6} md={4} className={`${classes.eventMeta} ${classes.eventMetaBorderLeft}`}>
                   <Typography variant="body2" className={classes.white}>
-                    09:00 am (C.E.T.)
+                    09:00 am<br />
+                    (C.E.T.)
                   </Typography>
                 </Grid>
                 <Hidden mdDown>
@@ -256,7 +274,7 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
             <Typography className={classes.white}>
               Ecole des Ponts Business School and the Creating Value Alliance are proud to
               invite you to the Third Global Conference on Creating Value that will take place
-              in Paris on June 2 and 3, 2020.Building on the foundations of the previous global
+              in Paris on June 2 and 3, 2020. Building on the foundations of the previous global
               editions in Leicester and New York, the Global Conference on Creating Value in Paris
               aims to increase our understanding of what it means to create value in a constantly
               changing environment.
@@ -324,7 +342,7 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
                     <Typography component="h3" variant="h5" className={classes.white} gutterBottom>
                       Head of Futures Literacy at UNESCO
                     </Typography>
-                    <Typography className={classes.white}>
+                    <Typography variant="body2" className={classes.white}>
                       <Truncate
                         text="
                           For thirty years Riel has been co-creating innovation, leadership and
@@ -352,7 +370,7 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
                     <Typography component="h3" variant="h5" className={classes.white} gutterBottom>
                       Professor School of Business Administration at Kobe University
                     </Typography>
-                    <Typography className={classes.white}>
+                    <Typography variant="body2" className={classes.white}>
                       <Truncate
                         text="
                           Prof/Dr. Katsuhiko Kokobu is currently working as Professor,
@@ -378,7 +396,7 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
                     <Typography component="h3" variant="h5" className={classes.white} gutterBottom>
                       Founder and Chief Experience Officer at Experience Catalysts
                     </Typography>
-                    <Typography className={classes.white}>
+                    <Typography variant="body2" className={classes.white}>
                       <Truncate
                         text="
                           With over 25 years of Customer Experience leadership with brands like AT&mp;T
@@ -406,7 +424,7 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
                     <Typography component="h3" variant="h5" className={classes.white} gutterBottom>
                       Founder and Honorary Chairman, Simon-Kucher &amp; Partners
                     </Typography>
-                    <Typography className={classes.white}>
+                    <Typography variant="body2" className={classes.white}>
                       <Truncate
                         text="
                           Hermann Simon is the Founder and Chairman of Simon Kucher &amp; Partners.
@@ -438,7 +456,7 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
                     <Typography component="h3" variant="h5" className={classes.white} gutterBottom>
                       Shidler Distinguished Professor at University of Hawaii
                     </Typography>
-                    <Typography className={classes.white}>
+                    <Typography variant="body2" className={classes.white}>
                       <Truncate
                         text="
                           Stephen L. Vargo is a Shidler Distinguished Professor and Professor of
@@ -473,7 +491,7 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
                       Professor of Integrated Value and Chair in Sustainable transformation
                       at Antwerp Management School
                     </Typography>
-                    <Typography className={classes.white}>
+                    <Typography variant="body2" className={classes.white}>
                       <Truncate
                         text="
                           Prof. Dr Wayne Visser is a globally recognized &apos;pracademic&apos;, listed
@@ -517,9 +535,9 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
                   Amnon Danzig,<br />Business Developer
                 </Typography>
                 <Typography variant="body2" className={classes.testimonialBody}>
-                  &ldquo;For me, the entire conference shed light on other directions with the way we
-                  manage organizations and the way we have to teach the younger generation all
-                  about managing. I feel that my book might give a few practical insights on how
+                  &ldquo;For me, the entire conference shed light on other directions with the way{' '}
+                  we manage organizations and the way we have to teach the younger generation all{' '}
+                  about managing. I feel that my book might give a few practical insights on how{' '}
                   to do it by combining non-related domains.&rdquo;
                 </Typography>
               </Box>
@@ -530,10 +548,10 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
                   Monica, Attendee
                 </Typography>
                 <Typography variant="body2" className={classes.testimonialBody}>
-                  &ldquo;I truly enjoyed the conference in NYC. It was a great learning experience and
-                  wonderful opportunity to exchanged ideas with colleagues from different industries
-                  and background. Alice, Alberto and I are planning to write an article to expand
-                  our presentation.&rdquo;
+                  &ldquo;I truly enjoyed the conference in NYC. It was a great learning experience{' '}
+                  and wonderful opportunity to exchanged ideas with colleagues from different{' '}
+                  industries and background. Alice, Alberto and I are planning to write an article to{' '}
+                  expand our presentation.&rdquo;
                 </Typography>
               </Box>
             </Grid>
@@ -543,9 +561,9 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
                   Corey Whipple, Attendee
                 </Typography>
                 <Typography variant="body2" className={classes.testimonialBody}>
-                  &ldquo;I enjoyed the conference. Great insight on value creation, diverse attendees, and
-                  good combination of academia and business professionals. Nice dinner, scenery,
-                  and location for attendees. New perspectives presented have been included in the
+                  &ldquo;I enjoyed the conference. Great insight on value creation, diverse attendees,{' '}
+                  and good combination of academia and business professionals. Nice dinner, scenery,{' '}
+                  and location for attendees. New perspectives presented have been included in the{' '}
                   approach to my own developments in business and MSc research.&rdquo;
                 </Typography>
               </Box>
@@ -556,8 +574,8 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
                   Michael, Attendee
                 </Typography>
                 <Typography variant="body2" className={classes.testimonialBody}>
-                  &ldquo;On behalf of Craig, Esperanza, Alan, Catherine and myself can we thank you for a
-                  great conference. We have all learned so much and met some amazing people,
+                  &ldquo;On behalf of Craig, Esperanza, Alan, Catherine and myself can we thank you{' '}
+                  for a great conference. We have all learned so much and met some amazing people,{' '}
                   including having the unique opportunity to meet Dr Kotler.&rdquo;
                 </Typography>
               </Box>
@@ -572,15 +590,17 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
                 “A cynic is a man who knows the price of everything and the value of nothing.”
               </Typography>
               <Box mt={3} justifyContent="flex-end" display="flex">
-                <Typography component="span" className={`${classes.quoteAuthor} ${classes.white}`}>— Oscar Wilde</Typography>
+                <Typography component="span" className={`${classes.quoteAuthor} ${classes.white}`}>
+                  — Oscar Wilde
+                </Typography>
               </Box>
             </Grid>
           </Grid>
         </Section>
 
         <Section backgroundColor="white">
-          <Grid container direction="row" justify="space-around">
-            <Grid item xs={12} md={8}>
+          <Grid container direction="row" justify="center" alignItems="center">
+            <Grid item>
               <Typography component="h2" className={classes.titleMega} gutterBottom>
                 Conference Directors
               </Typography>
@@ -603,9 +623,11 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
                     </a>
                   </Box>
                 </Box>
-                <Typography>
-                  Director of Executive Education at École des Ponts Business School
-                </Typography>
+                <Box px={4}>
+                  <Typography variant="body2">
+                    Director of Executive Education at École des Ponts Business School
+                  </Typography>
+                </Box>
               </Grid>
               <Grid item xs={12} md={4}>
                 <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center">
@@ -621,10 +643,12 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
                     </a>
                   </Box>
                 </Box>
-                <Typography>
-                  President Customer Value Foundation and Founder Editor of the
-                  Journal of Creating Value
-                </Typography>
+                <Box px={4}>
+                  <Typography variant="body2">
+                    President Customer Value Foundation and Founder Editor of the
+                    Journal of Creating Value
+                  </Typography>
+                </Box>
               </Grid>
               <Grid item xs={12} md={4}>
                 <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center">
@@ -640,10 +664,12 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
                     </a>
                   </Box>
                 </Box>
-                <Typography>
-                  Adjunct Professor of Strategy &amp; Organization, Amsterdam Business School,
-                  University of Amsterdam
-                </Typography>
+                <Box px={4}>
+                  <Typography variant="body2">
+                    Adjunct Professor of Strategy &amp; Organization, Amsterdam Business School,
+                    University of Amsterdam
+                  </Typography>
+                </Box>
               </Grid>
             </Grid>
           </Container>

@@ -3,7 +3,7 @@ import Event from '../../templates/Event';
 import { PostEvent } from '../../shared.types';
 
 export const eventDetails: PostEvent = {
-  title: 'Third global conference on creating value',
+  title: 'Third Global Conference on Creating Value',
   intro: 'This is a small intro that is displayed. You can add a bit of information which a visitor can scan easily.',
   location: 'Ecole Des Ponts Business School',
   city: 'Paris, France',

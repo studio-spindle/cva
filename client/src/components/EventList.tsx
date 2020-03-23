@@ -1,10 +1,8 @@
 import { FC } from 'react';
 import { Box, Typography } from '@material-ui/core';
 import { LocationOn as LocationOnIcon } from '@material-ui/icons';
-import { makeStyles } from '@material-ui/core/styles';
 import PromoList from './PromoList';
 import PromoListItem from './PromoListItem';
-import { Data, PostEvent } from '../shared.types';
 import Card from './Card';
 
 import { eventDetails as upcomingConferenceDetails } from '../pages/events/third-global-conference-on-creating-value';

@@ -30,7 +30,7 @@ const CountryList: FC = () => {
           Netherlands
         </Typography>
         <Typography gutterBottom>
-          A little text
+          Value Creation in <br />Software Development
         </Typography>
         <Link href="/nl" passHref>
           <Button color="secondary" variant="contained" endIcon={<ArrowForwardRounded />}>
@@ -43,17 +43,11 @@ const CountryList: FC = () => {
           Denmark
           <SuperText>(Coming soon)</SuperText>
         </Typography>
-        <Typography>
-          A little text
-        </Typography>
       </Grid>
       <Grid item xs={12} md={4} className={classes.countryCard}>
         <Typography variant="h4" component="h3" className={classes.countryTitle}>
           Japan
           <SuperText>(Coming soon)</SuperText>
-        </Typography>
-        <Typography>
-          A little text
         </Typography>
       </Grid>
     </Grid>

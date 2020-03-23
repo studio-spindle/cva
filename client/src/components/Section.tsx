@@ -19,7 +19,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     '&:after': {
       content: '""',
       position: 'absolute',
-      backgroundImage: "url('/images/events/EDP/background_paris_street.jpg')",
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       backgroundAttachment: 'fixed',
@@ -33,7 +32,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     //   content: '""',
     //   position: 'absolute',
     //   opacity: '0.92',
-    //   background: 'linear-gradient(33deg, rgba(238,238,238,1) 0%, rgba(255,255,255,1) 51%, rgba(252,252,252,1) 100%)',
+    //   background:
+    //     'linear-gradient(33deg, rgba(238,238,238,1) 0%,
+    //     rgba(255,255,255,1) 51%, rgba(252,252,252,1) 100%)',
     //   top: 0,
     //   left: 0,
     //   bottom: 0,
@@ -46,11 +47,30 @@ const useStyles = makeStyles((theme: Theme) => ({
       paddingTop: theme.spacing(4),
       paddingBottom: theme.spacing(4),
     },
+    sectionFirst: {
+      '&:after': {
+        backgroundImage: "url('/images/events/EDP/background_louvre_sm.jpg')",
+      },
+    },
   },
   [theme.breakpoints.up('md')]: {
     section: {
       paddingTop: theme.spacing(12),
       paddingBottom: theme.spacing(12),
+    },
+  },
+  [theme.breakpoints.only('md')]: {
+    sectionFirst: {
+      '&:after': {
+        backgroundImage: "url('/images/events/EDP/background_louvre_lg.jpg')",
+      },
+    },
+  },
+  [theme.breakpoints.up('lg')]: {
+    sectionFirst: {
+      '&:after': {
+        backgroundImage: "url('/images/events/EDP/background_louvre_xxl.jpg')",
+      },
     },
   },
 }));

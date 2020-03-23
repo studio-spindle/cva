@@ -106,10 +106,11 @@ const useStyles = makeStyles((theme: Theme) => ({
 interface LayoutProps {
   siteTitle: string;
   siteDescription?: string;
+  invertHeader?: boolean;
 }
 
 const Layout: FC<LayoutProps> = (({
-  siteTitle, siteDescription, children,
+  siteTitle, siteDescription, invertHeader, children,
 }) => {
   const classes = useStyles({});
   const [open, setOpen] = useState(false);
@@ -134,7 +135,7 @@ const Layout: FC<LayoutProps> = (({
             <Grid item>
               <Link href="/">
                 <a className={classes.link}>
-                  <Logo />
+                  <Logo white={invertHeader} />
                 </a>
               </Link>
             </Grid>
@@ -146,7 +147,7 @@ const Layout: FC<LayoutProps> = (({
                 onClick={handleDrawerOpen}
                 className={`${classes.menuIcon} ${open ? classes.hide : ''}`}
               >
-                <MenuIcon className={classes.largeIcon} />
+                <MenuIcon className={classes.largeIcon} style={invertHeader ? { color: 'white' } : {}} />
               </IconButton>
             </Grid>
           </Grid>
