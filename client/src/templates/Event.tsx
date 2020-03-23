@@ -44,8 +44,9 @@ const useStyles = makeStyles((theme: Theme) => ({
       },
     },
   },
-  logo: {
+  logoEDP: {
     width: '320px',
+    maxWidth: '100%',
     height: '140px',
     objectFit: 'cover',
   },
@@ -63,9 +64,19 @@ const useStyles = makeStyles((theme: Theme) => ({
     backgroundAttachment: 'fixed',
   },
   titleMega: {
-    fontSize: '4rem',
-    lineHeight: '4.8rem',
     fontFamily: theme.typography.h1.fontFamily,
+  },
+  [theme.breakpoints.down('sm')]: {
+    titleMega: {
+      fontSize: '2rem',
+      lineHeight: '2.8rem',
+    },
+  },
+  [theme.breakpoints.up('lg')]: {
+    titleMega: {
+      fontSize: '4rem',
+      lineHeight: '4.8rem',
+    },
   },
   smallGutter: {
     marginBottom: theme.spacing(1),
@@ -127,6 +138,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     infoBlock: {
       padding: theme.spacing(5),
     },
+    testimonialContainer: {
+      marginBottom: theme.spacing(4),
+    },
     partnerBar: {
       justifyContent: 'center',
       flexDirection: 'column',
@@ -136,6 +150,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     logoPartner: {
       marginTop: theme.spacing(3),
       marginBottom: theme.spacing(3),
+    },
+    footerGutter: {
+      marginBottom: theme.spacing(4),
     },
   },
   [theme.breakpoints.up('md')]: {
@@ -171,7 +188,7 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
 
         <Grid container direction="row" justify="space-around" className={classes.firstContent}>
           <Grid item xs={10} md={8}>
-            <Box className={classes.logo}>
+            <Box className={classes.logoEDP}>
               <img src="/images/events/EDP/logo_EDP.svg" alt="Logo Ecole des ponts business school" />
             </Box>
             <Box maxWidth="800px">
@@ -315,7 +332,7 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
           </Grid>
           <Grid className={classes.conferenceBg} item xs={12} md={6}>
             <Grid container justify="center" alignItems="center">
-              <img src="/images/events/EDP/logo_third_conference.jpg" alt="" />
+              <img src="/images/events/EDP/logo_third_conference.jpg" alt="" style={{ maxWidth: '100%' }} />
             </Grid>
           </Grid>
         </Grid>
@@ -529,7 +546,7 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
           </Grid>
 
           <Grid container direction="row" justify="space-around" alignItems="stretch">
-            <Grid item xs={12} md={3}>
+            <Grid item xs={12} md={3} className={classes.testimonialContainer}>
               <Box className={classes.testimonial}>
                 <Typography component="h3" variant="h5" className={classes.testimonialTitle}>
                   Amnon Danzig,<br />Business Developer
@@ -542,7 +559,7 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
                 </Typography>
               </Box>
             </Grid>
-            <Grid item xs={12} md={3}>
+            <Grid item xs={12} md={3} className={classes.testimonialContainer}>
               <Box className={classes.testimonial}>
                 <Typography component="h3" variant="h5" className={classes.testimonialTitle}>
                   Monica, Attendee
@@ -555,7 +572,7 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
                 </Typography>
               </Box>
             </Grid>
-            <Grid item xs={12} md={3}>
+            <Grid item xs={12} md={3} className={classes.testimonialContainer}>
               <Box className={classes.testimonial}>
                 <Typography component="h3" variant="h5" className={classes.testimonialTitle}>
                   Corey Whipple, Attendee
@@ -568,7 +585,7 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
                 </Typography>
               </Box>
             </Grid>
-            <Grid item xs={12} md={3}>
+            <Grid item xs={12} md={3} className={classes.testimonialContainer}>
               <Box className={classes.testimonial}>
                 <Typography component="h3" variant="h5" className={classes.testimonialTitle}>
                   Michael, Attendee
@@ -585,7 +602,7 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
 
         <Section>
           <Grid container direction="row" justify="space-around">
-            <Grid item xs={12} md={8}>
+            <Grid item xs={10} md={8}>
               <Typography className={`${classes.titleMega} ${classes.white}`}>
                 “A cynic is a man who knows the price of everything and the value of nothing.”
               </Typography>
@@ -600,7 +617,7 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
 
         <Section backgroundColor="white">
           <Grid container direction="row" justify="center" alignItems="center">
-            <Grid item>
+            <Grid xs={10} md="auto" item>
               <Typography component="h2" className={classes.titleMega} gutterBottom>
                 Conference Directors
               </Typography>
@@ -624,7 +641,7 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
                   </Box>
                 </Box>
                 <Box px={4}>
-                  <Typography variant="body2">
+                  <Typography variant="body2" gutterBottom>
                     Director of Executive Education at École des Ponts Business School
                   </Typography>
                 </Box>
@@ -644,7 +661,7 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
                   </Box>
                 </Box>
                 <Box px={4}>
-                  <Typography variant="body2">
+                  <Typography variant="body2" gutterBottom>
                     President Customer Value Foundation and Founder Editor of the
                     Journal of Creating Value
                   </Typography>
@@ -665,7 +682,7 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
                   </Box>
                 </Box>
                 <Box px={4}>
-                  <Typography variant="body2">
+                  <Typography variant="body2" gutterBottom>
                     Adjunct Professor of Strategy &amp; Organization, Amsterdam Business School,
                     University of Amsterdam
                   </Typography>
@@ -679,24 +696,24 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
           <Container>
             <Grid container direction="row" justify="space-around" alignItems="center">
               <Grid item xs={12} md={4}>
-                <Typography className={classes.white} variant="h4">
+                <Typography className={`${classes.white} ${classes.footerGutter}`} variant="h4">
                   Third Global<br />
                   Conference on<br />
                   Creating Value
                 </Typography>
               </Grid>
               <Grid item xs={12} md={4}>
-                <Typography className={classes.white}>
+                <Typography className={`${classes.white} ${classes.footerGutter}`}>
                   EPBS, 6 Place Du Colonel<br />Bourgoin, 75012 Paris
                 </Typography>
               </Grid>
-              <Grid item xs={12} md={4}>
+              <Grid item xs={12} md={4} className={classes.footerGutter}>
                 <Typography className={classes.white}>Email</Typography>
                 <a className={classes.white} href="mailto:info@pontsbschool.com" title="email to info@pontsbschool.com">info@pontsbschool.com</a>
               </Grid>
             </Grid>
             <Grid container direction="row" justify="space-around" alignItems="center">
-              <Grid md={4} style={{ marginLeft: 'auto' }}>
+              <Grid xs={12} md={4} style={{ marginLeft: 'auto' }}>
                 <a href="https://www.linkedin.com/company/third-conference-on-creating-value/" title="Linked-in of Martin Calnan">
                   <LinkedInIcon className={classes.white} fontSize="large" />
                 </a>

@@ -132,14 +132,14 @@ const Layout: FC<LayoutProps> = (({
       >
         <Toolbar>
           <Grid container alignItems="flex-start" justify="space-between">
-            <Grid item>
+            <Grid xs={10} md="auto" item>
               <Link href="/">
                 <a className={classes.link}>
                   <Logo white={invertHeader} />
                 </a>
               </Link>
             </Grid>
-            <Grid item>
+            <Grid xs={2} md="auto" item>
               <IconButton
                 aria-label="menu"
                 color="secondary"
