@@ -35,10 +35,17 @@ const Articles: NextPage = () => {
   const [searchResults, setSearchResults] = useState<Article[] | undefined>();
   const [noSearchResults, setNoSearchResults] = useState<boolean>(false);
   const [searchTerm, setSearchTerm] = useState<string | undefined>();
+  const [showResults, setShowResults] = useState<boolean>(false);
+  const [clearInput, setClearInput] = useState<boolean>(false);
 
-  const handleSearch = ({ noResults, articles }: HandleSearchArgs): void => {
+  const handleSearchResultsUpdate = ({ noResults, articles }: HandleSearchArgs): void => {
     setNoSearchResults(noResults);
     setSearchResults(articles);
+    setClearInput(false);
+  };
+
+  const handleSearchSubmit = (): void => {
+    setShowResults(true);
   };
 
   const handleSearchTermUpdate = (term: string): void => {
@@ -46,17 +53,24 @@ const Articles: NextPage = () => {
   };
 
   const handleClear = (): void => {
-    console.log('clear please...');
+    setClearInput(true);
+    setSearchResults(undefined);
+    setShowResults(false);
   };
 
   return (
     <Page title="Articles">
       <Grid className={classes.hero} container direction="row" justify="center" alignItems="center">
         <Grid xs={12} md={6} item>
-          <FuzzySearch onSearchSubmit={handleSearch} onSearchTermUpdate={handleSearchTermUpdate} />
+          <FuzzySearch
+            onSearchSubmit={handleSearchSubmit}
+            onSearchResultsUpdate={handleSearchResultsUpdate}
+            onSearchTermUpdate={handleSearchTermUpdate}
+            handleClearInput={clearInput}
+          />
         </Grid>
       </Grid>
-      {searchResults && (
+      {showResults && searchResults && (
         <Grid className={classes.hero} container direction="row" justify="center" alignItems="center">
           <Grid xs={12} md={8} item>
             <Box display="flex">
@@ -91,7 +105,7 @@ const Articles: NextPage = () => {
           </Grid>
         </Grid>
       )}
-      {!searchResults && (
+      {!showResults && (
         <Grid className={classes.body} container direction="row" justify="center" alignItems="center">
           <Grid xs={12} item>
             <Typography gutterBottom>Journal of Creating Value</Typography>
