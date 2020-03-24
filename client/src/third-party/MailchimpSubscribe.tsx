@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Box, Button, OutlinedInput, Theme, Typography } from '@material-ui/core';
+import { Box, Button, OutlinedInput, Theme } from '@material-ui/core';
 import { ClassNameMap } from '@material-ui/core/styles/withStyles';
 import { makeStyles } from '@material-ui/core/styles';
 

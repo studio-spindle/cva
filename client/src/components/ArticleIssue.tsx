@@ -79,6 +79,7 @@ const ArticleIssue: FC<ArticleIssueProps> = ({ issue }) => {
   });
 
   if (error) {
+    // eslint-disable-next-line no-console
     console.log(error);
   }
 
