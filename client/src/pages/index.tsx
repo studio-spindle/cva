@@ -102,22 +102,31 @@ const Index: NextPage<IndexProps> = ({ description }) => {
 
       <Section>
         <Grid container direction="row" justify="space-around">
-          <Grid item xs={10} md={8}>
+          <Grid item xs={10} md={6}>
             <Typography variant="h3" component="h2" gutterBottom>Our philosophy</Typography>
-            <Typography>
-              We all seek value for ourselves, as well as for our businesses and for our society.
-              However, because we are so immersed in our day-to-day functional management, we often
-              overlook opportunities for value creation, possibly to the detriment of our businesses
-              and societal needs. Successful organizations and leaders create value for their
-              eco-systems which include themselves, customers, employees, partners and other
-              stakeholders. This happens mostly unconsciously, yet there are challenges in gauging
-              and assessing ‘value’ and its impact. The Creating Value Alliance is an international
-              movement to increase our understanding of the concept of value and, moreover, to find
-              and promote ways of creating value consciously and more abundantly (and destroy less
-              value). This, in turn, will allow us to operate more effectively, to build social
-              value and to thrive and be ready for the challenges of a constantly changing and
-              disruptive world.
-            </Typography>
+            <Box maxWidth="57rem">
+              <Typography gutterBottom>
+                We all seek value for ourselves, as well as for our businesses and for our society.
+                However, because we are so immersed in our day-to-day functional management,
+                we often overlook opportunities for{' '}
+                <strong>value creation</strong>
+                , possibly to the detriment of
+                our businesses and societal needs. Successful organizations and leaders create
+                value for their eco-systems which include themselves, customers, employees, partners
+                and other stakeholders.
+              </Typography>
+              <Typography>
+                This happens mostly unconsciously, yet there are challenges in gauging
+                and assessing ‘value’ and its impact. The Creating Value Alliance is an
+                international movement to increase our understanding of the concept of value and,
+                moreover, to find and promote ways of creating value consciously and more
+                abundantly (and destroy less value). This, in turn, will allow us to operate
+                more effectively, to build{' '}
+                <strong>social value</strong>{' '}
+                and to thrive and be ready for the challenges of a constantly changing and
+                disruptive world.
+              </Typography>
+            </Box>
           </Grid>
         </Grid>
       </Section>
