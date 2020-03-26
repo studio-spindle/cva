@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   sectionFirst: {
     marginTop: theme.spacing(9),
     position: 'relative',
-    background: "url('./images/backgrounds/cva-emblem.svg')",
+    background: "url('./images/generic/cva-emblem.svg')",
     backgroundRepeat: 'no-repeat',
     backgroundPosition: '60vw -27rem',
     backgroundSize: '65rem 65rem',

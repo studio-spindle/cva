@@ -3,7 +3,7 @@ import Page from '../templates/Page';
 import CountryList from '../components/CountryList';
 
 const Blog: NextPage = () => (
-  <Page title="Countries">
+  <Page title="Countries" siteTitle="Countries">
     <CountryList />
   </Page>
 );

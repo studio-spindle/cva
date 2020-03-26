@@ -7,6 +7,7 @@ const pages = [
   { title: 'Countries', href: '/countries' },
   { title: 'Upcoming Event', href: '/events/third-global-conference-on-creating-value' },
   { title: 'Articles', href: '/articles' },
+  { title: 'About', href: '/about' },
   { title: 'Contact', href: '/contact' },
 ];
 

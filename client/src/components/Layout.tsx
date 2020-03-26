@@ -9,6 +9,7 @@ import {
   Divider,
   Drawer,
   Theme,
+  Box,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { MenuRounded as MenuIcon, CancelRounded as CancelIcon } from '@material-ui/icons';
@@ -88,6 +89,11 @@ const useStyles = makeStyles((theme: Theme) => ({
     width: 35,
     height: 35,
   },
+  [theme.breakpoints.down('sm')]: {
+    oldLogo: {
+      display: 'none',
+    },
+  },
   [theme.breakpoints.up('sm')]: {
     contentShift: {
       marginRight: drawerWidth,
@@ -100,6 +106,14 @@ const useStyles = makeStyles((theme: Theme) => ({
       }),
       width: `calc(100% - ${drawerWidth}px)`,
     },
+    oldLogoContainer: {
+      borderLeft: `1px solid ${theme.palette.grey[300]}`,
+      '& img': {
+        display: 'flex',
+        width: '120px',
+        height: '90px',
+      },
+    },
   },
 }));
 
@@ -107,10 +121,11 @@ interface LayoutProps {
   siteTitle: string;
   siteDescription?: string;
   invertHeader?: boolean;
+  homePage?: boolean;
 }
 
 const Layout: FC<LayoutProps> = (({
-  siteTitle, siteDescription, invertHeader, children,
+  siteTitle, siteDescription, invertHeader, children, homePage,
 }) => {
   const classes = useStyles({});
   const [open, setOpen] = useState(false);
@@ -132,12 +147,25 @@ const Layout: FC<LayoutProps> = (({
       >
         <Toolbar>
           <Grid container alignItems="flex-start" justify="space-between">
-            <Grid xs={10} md="auto" item>
-              <Link href="/">
-                <a className={classes.link}>
-                  <Logo white={invertHeader} />
-                </a>
-              </Link>
+            <Grid xs={10} item>
+              <Box display="flex" alignItems="center">
+                <Link href="/">
+                  <a className={classes.link}>
+                    <Logo white={invertHeader} />
+                  </a>
+                </Link>
+                {homePage && (
+                  <Box
+                    display="flex"
+                    className={classes.oldLogoContainer}
+                    alignItems="center"
+                    mx={3}
+                    px={3}
+                  >
+                    <img src="/images/generic/logo_cva_old.png" alt="old logo creating value alliance" />
+                  </Box>
+                )}
+              </Box>
             </Grid>
             <Grid xs={2} md="auto" item>
               <IconButton

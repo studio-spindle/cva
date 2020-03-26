@@ -9,7 +9,7 @@ import Loading from '../components/Loading';
 const Blog: NextPage = () => {
   const posts: Data<PostBlog>[] | null = usePosts('NL');
   return (
-    <Page title="Netherlands">
+    <Page title="Netherlands" siteTitle="Netherlands">
       <Container maxWidth="md">
         {posts === null && <Loading />}
         {posts && (

@@ -59,7 +59,7 @@ const Articles: NextPage = () => {
   };
 
   return (
-    <Page title="Articles">
+    <Page title="Articles" siteTitle="Articles">
       <Grid className={classes.hero} container direction="row" justify="center" alignItems="center">
         <Grid xs={12} md={6} item>
           <FuzzySearch

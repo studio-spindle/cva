@@ -19,6 +19,7 @@ import ProfileImage from '../components/ProfileImage';
 import Divider from '../components/Divider';
 import Speaker from '../components/Speaker';
 import Truncate from '../components/Truncate';
+import InfoBlock from '../components/InfoBlock';
 
 import WeezeEvent from '../third-party/WeezeEvent';
 import MailchimpSubscribe from '../third-party/MailchimpSubscribe';
@@ -96,15 +97,6 @@ const useStyles = makeStyles((theme: Theme) => ({
   mediumGutter: {
     marginBottom: theme.spacing(4),
   },
-  infoBlockRegular: {
-    backgroundColor: theme.palette.common.white,
-  },
-  infoBlockSecondary: {
-    backgroundColor: theme.palette.secondary.dark,
-  },
-  infoBlockPrimary: {
-    backgroundColor: theme.palette.primary.main,
-  },
   intergrationBlock: {
     padding: theme.spacing(8),
   },
@@ -150,9 +142,6 @@ const useStyles = makeStyles((theme: Theme) => ({
       marginTop: theme.spacing(6),
       justifyContent: 'center',
     },
-    infoBlock: {
-      padding: theme.spacing(5),
-    },
     testimonialContainer: {
       marginBottom: theme.spacing(4),
     },
@@ -177,9 +166,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
     CTAContainer: {
       justifyContent: 'flex-end',
-    },
-    infoBlock: {
-      padding: theme.spacing(12),
     },
     partnerBar: {
       justifyContent: 'space-evenly',
@@ -237,85 +223,89 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
         </Grid>
 
         <Grid container direction="row">
-          <Grid item xs={12} md={6} className={`${classes.infoBlock} ${classes.infoBlockSecondary}`}>
-            <Typography className={`${classes.titleMega} ${classes.white}`} component="h2" gutterBottom>
-              About the Online<br />Conference
-            </Typography>
-            <Box mb={4}>
-              <Divider color="white" />
-              <Grid container>
-                <Grid item xs={6} md={4} className={classes.eventMeta}>
-                  <Typography variant="body2" className={classes.white}>
-                    <strong>June 2nd <br />and 3rd</strong>
-                  </Typography>
-                </Grid>
-                <Grid item xs={6} md={4} className={`${classes.eventMeta} ${classes.eventMetaBorderLeft}`}>
-                  <Typography variant="body2" className={classes.white}>
-                    09:00 am<br />
-                    (C.E.T.)
-                  </Typography>
-                </Grid>
-                <Hidden mdDown>
-                  <Grid item xs={6} md={4} className={`${classes.eventMeta} ${classes.eventMetaBorderLeft}`}>
+          <Grid item xs={12} md={6}>
+            <InfoBlock variant="secondary">
+              <Typography className={`${classes.titleMega} ${classes.white}`} component="h2" gutterBottom>
+                About the Online<br />Conference
+              </Typography>
+              <Box mb={4}>
+                <Divider color="white" />
+                <Grid container>
+                  <Grid item xs={6} md={4} className={classes.eventMeta}>
                     <Typography variant="body2" className={classes.white}>
-                      Creating Value Conference 2020
+                      <strong>June 2nd <br />and 3rd</strong>
                     </Typography>
                   </Grid>
-                </Hidden>
-              </Grid>
-            </Box>
-            <Typography className={classes.white} gutterBottom>
-              Instead of taking place in person, an adapted version of the conference will take
-              place online on <strong>June 2-3</strong>, 2020, as a prelude to the physical
-              conference that will be held later in the year in Paris in October 2020.
-            </Typography>
-            <Typography className={classes.white} gutterBottom>
-              By using a <strong>digital format</strong> for the postponed event, participants
-              can join into a range of live keynotes, panel, paper and expert discussions and
-              other conference tracks. The condensed, facilitated and video recorded activities
-              will enable participants to either synchronously or asynchronously share and expand
-              their knowledge, get inspired and immerse in <strong>virtual networking</strong>{' '}
-              with other attendees from across the globe.
-            </Typography>
-            <Link href="#anchor-integrations">
-              <Button variant="contained" color="primary">Subscribe to this event</Button>
-            </Link>
+                  <Grid item xs={6} md={4} className={`${classes.eventMeta} ${classes.eventMetaBorderLeft}`}>
+                    <Typography variant="body2" className={classes.white}>
+                      09:00 am<br />
+                      (C.E.T.)
+                    </Typography>
+                  </Grid>
+                  <Hidden mdDown>
+                    <Grid item xs={6} md={4} className={`${classes.eventMeta} ${classes.eventMetaBorderLeft}`}>
+                      <Typography variant="body2" className={classes.white}>
+                        Creating Value Conference 2020
+                      </Typography>
+                    </Grid>
+                  </Hidden>
+                </Grid>
+              </Box>
+              <Typography className={classes.white} gutterBottom>
+                Instead of taking place in person, an adapted version of the conference will take
+                place online on <strong>June 2-3</strong>, 2020, as a prelude to the physical
+                conference that will be held later in the year in Paris in October 2020.
+              </Typography>
+              <Typography className={classes.white} gutterBottom>
+                By using a <strong>digital format</strong> for the postponed event, participants
+                can join into a range of live keynotes, panel, paper and expert discussions and
+                other conference tracks. The condensed, facilitated and video recorded activities
+                will enable participants to either synchronously or asynchronously share and expand
+                their knowledge, get inspired and immerse in <strong>virtual networking</strong>{' '}
+                with other attendees from across the globe.
+              </Typography>
+              <Link href="#anchor-integrations">
+                <Button variant="contained" color="primary">Subscribe to this event</Button>
+              </Link>
+            </InfoBlock>
           </Grid>
-          <Grid item xs={12} md={6} className={`${classes.infoBlock} ${classes.infoBlockPrimary}`}>
-            <Typography className={`${classes.titleMega} ${classes.white}`} component="h2" gutterBottom>
-              About the <br />Conference
-            </Typography>
-            <Box mb={4}>
-              <Divider color="white" />
-              <Grid container>
-                <Grid item xs={6} md={4} className={classes.eventMeta}>
-                  <Typography variant="body2" className={classes.white}>
-                    <strong>October <br />20 and 21st</strong>
-                  </Typography>
-                </Grid>
-                <Grid item xs={6} md={4} className={`${classes.eventMeta} ${classes.eventMetaBorderLeft}`}>
-                  <Typography variant="body2" className={classes.white}>
-                    09:00 am<br />
-                    (C.E.T.)
-                  </Typography>
-                </Grid>
-                <Hidden mdDown>
-                  <Grid item xs={6} md={4} className={`${classes.eventMeta} ${classes.eventMetaBorderLeft}`}>
+          <Grid item xs={12} md={6}>
+            <InfoBlock variant="primary">
+              <Typography className={`${classes.titleMega} ${classes.white}`} component="h2" gutterBottom>
+                About the <br />Conference
+              </Typography>
+              <Box mb={4}>
+                <Divider color="white" />
+                <Grid container>
+                  <Grid item xs={6} md={4} className={classes.eventMeta}>
                     <Typography variant="body2" className={classes.white}>
-                      Creating Value Conference 2020
+                      <strong>October <br />20 and 21st</strong>
                     </Typography>
                   </Grid>
-                </Hidden>
-              </Grid>
-            </Box>
-            <Typography className={classes.white} gutterBottom>
-              Ecole des Ponts Business School and the Creating Value Alliance are proud to
-              invite you to the Third Global Conference on Creating Value that will take place
-              in Paris on June 2 and 3, 2020. Building on the foundations of the previous global
-              editions in Leicester and New York, the Global Conference on Creating Value in Paris
-              aims to increase our understanding of what it means to create value in a constantly
-              changing environment.
-            </Typography>
+                  <Grid item xs={6} md={4} className={`${classes.eventMeta} ${classes.eventMetaBorderLeft}`}>
+                    <Typography variant="body2" className={classes.white}>
+                      09:00 am<br />
+                      (C.E.T.)
+                    </Typography>
+                  </Grid>
+                  <Hidden mdDown>
+                    <Grid item xs={6} md={4} className={`${classes.eventMeta} ${classes.eventMetaBorderLeft}`}>
+                      <Typography variant="body2" className={classes.white}>
+                        Creating Value Conference 2020
+                      </Typography>
+                    </Grid>
+                  </Hidden>
+                </Grid>
+              </Box>
+              <Typography className={classes.white} gutterBottom>
+                Ecole des Ponts Business School and the Creating Value Alliance are proud to
+                invite you to the Third Global Conference on Creating Value that will take place
+                in Paris on June 2 and 3, 2020. Building on the foundations of the previous global
+                editions in Leicester and New York, the Global Conference on Creating Value in Paris
+                aims to increase our understanding of what it means to create value in a constantly
+                changing environment.
+              </Typography>
+            </InfoBlock>
           </Grid>
         </Grid>
 
@@ -335,20 +325,22 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
         </Grid>
 
         <Grid container direction="row">
-          <Grid item xs={12} md={6} className={`${classes.infoBlock} ${classes.infoBlockRegular}`}>
-            <Typography className={classes.titleMega} component="h2" color="primary" gutterBottom>
-              Call for papers
-            </Typography>
-            <Typography>
-              <strong>New deadline April 23rd</strong>
-            </Typography>
-            <Typography>
-              The organizing committee of the Third Global Conference, June 2020, on Creating Value
-              is inviting academics and professionals to share their latest insights and/or research
-              findings on the topic of Creating Value through a paper, poster or video presentation,
-              or any other creative way to share the knowledge that is suitable for a conference
-              setting.
-            </Typography>
+          <Grid item xs={12} md={6}>
+            <InfoBlock>
+              <Typography className={classes.titleMega} component="h2" color="primary" gutterBottom>
+                Call for papers
+              </Typography>
+              <Typography>
+                <strong>New deadline April 23rd</strong>
+              </Typography>
+              <Typography>
+                The organizing committee of the Third Global Conference, June 2020, on Creating Value
+                is inviting academics and professionals to share their latest insights and/or research
+                findings on the topic of Creating Value through a paper, poster or video presentation,
+                or any other creative way to share the knowledge that is suitable for a conference
+                setting.
+              </Typography>
+            </InfoBlock>
           </Grid>
           <Grid className={classes.conferenceBg} item xs={12} md={6}>
             <Grid container justify="center" alignItems="center">

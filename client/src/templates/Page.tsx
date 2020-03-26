@@ -24,20 +24,23 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 interface PageProps {
-  title: string;
+  siteTitle: string;
+  title?: string;
 }
 
-const Page: FC<PageProps> = ({ children, title }) => {
+const Page: FC<PageProps> = ({ children, title, siteTitle }) => {
   const classes = useStyles({});
   return (
-    <Layout siteTitle={title}>
+    <Layout siteTitle={siteTitle}>
       <Container component="article" className={classes.container} maxWidth="lg">
         <Grid container component="article" direction="column" justify="center" className={classes.firstContent}>
-          <Grid item>
-            <Typography variant="h2" component="h1" align="center" gutterBottom>
-              {title}
-            </Typography>
-          </Grid>
+          {title && (
+            <Grid item>
+              <Typography variant="h2" component="h1" align="center" gutterBottom>
+                {title}
+              </Typography>
+            </Grid>
+          )}
           <Grid item>
             {children}
           </Grid>
