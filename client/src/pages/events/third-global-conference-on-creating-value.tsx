@@ -4,7 +4,7 @@ import { PostEvent } from '../../shared.types';
 
 export const eventDetails: PostEvent = {
   title: 'Third Global Conference on Creating Value',
-  intro: 'What does it mean to create value in constantly changing environment?',
+  intro: 'What does it mean to create value in constantly changing environment? Participate in the conference, where experts and you share knowledge and provide feedback.',
   location: 'Ecole Des Ponts Business School',
   city: 'Paris, France',
   address: '6-8 Avenue Blaise Pascal, 77420 Champs-sur-Marne, France',

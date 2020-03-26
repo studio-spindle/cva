@@ -1,5 +1,5 @@
 import { NextPage } from 'next';
-import { Grid, Container, Typography, Theme } from '@material-ui/core';
+import { Grid, Container, Box, Typography, Theme } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { ClassNameMap } from '@material-ui/core/styles/withStyles';
 import Layout from '../components/Layout';
@@ -48,6 +48,21 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginTop: theme.spacing(5),
     marginBottom: theme.spacing(4),
   },
+  titleMega: {
+    fontFamily: theme.typography.h1.fontFamily,
+  },
+  [theme.breakpoints.down('sm')]: {
+    titleMega: {
+      fontSize: '2rem',
+      lineHeight: '2.8rem',
+    },
+  },
+  [theme.breakpoints.up('lg')]: {
+    titleMega: {
+      fontSize: '4rem',
+      lineHeight: '4.8rem',
+    },
+  },
 }));
 
 interface IndexProps {
@@ -83,6 +98,44 @@ const Index: NextPage<IndexProps> = ({ description }) => {
             </Grid>
           </Grid>
         </Container>
+      </Section>
+
+      <Section>
+        <Grid container direction="row" justify="space-around">
+          <Grid item xs={10} md={8}>
+            <Typography variant="h3" component="h2" gutterBottom>Our philosophy</Typography>
+            <Typography>
+              We all seek value for ourselves, as well as for our businesses and for our society.
+              However, because we are so immersed in our day-to-day functional management, we often
+              overlook opportunities for value creation, possibly to the detriment of our businesses
+              and societal needs. Successful organizations and leaders create value for their
+              eco-systems which include themselves, customers, employees, partners and other
+              stakeholders. This happens mostly unconsciously, yet there are challenges in gauging
+              and assessing ‘value’ and its impact. The Creating Value Alliance is an international
+              movement to increase our understanding of the concept of value and, moreover, to find
+              and promote ways of creating value consciously and more abundantly (and destroy less
+              value). This, in turn, will allow us to operate more effectively, to build social
+              value and to thrive and be ready for the challenges of a constantly changing and
+              disruptive world.
+            </Typography>
+          </Grid>
+        </Grid>
+      </Section>
+
+      <Section backgroundColor="secondary">
+        <Grid container direction="row" justify="space-around">
+          <Grid item xs={10} md={8}>
+            <Typography className={`${classes.titleMega} ${classes.white}`}>
+              “Unless you make the unconscious conscious, it will direct your
+              life, and you will call it fate.”
+            </Typography>
+            <Box mt={3} justifyContent="flex-end" display="flex">
+              <Typography component="span" className={`${classes.quoteAuthor} ${classes.white}`}>
+                - Carl Jung
+              </Typography>
+            </Box>
+          </Grid>
+        </Grid>
       </Section>
 
       <Section>
