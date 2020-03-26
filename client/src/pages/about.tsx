@@ -82,13 +82,13 @@ const About: NextPage = () => {
               <InfoBlock>
                 <Typography variant="h3" component="h2" gutterBottom>Why</Typography>
                 <Typography>
-                A value creation mindset drives thought processes and actions that are needed to realize
-                purposeful, sustainable and prosperous societies, companies, institutions, NGO’s, and
-                think-tanks. It provides a wider and more meaningful view of complex problems to solve
-                than the yet important but fragmented and narrow expert views. For companies this is a
-                key to increased profitability – but a profitability with awareness and understanding of
-                the underpinning long-term factors. For non-commercial organizations it is a key to
-                higher societal impact and appreciation.
+                A value creation mindset drives thought processes and actions that are needed to
+                realize purposeful, sustainable and prosperous societies, companies, institutions,
+                NGO’s, and think-tanks. It provides a wider and more meaningful view of complex
+                problems to solve than the yet important but fragmented and narrow expert views.
+                For companies this is a key to increased profitability – but a profitability with
+                awareness and understanding of the underpinning long-term factors. For
+                non-commercial organizations it is a key to higher societal impact and appreciation.
                 </Typography>
               </InfoBlock>
             </Grid>

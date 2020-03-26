@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 const intro = (
   <>
     Together we stand as an international alliance, help grow the creation of value and spread the value creation{' '}
-    mindset. What does it mean to create value in constantly changing environment?
+    mindset.
   </>
 );
 
