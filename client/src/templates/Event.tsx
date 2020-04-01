@@ -337,8 +337,8 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
                 The organizing committee of the Third Global Conference, June 2020, on Creating
                 Value is inviting academics and professionals to share their latest insights and/or
                 research findings on the topic of Creating Value through a paper, poster or video
-                presentation, or any other creative way to share the knowledge that is suitable for a
-                conference setting.
+                presentation, or any other creative way to share the knowledge that is suitable for
+                a conference setting.
               </Typography>
             </InfoBlock>
           </Grid>
