@@ -3,7 +3,7 @@ services:
     environment:
       OCCURRENCE_WEIGHT_LINEAR_FACTOR: 0.75
       SCHEMA_PROVIDER_URL: etcd:2379
-    image: semitechnologies/contextionary:en0.10.0-v0.4.7
+    image: semitechnologies/contextionary:en0.14.0-v0.4.8
     ports:
     - 9999:9999
   esvector:
@@ -36,7 +36,7 @@ services:
     - --initial-cluster-state
     - new
     entrypoint: /usr/local/bin/etcd
-    image: gcr.io/etcd-development/etcd:v3.3.18
+    image: gcr.io/etcd-development/etcd:v3.3.8
     ports:
     - 2379:2379
   weaviate:
@@ -51,12 +51,12 @@ services:
     - config.yaml
     depends_on:
     - esvector
-    image: semitechnologies/weaviate:0.22.4
+    image: semitechnologies/weaviate:0.22.5
     ports:
     - 8080:8080
     restart: on-failure:0
     volumes:
-    - ./weaviate/config.yaml:/config.yaml
+    - ./config.yaml:/config.yaml
   cva:
     build: weaviate
     environment:
