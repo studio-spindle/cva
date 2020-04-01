@@ -110,8 +110,8 @@ const useStyles = makeStyles((theme: Theme) => ({
       borderLeft: `1px solid ${theme.palette.grey[300]}`,
       '& img': {
         display: 'flex',
-        width: '120px',
-        height: '90px',
+        width: '90px',
+        height: '60px',
       },
     },
   },

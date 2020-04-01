@@ -374,14 +374,10 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
                     <Typography variant="body2" className={classes.white}>
                       <Truncate
                         text="
-                          For thirty years Riel has been co-creating innovation, leadership and
-                          transformation in both the public and private sectors around the world.
-                          He is one of the world&apos;s leading strategic foresight at UNESCO in
-                          Paris. Previously he has worked as a senior manager in the Ontario public
-                          service (Ministries of Finance; Universities; and Industry) and for some
-                          thirteen years in total at the OECD in Paris (Directorates of Economics;
-                          Science &amp; Technology; Education; Territorial Development; Development
-                          Centre; International Futures Programme).
+                          For thirty years Riel has been co-creating innovation, leadership and transformation
+                          in both the public and private sectors around the world. He is one of the world’s
+                          leading strategic foresight designers and practitioners. Currently Riel holds the
+                          position of Head of Foresight at UNESCO in Paris.
                         "
                         position={300}
                       />
@@ -397,7 +393,7 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
                 content={(
                   <Box p={3}>
                     <Typography component="h3" variant="h5" className={classes.white} gutterBottom>
-                      Professor School of Business Administration at Kobe University
+                      Associate Professor School of Business Administration at Kobe University
                     </Typography>
                     <Typography variant="body2" className={classes.white}>
                       <Truncate
@@ -456,18 +452,10 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
                     <Typography variant="body2" className={classes.white}>
                       <Truncate
                         text="
-                          Hermann Simon is the Founder and Chairman of Simon Kucher &amp; Partners.
-                          He is an expert in strategy, marketing, and pricing. He is the only German
-                          in the “Thinkers50 Hall of Fame” of the most important management thinkers
-                          in the world. In German-speaking countries he has been continuously voted
-                          the most influential living management thinker since 2005. The magazine
-                          Cicero ranks him in the top 100 of the 500 most important intellectuals.
-                          Before committing himself entirely to management consulting, Simon was a
-                          professor of business administration and marketing at the Universities
-                          of Mainz (1989-1995) and Bielefeld (1979-1989). He was also a visiting
-                          professor at Harvard Business School, Stanford, London Business School,
-                          INSEAD, Keio University in Tokyo and the Massachusetts Institute of
-                          Technology. From 1995 to 2009 he was CEO of Simon-Kucher &amp; Partners.
+                          Hermann Simon is the Founder and Honorary Chairman of Simon-Kucher &amp; Partners.
+                          He is an expert in strategy, marketing and pricing. He is the only German in the
+                          “Thinkers50 Hall of Fame” of the most important management thinkers in the world.
+                          The magazine Cicero ranks him in the top 100 of the 500 most important intellectuals.
                         "
                         position={300}
                       />
@@ -488,20 +476,11 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
                     <Typography variant="body2" className={classes.white}>
                       <Truncate
                         text="
-                          Stephen L. Vargo is a Shidler Distinguished Professor and Professor of
-                          Marketing at the Unviversity of Hawaii and has held visiting position at
-                          the Judge  Business School at the University of Cambridge, the University
-                          of Warwick, the University of Maryland, Collage Park, and other major
-                          universities. He has articles published in the Journal of Marketing,
-                          the Journal of the Academy of Marketing Science, the Journal of Service
-                          Research, MIS Quarterly, and other top-ranked journals, in addition
-                          to three books. He currently serves as editor-in-chief of the AMS
-                          Review. Professor Vargo has been awarded the Shelby D. Hunt/ Harold H.
+                          Stephen L. Vargo is a Shidler Distinguished Professor and Professor of Marketing
+                          at the University of Hawai’i at Manoa. He currently serves as editor-in-chief of
+                          the AMS Review. Professor Vargo has been awarded the Shelby D. Hunt/ Harold H.
                           Maynard Award (twice) and the AMA/Sheth Foundation Award for his contributions
-                          marketing theory, among other awards. The Web of Science Group has named
-                          him to its “Highly Cited Researchers” list (top 1%) and has identified him
-                          as one of the World’s Most Influential Scientific Minds in economics and
-                          business for each of the last six years.
+                          marketing theory, among other awards.
                         "
                         position={300}
                       />
@@ -523,20 +502,10 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
                     <Typography variant="body2" className={classes.white}>
                       <Truncate
                         text="
-                          Prof. Dr Wayne Visser is a globally recognized &apos;pracademic&apos;, listed
-                          as one of the world&apos;s Top 10 most influential faculty thinkers on issues
-                          of responsible business in social media, a top 100 influencer on CSR and
-                          sustainable business, a top 100 thought-leader in trustworthy business and
-                          a top 100 sustainability leader. Dr Visser is the author of 37 books and
-                          his work as a strategy analyst, sustainability advisor, CSR expert, futurist,
-                          filmmaker and professional speaker has taken him to 77 countries. Dr Visser
-                          currently serves Professor of Integrated Value at Antwerp Management School,
-                          where he also holds the Chair in Sustainable Transformation, supported by
-                          BASF, Port of Antwerp and Randstad. He is a Head Tutor and Fellow of the
-                          University of Cambridge Institute for Sustainability Leadership, Director
-                          of the think-tank and media company, Kaleidoscope Futures and Founder of
-                          CSR International. Previous roles were as Director of Sustainability
-                          Services for KPMG and Strategy Analyst for Capgemini in South Africa.
+                          Prof. Dr Wayne Visser is a globally recognized ‘pracademic’, listed as one
+                          of the world’s Top 10 most influential faculty thinkers on issues of responsible
+                          business in social media, a top 100 influencer on CSR and sustainable business,
+                          a top 100 thought-leader in trustworthy business and a top 100 sustainability leader.
                         "
                         position={300}
                       />
