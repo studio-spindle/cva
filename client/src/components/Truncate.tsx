@@ -5,6 +5,11 @@ interface TruncateProps {
   position: number;
 }
 
-const Truncate: FC<TruncateProps> = ({ text, position }) => (<>{`${text.slice(0, position)}...`}</>);
+const Truncate: FC<TruncateProps> = ({ text, position }) => {
+  if (text.length > position) {
+    return <>`${text.slice(0, position)}...`</>;
+  }
+  return <>text</>;
+};
 
 export default Truncate;

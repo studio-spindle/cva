@@ -126,6 +126,11 @@ const Index: NextPage<IndexProps> = ({ description }) => {
                 and to thrive and be ready for the challenges of a constantly changing and
                 disruptive world.
               </Typography>
+              <Box mt={3} justifyContent="flex-end" display="flex">
+                <Typography component="span" className={`${classes.quoteAuthor}`}>
+                  - Gautam Mahajan
+                </Typography>
+              </Box>
             </Box>
           </Grid>
         </Grid>
