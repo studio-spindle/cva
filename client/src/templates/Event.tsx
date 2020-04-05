@@ -379,7 +379,7 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
                           leading strategic foresight designers and practitioners. Currently Riel holds the
                           position of Head of Foresight at UNESCO in Paris.
                         "
-                        position={300}
+                        position={500}
                       />
                     </Typography>
                   </Box>
@@ -405,7 +405,7 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
                           Social and Environmental Accounting, Financial Analysis and
                           Management.
                         "
-                        position={300}
+                        position={500}
                       />
                     </Typography>
                   </Box>
@@ -433,7 +433,7 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
                           Professional (CCXP), a CXPA CX Expert, and NPS, Voice of Customer and Customer
                           Experience Management certified.
                         "
-                        position={300}
+                        position={500}
                       />
                     </Typography>
                   </Box>
@@ -457,7 +457,7 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
                           “Thinkers50 Hall of Fame” of the most important management thinkers in the world.
                           The magazine Cicero ranks him in the top 100 of the 500 most important intellectuals.
                         "
-                        position={300}
+                        position={500}
                       />
                     </Typography>
                   </Box>
@@ -482,7 +482,7 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
                           Maynard Award (twice) and the AMA/Sheth Foundation Award for his contributions
                           marketing theory, among other awards.
                         "
-                        position={300}
+                        position={500}
                       />
                     </Typography>
                   </Box>
@@ -507,7 +507,7 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
                           business in social media, a top 100 influencer on CSR and sustainable business,
                           a top 100 thought-leader in trustworthy business and a top 100 sustainability leader.
                         "
-                        position={300}
+                        position={500}
                       />
                     </Typography>
                   </Box>
