@@ -90,7 +90,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     height: 35,
   },
   [theme.breakpoints.down('sm')]: {
-    oldLogo: {
+    oldLogoContainer: {
       display: 'none',
     },
   },
