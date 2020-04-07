@@ -9,7 +9,7 @@ const Truncate: FC<TruncateProps> = ({ text, position }) => {
   if (text.length > position) {
     return <>`${text.slice(0, position)}...`</>;
   }
-  return <>text</>;
+  return <>{text}</>;
 };
 
 export default Truncate;
