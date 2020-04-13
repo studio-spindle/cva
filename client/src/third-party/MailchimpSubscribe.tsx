@@ -20,7 +20,7 @@ const MailchimpSubscribe: FC = () => {
   return (
     <div id="mc_embed_signup">
       <form
-        action="https://creatingvalueconf.us19.list-manage.com/subscribe/post?u=275128d8e166d053af088aa66&amp;id=5c96284a31"
+        action="https://creatingvalueconf.us19.list-manage.com/subscribe/post?u=275128d8e166d053af088aa66&amp;id=5c96284a31&amp;SIGNUP=eventpage3conference"
         method="post"
         id="mc-embedded-subscribe-form"
         name="mc-embedded-subscribe-form"
@@ -82,6 +82,17 @@ const MailchimpSubscribe: FC = () => {
               <div className="response" id="mce-success-response" style={{ display: 'none' }} />
             </Box>
             <Box display="flex">
+              <div
+                style={{ position: 'absolute', left: '-5000px' }}
+                aria-hidden="true"
+              >
+                <input
+                  type="text"
+                  name="b_275128d8e166d053af088aa66_5c96284a31"
+                  tabIndex={-1}
+                  value=""
+                />
+              </div>
               <Button
                 type="submit"
                 value="Subscribe"
