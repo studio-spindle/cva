@@ -300,7 +300,7 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
               <Typography className={classes.white} gutterBottom>
                 Ecole des Ponts Business School and the Creating Value Alliance are proud to
                 invite you to the Third Global Conference on Creating Value that will take place
-                in Paris on June 2 and 3, 2020. Building on the foundations of the previous global
+                in Paris on October 20th and 21st, 2020. Building on the foundations of the previous global
                 editions in Leicester and New York, the Global Conference on Creating Value in Paris
                 aims to increase our understanding of what it means to create value in a constantly
                 changing environment.
