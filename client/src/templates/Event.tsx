@@ -20,9 +20,9 @@ import Divider from '../components/Divider';
 import Speaker from '../components/Speaker';
 import Truncate from '../components/Truncate';
 import InfoBlock from '../components/InfoBlock';
+import FormEventSubscribe from '../components/FormEventSubscribe';
 
 import WeezeEvent from '../third-party/WeezeEvent';
-import MailchimpSubscribe from '../third-party/MailchimpSubscribe';
 
 const useStyles = makeStyles((theme: Theme) => ({
   '@global': {
@@ -604,7 +604,7 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
               <Typography variant="h4" gutterBottom>
                 Subscribe for the Online Conference
               </Typography>
-              <MailchimpSubscribe />
+              <FormEventSubscribe />
             </Grid>
             <Grid xs={10} lg={6} item className={classes.intergrationBlock}>
               <Typography variant="h4" gutterBottom>
