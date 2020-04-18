@@ -3,6 +3,7 @@ import { Box, Button, OutlinedInput, Theme } from '@material-ui/core';
 import { ClassNameMap } from '@material-ui/core/styles/withStyles';
 import { makeStyles } from '@material-ui/core/styles';
 import { FormErrorInterface, ServerResponseInterface } from '../shared.types';
+import { urlSubscribeMailchimp } from '../api';
 
 const useStyles = makeStyles((theme: Theme) => ({
   input: {
@@ -46,7 +47,7 @@ const FormEventSubscribe: FC = () => {
           signupLocation,
         }),
       };
-      fetch('http://localhost:5000/subscribe/mailchimp', requestSettings)
+      fetch(urlSubscribeMailchimp, requestSettings)
         .then((res) => {
           if (res.ok) {
             setServerResponse({ type: 'success', message: 'You have been subscribed!' });
