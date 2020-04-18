@@ -2,6 +2,7 @@ import { FC, FormEvent, useState } from 'react';
 import { Box, Button, OutlinedInput, Theme } from '@material-ui/core';
 import { ClassNameMap } from '@material-ui/core/styles/withStyles';
 import { makeStyles } from '@material-ui/core/styles';
+import { FormErrorInterface, ServerResponseInterface } from '../shared.types';
 
 const useStyles = makeStyles((theme: Theme) => ({
   input: {
@@ -15,16 +16,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     color: theme.palette.error.main,
   },
 }));
-
-interface FormErrorInterface {
-  key: string;
-  message: string;
-}
-
-interface ServerResponseInterface {
-  type: 'success' | 'warning' | 'error';
-  message: string;
-}
 
 const FormEventSubscribe: FC = () => {
   const classes: ClassNameMap<string> = useStyles({});
@@ -55,7 +46,7 @@ const FormEventSubscribe: FC = () => {
           signupLocation,
         }),
       };
-      fetch('http://localhost:5000/subscribe', requestSettings)
+      fetch('http://localhost:5000/subscribe/mailchimp', requestSettings)
         .then((res) => {
           if (res.ok) {
             setServerResponse({ type: 'success', message: 'You have been subscribed!' });
@@ -74,6 +65,13 @@ const FormEventSubscribe: FC = () => {
 
   return (
     <div id="mc_embed_signup">
+      {errors && (
+        errors.map(({ key, message }) => (
+          <div key={key}>
+            <p>{message}</p>
+          </div>
+        ))
+      )}
       {serverResponse && (
         <p className={`classes.${serverResponse.type}`}>{serverResponse.message}</p>
       )}
@@ -126,12 +124,6 @@ const FormEventSubscribe: FC = () => {
                 <div style={{ position: 'absolute', left: '-5000px' }} aria-hidden="true">
                   <input type="text" name="b_275128d8e166d053af088aa66_5c96284a31" tabIndex={-1} defaultValue="" />
                 </div>
-                {errors && (
-                  errors.map(({ key, message }) => (
-                    <div key={key}>
-                      <p>{message}</p>
-                    </div>
-                  )))}
                 <div className="response" id="mce-error-response" style={{ display: 'none' }} />
                 <div className="response" id="mce-success-response" style={{ display: 'none' }} />
               </Box>

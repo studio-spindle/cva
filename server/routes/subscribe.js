@@ -6,7 +6,12 @@ if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
 
-router.post('/', (req, res) => {
+router.post('/googledrive', (req, res) => {
+  console.log('do something with: ', req);
+  res.status(200);
+});
+
+router.post('/mailchimp', (req, res) => {
   const {
     email,
     name,
