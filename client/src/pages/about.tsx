@@ -14,6 +14,7 @@ import { BubbleChart as BubbleChartIcon } from '@material-ui/icons';
 import { ClassNameMap } from '@material-ui/core/styles/withStyles';
 import Layout from '../components/Layout';
 import Section from '../components/Section';
+import FormMembershipSubscribe from '../components/FormMembershipSubscribe';
 
 const useStyles = makeStyles((theme: Theme) => ({
   firstSection: {
@@ -199,6 +200,9 @@ const About: NextPage = () => {
                 The Creating Value Alliance seeks to achieve its aims through:
               </Typography>
               <AboutList listItems={listItemsAims} />
+            </Grid>
+            <Grid item xs={10} md={8}>
+              {/* <FormMembershipSubscribe /> */}
             </Grid>
           </Grid>
         </Section>

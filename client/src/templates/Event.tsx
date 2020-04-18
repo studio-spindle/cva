@@ -20,9 +20,9 @@ import Divider from '../components/Divider';
 import Speaker from '../components/Speaker';
 import Truncate from '../components/Truncate';
 import InfoBlock from '../components/InfoBlock';
+import FormEventSubscribe from '../components/FormEventSubscribe';
 
 import WeezeEvent from '../third-party/WeezeEvent';
-import MailchimpSubscribe from '../third-party/MailchimpSubscribe';
 
 const useStyles = makeStyles((theme: Theme) => ({
   '@global': {
@@ -300,10 +300,10 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
               <Typography className={classes.white} gutterBottom>
                 Ecole des Ponts Business School and the Creating Value Alliance are proud to
                 invite you to the Third Global Conference on Creating Value that will take place
-                in Paris on October 20th and 21st, 2020. Building on the foundations of the previous global
-                editions in Leicester and New York, the Global Conference on Creating Value in Paris
-                aims to increase our understanding of what it means to create value in a constantly
-                changing environment.
+                in Paris on October 20th and 21st, 2020. Building on the foundations of the previous
+                global editions in Leicester and New York, the Global Conference on Creating Value
+                in Paris aims to increase our understanding of what it means to create value in a
+                constantly changing environment.
               </Typography>
             </InfoBlock>
           </Grid>
@@ -604,7 +604,7 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
               <Typography variant="h4" gutterBottom>
                 Subscribe for the Online Conference
               </Typography>
-              <MailchimpSubscribe />
+              <FormEventSubscribe />
             </Grid>
             <Grid xs={10} lg={6} item className={classes.intergrationBlock}>
               <Typography variant="h4" gutterBottom>
