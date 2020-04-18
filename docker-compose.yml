@@ -71,7 +71,7 @@ services:
     - cva
     ports:
       - "3000:3000"
-  server:
+  api:
     build: ./server
     depends_on:
     - client
@@ -81,14 +81,14 @@ services:
     depends_on: 
       - weaviate
       - client
-      - server
+      - api
     environment: 
       - NGINX_PORT=2222
     image: nginx
     links: 
       - "weaviate:weaviate.com"
       - "client:website.com"
-      - "server:server.com"
+      - "api:api.com"
     ports: 
       - "2222:2222"
     volumes: 
