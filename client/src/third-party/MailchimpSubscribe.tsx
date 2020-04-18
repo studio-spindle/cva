@@ -3,8 +3,6 @@ import { Box, Button, OutlinedInput, Theme } from '@material-ui/core';
 import { ClassNameMap } from '@material-ui/core/styles/withStyles';
 import { makeStyles } from '@material-ui/core/styles';
 
-const negativeNumber = -1;
-
 const useStyles = makeStyles((theme: Theme) => ({
   input: {
     backgroundColor: theme.palette.common.white,
@@ -63,7 +61,6 @@ const MailchimpSubscribe: FC = () => {
               <OutlinedInput
                 type="text"
                 name="MMERGE6"
-                id="mce-MMERGE6"
                 className={classes.input}
                 placeholder="Profession"
                 required
@@ -74,25 +71,14 @@ const MailchimpSubscribe: FC = () => {
                 <input
                   type="text"
                   name="b_275128d8e166d053af088aa66_5c96284a31"
-                  tabIndex={negativeNumber}
-                  value=""
+                  tabIndex={-1}
+                  defaultValue=""
                 />
               </div>
               <div className="response" id="mce-error-response" style={{ display: 'none' }} />
               <div className="response" id="mce-success-response" style={{ display: 'none' }} />
             </Box>
             <Box display="flex">
-              <div
-                style={{ position: 'absolute', left: '-5000px' }}
-                aria-hidden="true"
-              >
-                <input
-                  type="text"
-                  name="b_275128d8e166d053af088aa66_5c96284a31"
-                  tabIndex={-1}
-                  value=""
-                />
-              </div>
               <Button
                 type="submit"
                 value="Subscribe"
