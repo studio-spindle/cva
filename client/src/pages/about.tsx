@@ -202,7 +202,7 @@ const About: NextPage = () => {
               <AboutList listItems={listItemsAims} />
             </Grid>
             <Grid item xs={10} md={8}>
-              <FormMembershipSubscribe />
+              {/* <FormMembershipSubscribe /> */}
             </Grid>
           </Grid>
         </Section>

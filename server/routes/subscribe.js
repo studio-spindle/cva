@@ -42,12 +42,12 @@ router.post('/mailchimp', (req, res) => {
 
     const uri = 'https://us19.api.mailchimp.com/3.0/lists';
     const listId = '5c96284a31';
-    const apiKey = process.env.API_MAILCHIMP;
+    const apiKeyMailchimp = process.env.API_MAILCHIMP;
     const url = `${uri}/${listId}`;
 
     const requestSettings = {
       method: 'POST',
-      headers: { Authorization: `auth ${apiKey}` },
+      headers: { Authorization: `auth ${apiKeyMailchimp}` },
       body: JSON.stringify(mcData),
     }
 

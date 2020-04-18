@@ -8,6 +8,8 @@ jobs:
     docker:
       # specify the version you desire here
       - image: circleci/node:10.17.0
+        environment:
+          API_MAILCHIMP: $API_MAILCHIMP
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
