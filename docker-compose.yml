@@ -81,12 +81,14 @@ services:
     depends_on: 
       - weaviate
       - client
+      - server
     environment: 
       - NGINX_PORT=2222
     image: nginx
     links: 
       - "weaviate:weaviate.com"
       - "client:website.com"
+      - "server:server.com"
     ports: 
       - "2222:2222"
     volumes: 
