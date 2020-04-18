@@ -71,6 +71,12 @@ services:
     - cva
     ports:
       - "3000:3000"
+  server:
+    build: ./server
+    depends_on:
+    - client
+    ports:
+      - "5000:5000"
   nginx: 
     depends_on: 
       - weaviate
