@@ -13,6 +13,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   root: {
     color: theme.palette.common.white,
     padding: `${theme.spacing(3)}px ${theme.spacing(3)}px`,
+    width: '100%',
   },
   success: {
     backgroundColor: theme.palette.success.light,
