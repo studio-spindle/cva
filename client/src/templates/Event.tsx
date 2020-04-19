@@ -600,13 +600,13 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
 
         <Section backgroundColor="white" noPadding>
           <Grid container direction="row">
-            <Grid xs={10} lg={6} item className={classes.intergrationBlock}>
+            <Grid xs={12} lg={6} item className={classes.intergrationBlock}>
               <Typography variant="h4" gutterBottom>
                 Subscribe for the Online Conference
               </Typography>
               <FormEventSubscribe />
             </Grid>
-            <Grid xs={10} lg={6} item className={classes.intergrationBlock}>
+            <Grid xs={12} lg={6} item className={classes.intergrationBlock}>
               <Typography variant="h4" gutterBottom>
                 Tickets for the Conference
               </Typography>

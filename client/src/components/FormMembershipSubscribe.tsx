@@ -4,6 +4,7 @@ import { ClassNameMap } from '@material-ui/core/styles/withStyles';
 import { makeStyles } from '@material-ui/core/styles';
 import { FormErrorInterface, ServerResponseInterface } from '../shared.types';
 import { urlSubscribeMembership } from '../api';
+import Alert from './Alert';
 
 const useStyles = makeStyles((theme: Theme) => ({
   input: {
@@ -12,6 +13,9 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   select: {
     width: '100%',
+  },
+  formContainer: {
+    marginTop: theme.spacing(5),
   },
 }));
 
@@ -73,8 +77,8 @@ const FormMembershipSubscribe: FC = () => {
   };
 
   return (
-    <Grid container>
-      <Grid item xs={12} md={8} lg={6}>
+    <Grid container justify="center" className={classes.formContainer}>
+      <Grid item xs={12} md={10} lg={6}>
         {errors && (
           errors.map(({ key, message }) => (
             <div key={key}>
@@ -83,7 +87,9 @@ const FormMembershipSubscribe: FC = () => {
           ))
         )}
         {serverResponse && (
-          <p className={`classes.${serverResponse.type}`}>{serverResponse.message}</p>
+          <Alert severity={serverResponse.type} gutterBottom>
+            {serverResponse.message}
+          </Alert>
         )}
         {!serverResponse && (
           <form onSubmit={handleSubmit}>
@@ -114,7 +120,7 @@ const FormMembershipSubscribe: FC = () => {
                   />
                 </Box>
               ))}
-              <Box display="flex">
+              <Box display="flex" justifyContent="flex-end">
                 <Button
                   type="submit"
                   value="Subscribe"

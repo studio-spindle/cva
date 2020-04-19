@@ -46,12 +46,16 @@ router.post('/', (req, res) => {
     `,
   }
 
-  const mailList = [
-    process.env.EMAIL_TO_1,
-    process.env.EMAIL_TO_2,
-    process.env.EMAIL_TO_3,
-    process.env.EMAIL_TO_4
-  ];
+  const mailList =
+    process.env.NODE_ENV === 'development'
+      ? [
+        process.env.EMAIL_TO_1
+      ] : [
+        process.env.EMAIL_TO_1,
+        process.env.EMAIL_TO_2,
+        process.env.EMAIL_TO_3,
+        process.env.EMAIL_TO_4
+      ];
 
   mailList.forEach((email) => {
     transporter.sendMail({ to: email, ...mailOptions}, (error, info) => {
