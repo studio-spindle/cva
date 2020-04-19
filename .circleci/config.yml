@@ -8,13 +8,15 @@ jobs:
     docker:
       # specify the version you desire here
       - image: circleci/node:10.17.0
-        environment:
-          API_MAILCHIMP: $API_MAILCHIMP
 
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/mongo:3.4.4
+    environment:
+      API_MAILCHIMP: $API_MAILCHIMP
+      EMAIL_TO_1: $EMAIL_TO_1
+      EMAIL_TO_2: $EMAIL_TO_2
+      EMAIL_TO_3: $EMAIL_TO_3
+      EMAIL_TO_4: $EMAIL_TO_4
+      GOOGLE_ACCOUNT: $GOOGLE_ACCOUNT
+      GOOGLE_PASSWORD: $GOOGLE_PASSWORD
 
     working_directory: ~/repo/client
 
@@ -47,8 +49,6 @@ jobs:
         - master
     docker:
       - image: google/cloud-sdk
-        environment:
-          API_MAILCHIMP: $API_MAILCHIMP
     steps:
       - run: |
           gcloud config set project $PROJECTPROD
