@@ -2,16 +2,7 @@ const express = require('express');
 const router = express.Router();
 const fetch = require('node-fetch');
 
-if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config();
-}
-
-router.post('/googledrive', (req, res) => {
-  console.log('do something with: ', req);
-  res.status(200);
-});
-
-router.post('/mailchimp', (req, res) => {
+router.post('/', (req, res) => {
   const {
     email,
     name,

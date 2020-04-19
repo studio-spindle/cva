@@ -26,6 +26,7 @@ const inputFields = [
 ];
 
 interface RequestObjectBody {
+  MEMBERSHIP: string;
   SALUTATION?: string;
   FNAME: string;
   LNAME: string;
@@ -44,6 +45,8 @@ const FormMembershipSubscribe: FC = () => {
     const data = new FormData(event.currentTarget);
 
     const body: {[k: string]: string} = {};
+
+    body.MEMBERSHIP = data.get('MEMBERSHIP') as string;
     inputFields.forEach(({ name }) => {
       body[name] = data.get(name) as string;
     });

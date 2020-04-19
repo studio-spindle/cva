@@ -1,13 +1,18 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-
 const app = express();
+
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
+
+const clientHostname = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://creatingvalue.co';
 
 // Middleware
 app.use(express.json());
 app.use(cors({
-  origin: 'https://creatingvalue.co',
+  origin: clientHostname,
 }));
 app.use(bodyParser.urlencoded({ extended: false }));
 

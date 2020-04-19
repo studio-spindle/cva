@@ -10,7 +10,7 @@
   ],
   "main": "index.js",
   "scripts": {
-    "dev": "next src",
+    "dev": "NODE_ENV=development next src",
     "build": "next build src",
     "start": "next start src",
     "lintTs": "tsc --noEmit -p ./src",
