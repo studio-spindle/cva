@@ -59,6 +59,7 @@ const FormEventSubscribe: FC = () => {
     };
     fetch(urlSubscribeMailchimp, requestSettings)
       .then((res) => {
+        // eslint-disable-next-line no-console
         console.log('response ===> ', res);
         if (res.ok) {
           setServerResponse({ type: 'success', message: 'You have been subscribed!' });
@@ -67,6 +68,8 @@ const FormEventSubscribe: FC = () => {
         } else {
           setServerResponse({ type: 'error', message: 'Please try again later.' });
         }
+        // eslint-disable-next-line no-console
+        console.log('json: ', res.json());
       }).catch((fetchError) => {
         // eslint-disable-next-line no-console
         console.log(fetchError);

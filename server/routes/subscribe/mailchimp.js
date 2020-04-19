@@ -55,7 +55,7 @@ router.post('/', (req, res) => {
             }
           });
         } else {
-          res.status(200).send({ data: data });
+          res.status(200).send(data);
         }
       }).catch((fetchError) => {
         res.status(500).send({ fetchError });
