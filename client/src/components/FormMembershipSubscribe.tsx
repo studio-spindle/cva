@@ -1,18 +1,27 @@
-import { FC, FormEvent, useState } from 'react';
-import { Box, Button, OutlinedInput, Theme, Select, FormControl, Grid } from '@material-ui/core';
+import { FC, useState } from 'react';
+import { Box, Button, OutlinedInput, Theme, Select, FormControl, Grid, FormHelperText } from '@material-ui/core';
+import { useForm } from 'react-hook-form';
+import * as yup from 'yup';
 import { ClassNameMap } from '@material-ui/core/styles/withStyles';
 import { makeStyles } from '@material-ui/core/styles';
-import { FormErrorInterface, ServerResponseInterface } from '../shared.types';
+import { ServerResponseInterface } from '../shared.types';
 import { urlSubscribeMembership } from '../api';
 import Alert from './Alert';
+
+const schema = yup.object().shape({
+  FNAME: yup.string().required(),
+  LNAME: yup.string().required(),
+  COMPANY: yup.string().required(),
+  EMAIL: yup.string().required(),
+  CEMAIL: yup.string()
+    .test('matchEmail', 'Emails do not match', function matchEmail(email) {
+      return email === this.parent?.EMAIL;
+    }).required(),
+});
 
 const useStyles = makeStyles((theme: Theme) => ({
   input: {
     backgroundColor: theme.palette.common.white,
-    width: '100%',
-  },
-  select: {
-    width: '100%',
   },
   formContainer: {
     marginTop: theme.spacing(5),
@@ -30,94 +39,83 @@ const inputFields = [
 ];
 
 interface RequestObjectBody {
-  MEMBERSHIP: string;
+  MEMBERSHIP?: string;
   SALUTATION?: string;
-  FNAME: string;
-  LNAME: string;
-  COMPANY: string;
+  FNAME?: string;
+  LNAME?: string;
+  COMPANY?: string;
   TITLE?: string;
-  EMAIL: string;
+  EMAIL?: string;
 }
 
 const FormMembershipSubscribe: FC = () => {
+  const { register, handleSubmit, formState, errors } = useForm({
+    mode: 'onChange',
+    validationSchema: schema,
+  });
+  const { dirty } = formState;
   const classes: ClassNameMap<string> = useStyles({});
   const [serverResponse, setServerResponse] = useState<ServerResponseInterface>();
-  const [errors, setErrors] = useState<FormErrorInterface[]>([]);
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-
-    const body: {[k: string]: string} = {};
-
-    body.MEMBERSHIP = data.get('MEMBERSHIP') as string;
-    inputFields.forEach(({ name }) => {
-      body[name] = data.get(name) as string;
-    });
-
-    if (!body.EMAIL) {
-      setErrors([{ key: 'email', message: 'E-mail is required.' }]);
-    } else {
-      const requestSettings = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body),
-      };
-      fetch(urlSubscribeMembership, requestSettings)
-        .then((res) => {
-          if (res.ok) {
-            setServerResponse({ type: 'success', message: 'You have been subscribed!' });
-          }
-        }).catch((fetchError) => {
-          // eslint-disable-next-line no-console
-          console.log(fetchError);
-          setServerResponse({ type: 'error', message: 'Please try again later.' });
-        });
-    }
+  const onSubmit = (data: RequestObjectBody): void => {
+    const requestSettings = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    };
+    fetch(urlSubscribeMembership, requestSettings)
+      .then((res) => {
+        if (res.ok) {
+          setServerResponse({ type: 'success', message: 'You have been subscribed!' });
+        }
+      })
+      .catch((fetchError) => {
+        // eslint-disable-next-line no-console
+        console.log(fetchError);
+        setServerResponse({ type: 'error', message: 'Please try again later.' });
+      });
   };
 
   return (
     <Grid container justify="center" className={classes.formContainer}>
       <Grid item xs={12} md={10} lg={6}>
-        {errors && (
-          errors.map(({ key, message }) => (
-            <div key={key}>
-              <p>{message}</p>
-            </div>
-          ))
-        )}
         {serverResponse && (
           <Alert severity={serverResponse.type} gutterBottom>
             {serverResponse.message}
           </Alert>
         )}
         {!serverResponse && (
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit(onSubmit)} noValidate>
             <Box display="flex" flexDirection="column">
               <Box display="flex" mb={2}>
-                <FormControl className={classes.select} variant="outlined">
+                <FormControl className={classes.select} variant="outlined" fullWidth error={!!errors.MEMBERSHIP}>
                   <Select
                     native
                     inputProps={{
                       name: 'MEMBERSHIP',
                       id: 'membership-type',
+                      ref: register,
                     }}
                   >
                     <option value="Individual">Individual</option>
                     <option value="Corporate">Corporate</option>
                     <option value="Institutional">Institutional</option>
                   </Select>
+                  <FormHelperText>{errors?.MEMBERSHIP?.message}</FormHelperText>
                 </FormControl>
               </Box>
               {inputFields.map(({ name, placeholder, type, required }) => (
                 <Box key={name} display="flex" mb={2}>
-                  <OutlinedInput
-                    type={type}
-                    name={name}
-                    className={classes.input}
-                    placeholder={`${placeholder} ${required ? '*' : ''}`}
-                    required={required}
-                  />
+                  <FormControl fullWidth error={!!errors[name]}>
+                    <OutlinedInput
+                      type={type}
+                      name={name}
+                      className={classes.input}
+                      placeholder={`${placeholder} ${required ? '*' : ''}`}
+                      inputRef={register}
+                    />
+                    <FormHelperText>{errors[name]?.message}</FormHelperText>
+                  </FormControl>
                 </Box>
               ))}
               <Box display="flex" justifyContent="flex-end">
@@ -125,9 +123,9 @@ const FormMembershipSubscribe: FC = () => {
                   type="submit"
                   value="Subscribe"
                   name="subscribe"
-                  id="mc-embedded-subscribe"
                   variant="contained"
                   color="primary"
+                  disabled={!dirty}
                 >
                   Subscribe
                 </Button>
