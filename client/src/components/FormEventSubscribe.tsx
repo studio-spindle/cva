@@ -1,10 +1,19 @@
-import { FC, FormEvent, useState } from 'react';
-import { Grid, Box, Button, OutlinedInput, Theme } from '@material-ui/core';
+import { FC, useState } from 'react';
+import { Grid, Box, Button, OutlinedInput, Theme, FormControl, FormHelperText } from '@material-ui/core';
+import { useForm } from 'react-hook-form';
+import * as yup from 'yup';
 import { ClassNameMap } from '@material-ui/core/styles/withStyles';
 import { makeStyles } from '@material-ui/core/styles';
-import { FormErrorInterface, ServerResponseInterface } from '../shared.types';
+import { ServerResponseInterface } from '../shared.types';
 import { urlSubscribeMailchimp } from '../api';
 import Alert from './Alert';
+
+const schema = yup.object().shape({
+  EMAIL: yup.string().email().required('Please fill in your e-mail address.'),
+  FNAME: yup.string().required('Please fill in your first name.'),
+  LNAME: yup.string().required('Please fill in your last name.'),
+  MMERGE6: yup.string().required('Please fill in your profession.'),
+});
 
 const useStyles = makeStyles((theme: Theme) => ({
   input: {
@@ -19,51 +28,50 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
+const inputFields = [
+  { name: 'EMAIL', id: 'mce-EMAIL', placeholder: 'Email Address', type: 'email', required: true },
+  { name: 'FNAME', id: 'mce-FNAME', placeholder: 'First Name', type: 'text', required: true },
+  { name: 'LNAME', id: 'mce-LNAME', placeholder: 'Last Name', type: 'text', required: true },
+  { name: 'MMERGE6', id: 'mce-MMERGE6', placeholder: 'Profession', type: 'text', required: true },
+];
+
+interface RequestObjectBody {
+  EMAIL?: string;
+  FNAME?: string;
+  LNAME?: string;
+  MMERGE6?: string;
+}
+
 const FormEventSubscribe: FC = () => {
+  const { register, handleSubmit, formState, errors } = useForm({
+    mode: 'onChange',
+    validationSchema: schema,
+  });
+  const { dirty } = formState;
   const classes: ClassNameMap<string> = useStyles({});
   const [serverResponse, setServerResponse] = useState<ServerResponseInterface>();
-  const [errors, setErrors] = useState<FormErrorInterface[]>([]);
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-
-    const email = data.get('EMAIL') as string;
-    const name = data.get('FNAME') as string;
-    const lastName = data.get('LNAME') as string;
-    const profession = data.get('MMERGE6') as string;
-    const signupLocation = data.get('b_275128d8e166d053af088aa66_5c96284a31') as string;
-
-    if (!email) {
-      setErrors([{ key: 'email', message: 'E-mail is required.' }]);
-    } else {
-      const requestSettings = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          email,
-          name,
-          lastName,
-          profession,
-          signupLocation,
-        }),
-      };
-      fetch(urlSubscribeMailchimp, requestSettings)
-        .then((res) => {
-          console.log('response ===> ', res);
-          if (res.ok) {
-            setServerResponse({ type: 'success', message: 'You have been subscribed!' });
-          } else if (res.status === 422) {
-            setServerResponse({ type: 'warning', message: 'You have already been subscribed.' });
-          } else {
-            setServerResponse({ type: 'error', message: 'Please try again later.' });
-          }
-        }).catch((fetchError) => {
-          // eslint-disable-next-line no-console
-          console.log(fetchError);
+  const onSubmit = (data: RequestObjectBody): void => {
+    const requestSettings = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    };
+    fetch(urlSubscribeMailchimp, requestSettings)
+      .then((res) => {
+        console.log('response ===> ', res);
+        if (res.ok) {
+          setServerResponse({ type: 'success', message: 'You have been subscribed!' });
+        } else if (res.status === 422) {
+          setServerResponse({ type: 'warning', message: 'You have already been subscribed.' });
+        } else {
           setServerResponse({ type: 'error', message: 'Please try again later.' });
-        });
-    }
+        }
+      }).catch((fetchError) => {
+        // eslint-disable-next-line no-console
+        console.log(fetchError);
+        setServerResponse({ type: 'error', message: 'Please try again later.' });
+      });
   };
 
   // eslint-disable-next-line no-console
@@ -72,13 +80,6 @@ const FormEventSubscribe: FC = () => {
   return (
     <Grid container className={classes.formContainer}>
       <Grid item xs={12} md={10} lg={6}>
-        {errors && (
-          errors.map(({ key, message }) => (
-            <div key={key}>
-              <p>{message}</p>
-            </div>
-          ))
-        )}
         {serverResponse && (
           <Alert severity={serverResponse.type} gutterBottom>
             {serverResponse.message}
@@ -91,44 +92,26 @@ const FormEventSubscribe: FC = () => {
             id="mc-embedded-subscribe-form"
             name="mc-embedded-subscribe-form"
             target="_blank"
-            onSubmit={handleSubmit}
+            onSubmit={handleSubmit(onSubmit)}
             noValidate
           >
             <div id="mc_embed_signup_scroll">
               <Box display="flex" flexDirection="column">
-                <Box display="flex" mb={1}>
-                  <OutlinedInput
-                    type="email"
-                    name="EMAIL"
-                    id="mce-EMAIL"
-                    className={classes.input}
-                    placeholder="Email address*"
-                    required
-                  />
-                </Box>
-                <Box display="flex" mb={1}>
-                  <OutlinedInput
-                    type="text"
-                    name="FNAME"
-                    id="mce-FNAME"
-                    className={classes.input}
-                    placeholder="First name*"
-                    required
-                  />
-                </Box>
-                <Box display="flex" mb={1}>
-                  <OutlinedInput
-                    type="text"
-                    name="LNAME"
-                    id="mce-LNAME"
-                    className={classes.input}
-                    placeholder="Last name*"
-                    required
-                  />
-                </Box>
-                <Box display="flex" mb={1}>
-                  <OutlinedInput type="text" name="MMERGE6" className={classes.input} placeholder="Profession*" required />
-                </Box>
+                {inputFields.map(({ name, id, placeholder, type, required }) => (
+                  <Box key={name} display="flex" mb={2}>
+                    <FormControl fullWidth error={!!errors[name]}>
+                      <OutlinedInput
+                        type={type}
+                        name={name}
+                        className={classes.input}
+                        placeholder={`${placeholder} ${required ? '*' : ''}`}
+                        id={id}
+                        inputRef={register}
+                      />
+                      <FormHelperText>{errors[name]?.message}</FormHelperText>
+                    </FormControl>
+                  </Box>
+                ))}
                 <Box display="flex" mb={1}>
                   <div style={{ position: 'absolute', left: '-5000px' }} aria-hidden="true">
                     <input type="text" name="b_275128d8e166d053af088aa66_5c96284a31" tabIndex={-1} defaultValue="" />
@@ -144,6 +127,7 @@ const FormEventSubscribe: FC = () => {
                     id="mc-embedded-subscribe"
                     variant="contained"
                     color="primary"
+                    disabled={!dirty}
                   >
                     Subscribe
                   </Button>

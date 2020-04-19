@@ -52,8 +52,3 @@ export interface ServerResponseInterface {
   type: 'success' | 'warning' | 'error';
   message: string;
 }
-
-export interface FormErrorInterface {
-  key: string;
-  message: string;
-}

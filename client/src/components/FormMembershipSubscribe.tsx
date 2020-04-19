@@ -9,14 +9,14 @@ import { urlSubscribeMembership } from '../api';
 import Alert from './Alert';
 
 const schema = yup.object().shape({
-  FNAME: yup.string().required(),
-  LNAME: yup.string().required(),
-  COMPANY: yup.string().required(),
-  EMAIL: yup.string().required(),
+  FNAME: yup.string().required('Please fill in your first name.'),
+  LNAME: yup.string().required('Please fill in your last name.'),
+  COMPANY: yup.string().required('Please fill in your company.'),
+  EMAIL: yup.string().required('Please fill in your e-mail address.'),
   CEMAIL: yup.string()
     .test('matchEmail', 'Emails do not match', function matchEmail(email) {
       return email === this.parent?.EMAIL;
-    }).required(),
+    }).required('Please confirm your e-mail address.'),
 });
 
 const useStyles = makeStyles((theme: Theme) => ({
