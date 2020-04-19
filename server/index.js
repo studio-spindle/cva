@@ -7,13 +7,11 @@ if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
 
-const clientHostname = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://creatingvalue.co';
+// const clientHostname = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://creatingvalue.co';
 
 // Middleware
 app.use(express.json());
-app.use(cors({
-  origin: clientHostname,
-}));
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // Routes

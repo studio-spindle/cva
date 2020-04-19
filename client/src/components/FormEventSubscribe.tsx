@@ -74,9 +74,6 @@ const FormEventSubscribe: FC = () => {
       });
   };
 
-  // eslint-disable-next-line no-console
-  console.log('testing2: ', process.env.EMAIL_TO_1);
-
   return (
     <Grid container className={classes.formContainer}>
       <Grid item xs={12} md={10} lg={6}>
