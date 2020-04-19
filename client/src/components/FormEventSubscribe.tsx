@@ -77,9 +77,6 @@ const FormEventSubscribe: FC = () => {
   // eslint-disable-next-line no-console
   console.log('testing: ', process.env.FOOBAR);
 
-  // eslint-disable-next-line no-console
-  console.log('foobar');
-
   return (
     <Grid container className={classes.formContainer}>
       <Grid item xs={12} md={10} lg={6}>
