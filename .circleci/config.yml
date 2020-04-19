@@ -9,15 +9,6 @@ jobs:
       # specify the version you desire here
       - image: circleci/node:10.17.0
 
-    environment:
-      - API_MAILCHIMP: $API_MAILCHIMP
-      - EMAIL_TO_1: $EMAIL_TO_1
-      - EMAIL_TO_2: $EMAIL_TO_2
-      - EMAIL_TO_3: $EMAIL_TO_3
-      - EMAIL_TO_4: $EMAIL_TO_4
-      - GOOGLE_ACCOUNT: $GOOGLE_ACCOUNT
-      - GOOGLE_PASSWORD: $GOOGLE_PASSWORD
-
     working_directory: ~/repo/client
 
     steps:
