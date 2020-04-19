@@ -49,6 +49,7 @@ const FormEventSubscribe: FC = () => {
       };
       fetch(urlSubscribeMailchimp, requestSettings)
         .then((res) => {
+          console.log('response ===> ', res);
           if (res.ok) {
             setServerResponse({ type: 'success', message: 'You have been subscribed!' });
           } else if (res.status === 422) {
@@ -63,6 +64,9 @@ const FormEventSubscribe: FC = () => {
         });
     }
   };
+
+  // eslint-disable-next-line no-console
+  console.log('test5');
 
   return (
     <div id="mc_embed_signup">

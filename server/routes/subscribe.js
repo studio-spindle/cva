@@ -42,9 +42,9 @@ router.post('/mailchimp', (req, res) => {
 
     const uri = 'https://us19.api.mailchimp.com/3.0/lists';
     const listId = '5c96284a31';
-    const apiKeyMailchimp = process.env.API_MAILCHIMP;
     const url = `${uri}/${listId}`;
 
+    const apiKeyMailchimp = process.env.API_MAILCHIMP;
     const requestSettings = {
       method: 'POST',
       headers: { Authorization: `auth ${apiKeyMailchimp}` },
@@ -60,12 +60,14 @@ router.post('/mailchimp', (req, res) => {
             if (error_code === 'ERROR_CONTACT_EXISTS') {
               res.status(422).send({ error_code: error_code, message: 'E-mail address already exists.' })
             } else {
-              res.sendStatus(500);
+              res.status(500).send({ error: error, error_code: error_code });
             }
           });
         } else {
-          res.sendStatus(200);
+          res.status(200).send({ data: data });
         }
+      }).catch((fetchError) => {
+        res.status(500).send({ fetchError });
       });
   } else {
     res.status(404).send({ message: 'Failed, no email has been provided.' });

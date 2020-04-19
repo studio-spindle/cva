@@ -47,6 +47,8 @@ jobs:
         - master
     docker:
       - image: google/cloud-sdk
+        environment:
+          API_MAILCHIMP: $API_MAILCHIMP
     steps:
       - run: |
           gcloud config set project $PROJECTPROD

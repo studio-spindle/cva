@@ -7,7 +7,7 @@ const app = express();
 // Middleware
 app.use(express.json());
 app.use(cors({
-  origin: process.env.ENV === 'production' ? '*.creatingvalue.co' : 'http://localhost:3000'
+  origin: 'https://creatingvalue.co',
 }));
 app.use(bodyParser.urlencoded({ extended: false }));
 

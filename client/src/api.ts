@@ -1,2 +1,3 @@
-export const urlSubscribeMailchimp = 'http://localhost:5000/subscribe/mailchimp';
-export const urlSubscribeMembership = 'http://localhost:5000/subscribe/googledrive';
+
+export const urlSubscribeMailchimp = 'https://api.creatingvalue.co/subscribe/mailchimp';
+export const urlSubscribeMembership = 'https://api.creatingvalue.co/subscribe/googledrive';
