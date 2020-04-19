@@ -10,13 +10,13 @@ jobs:
       - image: circleci/node:10.17.0
 
     environment:
-      API_MAILCHIMP: $API_MAILCHIMP
-      EMAIL_TO_1: $EMAIL_TO_1
-      EMAIL_TO_2: $EMAIL_TO_2
-      EMAIL_TO_3: $EMAIL_TO_3
-      EMAIL_TO_4: $EMAIL_TO_4
-      GOOGLE_ACCOUNT: $GOOGLE_ACCOUNT
-      GOOGLE_PASSWORD: $GOOGLE_PASSWORD
+      - API_MAILCHIMP=$API_MAILCHIMP
+      - EMAIL_TO_1=$EMAIL_TO_1
+      - EMAIL_TO_2=$EMAIL_TO_2
+      - EMAIL_TO_3=$EMAIL_TO_3
+      - EMAIL_TO_4=$EMAIL_TO_4
+      - GOOGLE_ACCOUNT=$GOOGLE_ACCOUNT
+      - GOOGLE_PASSWORD=$GOOGLE_PASSWORD
 
     working_directory: ~/repo/client
 
@@ -49,8 +49,18 @@ jobs:
         - master
     docker:
       - image: google/cloud-sdk
+
+    environment:
+      - API_MAILCHIMP=$API_MAILCHIMP
+      - EMAIL_TO_1=$EMAIL_TO_1
+      - EMAIL_TO_2=$EMAIL_TO_2
+      - EMAIL_TO_3=$EMAIL_TO_3
+      - EMAIL_TO_4=$EMAIL_TO_4
+      - GOOGLE_ACCOUNT=$GOOGLE_ACCOUNT
+      - GOOGLE_PASSWORD=$GOOGLE_PASSWORD
+
     steps:
       - run: |
           gcloud config set project $PROJECTPROD
-          gcloud compute ssh --zone $ZONE $MACHINE -- 'cd /home/cva && docker build -t cva . && docker restart cva'
+          'gcloud compute ssh' --zone $ZONE $MACHINE -- 'cd /home/cva && docker build -t cva . && docker restart cva'
           gcloud compute url-maps invalidate-cdn-cache $PROJECTPROD --host www.creatingvalue.co --path "/*" --async
