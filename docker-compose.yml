@@ -72,6 +72,14 @@ services:
     ports:
       - "3000:3000"
   api:
+    environment:
+      - API_MAILCHIMP
+      - EMAIL_TO_1
+      - EMAIL_TO_2
+      - EMAIL_TO_3
+      - EMAIL_TO_4
+      - GOOGLE_ACCOUNT
+      - GOOGLE_PASSWORD
     build: ./server
     depends_on:
     - client
