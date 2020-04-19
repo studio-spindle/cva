@@ -4,27 +4,27 @@ const fetch = require('node-fetch');
 
 router.post('/', (req, res) => {
   const {
-    email,
-    name,
-    lastName,
-    profession,
+    EMAIL,
+    FNAME,
+    LNAME,
+    MMERGE6,
     signupLocation
   } = req.body;
 
-  if (email) {
+  if (EMAIL) {
     const mcData = {
       members: [
         {
-          email_address: email,
+          email_address: EMAIL,
           // single opt-in
           // note: to have double opt-in use 'pending'
           //  users will receive an e-mail with a confirmation link
           //  which they will have to follow to actually subscribe
           status: 'subscribed',
           merge_fields: {
-            "FNAME": name,
-            "LNAME": lastName,
-            "MMERGE6": profession,
+            "FNAME": FNAME,
+            "LNAME": LNAME,
+            "MMERGE6": MMERGE6,
             "b_275128d8e166d053af088aa66_5c96284a31": signupLocation,
           }
         }
