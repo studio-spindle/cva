@@ -12,7 +12,7 @@ const schema = yup.object().shape({
   FNAME: yup.string().required('Please fill in your first name.'),
   LNAME: yup.string().required('Please fill in your last name.'),
   COMPANY: yup.string().required('Please fill in your company.'),
-  EMAIL: yup.string().required('Please fill in your e-mail address.'),
+  EMAIL: yup.string().email('Must be a valid E-mail address.').required('Please fill in your e-mail address.'),
   CEMAIL: yup.string()
     .test('matchEmail', 'Emails do not match', function matchEmail(email) {
       return email === this.parent?.EMAIL;

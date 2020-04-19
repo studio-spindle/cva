@@ -9,7 +9,7 @@ import { urlSubscribeMailchimp } from '../api';
 import Alert from './Alert';
 
 const schema = yup.object().shape({
-  EMAIL: yup.string().email().required('Please fill in your e-mail address.'),
+  EMAIL: yup.string().email('Must be a valid E-mail address.').required('Please fill in your e-mail address.'),
   FNAME: yup.string().required('Please fill in your first name.'),
   LNAME: yup.string().required('Please fill in your last name.'),
   MMERGE6: yup.string().required('Please fill in your profession.'),
