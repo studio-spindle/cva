@@ -80,6 +80,7 @@ const FormEventSubscribe: FC = () => {
   };
 
   console.log('e-mail: ', process.env.EMAIL_TO_1);
+  console.log('should be bar: ', process.env.FOO);
 
   return (
     <Grid container className={classes.formContainer}>
