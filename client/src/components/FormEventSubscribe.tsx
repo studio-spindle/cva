@@ -68,14 +68,18 @@ const FormEventSubscribe: FC = () => {
         } else {
           setServerResponse({ type: 'error', message: 'Please try again later.' });
         }
-        // eslint-disable-next-line no-console
-        console.log('json: ', res.json());
+        return res.json();
+      })
+      .then((json) => {
+        console.log('==> ', json);
       }).catch((fetchError) => {
         // eslint-disable-next-line no-console
         console.log(fetchError);
         setServerResponse({ type: 'error', message: 'Please try again later.' });
       });
   };
+
+  console.log('e-mail: ', process.env.EMAIL_TO_1);
 
   return (
     <Grid container className={classes.formContainer}>
