@@ -41,15 +41,6 @@ jobs:
     docker:
       - image: google/cloud-sdk
 
-    environment:
-    - API_MAILCHIMP
-    - EMAIL_TO_1
-    - EMAIL_TO_2
-    - EMAIL_TO_3
-    - EMAIL_TO_4
-    - GOOGLE_ACCOUNT
-    - GOOGLE_PASSWORD
-
     steps:
       - run: |
           gcloud config set project $PROJECTPROD
