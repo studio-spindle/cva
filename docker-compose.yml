@@ -67,9 +67,9 @@ services:
     - "weaviate:weaviate.com"
   client:
     build: ./client
-    environment:
-      - EMAIL_TO_1
-      - FOO: bar
+    # environment:
+    #   - EMAIL_TO_1
+    #   - FOO: bar
     depends_on:
     - cva
     ports:
