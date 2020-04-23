@@ -3,9 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
 
-// if (process.env.NODE_ENV !== 'production') {
-//   require('dotenv').config();
-// }
+require('dotenv').config();
 
 // const clientHostname = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://creatingvalue.co';
 
