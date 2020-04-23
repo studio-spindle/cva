@@ -4,16 +4,12 @@ WORKDIR /home/app/server
 
 ENV NODE_ENV production
 
-# COPY env.json
-
-# COPY package*.json .
-
-# COPY script.sh
-
-RUN yarn install
+RUN apk add --no-cache --upgrade bash jq
 
 COPY . /home/app/server
 
+RUN cd /home/app/server && yarn install
+
 EXPOSE 5000
 
-CMD ["./script.sh"]
+CMD ["/home/app/server/script.sh"]
