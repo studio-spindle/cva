@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/bin/sh
+
+cd /home/app/server
 
 ##
 # sets the variables
