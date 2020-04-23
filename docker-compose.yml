@@ -77,8 +77,6 @@ services:
     - client
     ports:
     - "5000:5000"
-    volumes:
-    - ${PWD}/server/env.json:/YOUR_LOCATION
   nginx: 
     depends_on: 
       - weaviate
