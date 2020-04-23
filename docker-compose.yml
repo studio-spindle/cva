@@ -67,9 +67,6 @@ services:
     - "weaviate:weaviate.com"
   client:
     build: ./client
-    environment:
-      - EMAIL_TO_1
-      - FOO: bar
     depends_on:
     - cva
     ports:
@@ -79,7 +76,7 @@ services:
     depends_on:
     - client
     ports:
-      - "5000:5000"
+    - "5000:5000"
   nginx: 
     depends_on: 
       - weaviate
