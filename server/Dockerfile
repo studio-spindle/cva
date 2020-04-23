@@ -4,11 +4,11 @@ WORKDIR /home/app/server
 
 ENV NODE_ENV production
 
-COPY env.json
+# COPY env.json
 
-COPY package*.json .
+# COPY package*.json .
 
-COPY script.sh
+# COPY script.sh
 
 RUN yarn install
 
