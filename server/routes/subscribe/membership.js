@@ -62,8 +62,9 @@ router.post('/', (req, res) => {
       console.log(info);
       if (error) {
         res.status(500).send({ error });
+      } else {
+        res.status(200).send({ message: 'Message %s sent: %s' });
       }
-      res.status(200).send({ message: 'Message %s sent: %s', info: info.accepted });
     })
   });
 });
