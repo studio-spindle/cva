@@ -130,7 +130,6 @@ const FormEventSubscribe: FC = () => {
                   >
                     Subscribe
                   </Button>
-                  <p>.</p>
                 </Box>
               </Box>
             </div>

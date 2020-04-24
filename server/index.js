@@ -3,13 +3,13 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
 
-// const clientHostname = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://creatingvalue.co';
-
-console.log('test env var: ', process.env.EMAIL_TO_1);
+const clientHostname = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://creatingvalue.co';
 
 // Middleware
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: clientHostname
+}));
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // Routes
