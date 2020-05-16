@@ -28,15 +28,16 @@ const CountryList: FC = () => {
       <Grid item xs={12} md={4} className={classes.countryCard}>
         <Typography variant="h4" component="h3" className={classes.countryTitle}>
           Netherlands
+          <SuperText>(Coming soon)</SuperText>
         </Typography>
-        <Typography gutterBottom>
+        {/* <Typography gutterBottom>
           Value Creation in <br />Software Development
         </Typography>
         <Link href="/nl" passHref>
           <Button color="secondary" variant="contained" endIcon={<ArrowForwardRounded />}>
             View blog
           </Button>
-        </Link>
+        </Link> */}
       </Grid>
       <Grid item xs={12} md={4} className={classes.countryCard}>
         <Typography variant="h4" component="h3" className={classes.countryTitle}>
@@ -47,8 +48,15 @@ const CountryList: FC = () => {
       <Grid item xs={12} md={4} className={classes.countryCard}>
         <Typography variant="h4" component="h3" className={classes.countryTitle}>
           Japan
-          <SuperText>(Coming soon)</SuperText>
         </Typography>
+        {/* <Typography gutterBottom>
+            Value Creation in <br />...
+          </Typography> */}
+        <Link href="/jp" passHref>
+          <Button color="secondary" variant="contained" endIcon={<ArrowForwardRounded />}>
+            View blog
+          </Button>
+        </Link>
       </Grid>
     </Grid>
   );
