@@ -21,7 +21,7 @@ const Blog: NextPage = () => (
 //       <Container maxWidth="md">
 //         {posts === null && <Loading />}
 //         {posts && (
-//           <BlogList posts={posts} />
+//           <BlogList countryFolder="nl" posts={posts} />
 //         )}
 //       </Container>
 //     </Page>
