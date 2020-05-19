@@ -258,9 +258,18 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
                 their knowledge, get inspired and immerse in <strong>virtual networking</strong>{' '}
                 with other attendees from across the globe.
               </Typography>
-              <Link href="#anchor-integrations">
-                <Button variant="contained" color="primary">Register for free</Button>
-              </Link>
+              <Box display="flex" justifyContent="flex-end" flexDirection="row" alignItems="center">
+                <Box pr={2}>
+                  <Link underline="always" target="_blank" href="/downloads/Third_Global_Conference_on_Creating_Value.pdf">
+                    <Button color="primary">Download Brochure</Button>
+                  </Link>
+                </Box>
+                <Box>
+                  <Link href="#anchor-integrations">
+                    <Button variant="contained" color="primary">Register for free</Button>
+                  </Link>
+                </Box>
+              </Box>
             </InfoBlock>
           </Grid>
           <Grid item xs={12} md={6}>
@@ -707,7 +716,7 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
               </Grid>
             </Grid>
             <Grid container direction="row" justify="space-around" alignItems="center">
-              <Grid xs={12} md={4} style={{ marginLeft: 'auto' }}>
+              <Grid item xs={12} md={4} style={{ marginLeft: 'auto' }}>
                 <a href="https://www.linkedin.com/company/third-conference-on-creating-value/" title="Linked-in of Martin Calnan">
                   <LinkedInIcon className={classes.white} fontSize="large" />
                 </a>
