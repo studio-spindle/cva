@@ -236,12 +236,6 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
                       <strong>June 2nd <br />and 3rd</strong>
                     </Typography>
                   </Grid>
-                  <Grid item xs={6} md={4} className={`${classes.eventMeta} ${classes.eventMetaBorderLeft}`}>
-                    <Typography variant="body2" className={classes.white}>
-                      09:00 am<br />
-                      (C.E.T.)
-                    </Typography>
-                  </Grid>
                   <Hidden mdDown>
                     <Grid item xs={6} md={4} className={`${classes.eventMeta} ${classes.eventMetaBorderLeft}`}>
                       <Typography variant="body2" className={classes.white}>
@@ -265,7 +259,7 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
                 with other attendees from across the globe.
               </Typography>
               <Link href="#anchor-integrations">
-                <Button variant="contained" color="primary">Subscribe to this event</Button>
+                <Button variant="contained" color="primary">Register for free</Button>
               </Link>
             </InfoBlock>
           </Grid>
@@ -602,7 +596,7 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
           <Grid container direction="row">
             <Grid xs={12} lg={6} item className={classes.intergrationBlock}>
               <Typography variant="h4" gutterBottom>
-                Subscribe for the Online Conference
+                Register for free for the Online Conference
               </Typography>
               <FormEventSubscribe />
             </Grid>
