@@ -21,6 +21,7 @@ import Speaker from '../components/Speaker';
 import Truncate from '../components/Truncate';
 import InfoBlock from '../components/InfoBlock';
 import FormEventSubscribe from '../components/FormEventSubscribe';
+import TimeTable from '../components/TimeTable';
 
 import WeezeEvent from '../third-party/WeezeEvent';
 
@@ -133,6 +134,14 @@ const useStyles = makeStyles((theme: Theme) => ({
   testimonialBody: {
     fontStyle: 'italic',
   },
+  lineUpBlock: {
+    '&:nth-child(even) > div': {
+      backgroundColor: theme.palette.primary.main,
+    },
+    '&:nth-child(odd) > div': {
+      backgroundColor: '#5BBF8C',
+    },
+  },
   [theme.breakpoints.down('md')]: {
     firstContent: {
       marginTop: theme.spacing(8),
@@ -173,6 +182,109 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
 }));
+
+const timeTables = {
+  eam: [
+    {
+      itemTitle: '10h - 10h55 (CET) Check-in, Keynotes and Q&A',
+      listItems: [
+        '10\' Participants check in',
+        '05\' Opening by Gautam Mahajan 25\' Keynote Speaker',
+        '15\' Q&A moderated by Martin Calan',
+      ],
+      key: 'eam0',
+    },
+    {
+      itemTitle: '11h - 12h (CET) Parallel Creative Sessions',
+      listItems: [
+        '05\' Participants check in',
+        '10\' Panelists introduce their wicked problem',
+        '35\' Online moderated sharing and discussing ideas 10\' Panelists wrap up',
+      ],
+      key: 'eam1',
+    },
+    {
+      itemTitle: '12h05 - 13h (CET) Parallel Paper Sessions',
+      listItems: [
+        '05\' Participants check in',
+        '05\' Intro by Karina Burgdorff Jensen',
+        '20\' Parallel paper presentations + discussion, round 1 02',
+        '02\' Time to switch \'online room\'',
+        '20\' Parallel paper presentations + discussion, round 2',
+        '03\' Wrap-up by Karina Burgdorff Jensen',
+      ],
+      key: 'eam2',
+    },
+  ],
+  ncsa: [
+    {
+      itemTitle: '11h30 - 12h25 (EDT) Check-in, Keynotes and Q&A',
+      listItems: [
+        '10\' Participants check in',
+        '05\' Opening by Gautam Mahajan',
+        '25\' Keynote Speaker',
+        '15\' Q&A moderated by Martijn Rademakers',
+      ],
+      key: 'ncsa0',
+    },
+    {
+      itemTitle: '12h30 - 13h30 (EDT) Parallel Creative Sessions',
+      listItems: [
+        '05\' Participants check in',
+        '10\' Panelists introduce their wicked problem',
+        '35\' Online moderated sharing and discussing ideas',
+        '10\' Panelists wrap up',
+      ],
+      key: 'ncsa1',
+    },
+    {
+      itemTitle: '13h35 - 14h30 (EDT) Parallel Paper Sessions',
+      listItems: [
+        '05\' Participants check in',
+        '05\' Intro by Karina Burgdorff Jensen',
+        '20\' Parallel paper presentations + discussion, round 1',
+        '02\' Time to switch \'online room\'',
+        '20\' Parallel paper presentations + discussion, round 2',
+        '03\' Wrap-up by Karina Burgdorff Jensen',
+      ],
+      key: 'ncsa2',
+    },
+  ],
+  aao: [
+    {
+      itemTitle: '14h00 - 14h55 (JST) Check-in, Keynotes and Q&A',
+      listItems: [
+        '10\' Participants check in',
+        '05\' Opening by Gautam Mahajan',
+        '25\' Keynote Speaker',
+        '15\' Q&A moderated by Gautam Mahajan',
+      ],
+      key: 'aao0',
+    },
+    {
+      itemTitle: '15h - 16h (JST) Parallel Creative Sessions',
+      listItems: [
+        '05\' Participants check in',
+        '10\' Panelists introduce their wicked problem',
+        '35\' Online moderated sharing and discussing ideas',
+        '10\' Panelists wrap up',
+      ],
+      key: 'aao1',
+    },
+    {
+      itemTitle: '16h05 - 17h (JST) Parallel Paper Sessions',
+      listItems: [
+        '05\' Participants check in',
+        '05\' Intro by Karina Burgdorff Jensen',
+        '20\' Parallel paper presentations + discussion, round 1',
+        '02\' Time to switch \'online room\'',
+        '20\' Parallel paper presentations + discussion, round 2',
+        '03\' Wrap-up by Karina Burgdorff Jensen',
+      ],
+      key: 'aao2',
+    },
+  ],
+};
 
 interface EventTemplateProps {
   data: PostEvent;
@@ -236,12 +348,6 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
                       <strong>June 2nd <br />and 3rd</strong>
                     </Typography>
                   </Grid>
-                  <Grid item xs={6} md={4} className={`${classes.eventMeta} ${classes.eventMetaBorderLeft}`}>
-                    <Typography variant="body2" className={classes.white}>
-                      09:00 am<br />
-                      (C.E.T.)
-                    </Typography>
-                  </Grid>
                   <Hidden mdDown>
                     <Grid item xs={6} md={4} className={`${classes.eventMeta} ${classes.eventMetaBorderLeft}`}>
                       <Typography variant="body2" className={classes.white}>
@@ -264,9 +370,18 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
                 their knowledge, get inspired and immerse in <strong>virtual networking</strong>{' '}
                 with other attendees from across the globe.
               </Typography>
-              <Link href="#anchor-integrations">
-                <Button variant="contained" color="primary">Subscribe to this event</Button>
-              </Link>
+              <Box display="flex" justifyContent="flex-end" flexDirection="row" alignItems="center">
+                <Box pr={2}>
+                  <Link underline="always" target="_blank" href="/downloads/Third_Global_Conference_on_Creating_Value.pdf">
+                    <Button color="primary">Download Brochure</Button>
+                  </Link>
+                </Box>
+                <Box>
+                  <Link href="#anchor-integrations">
+                    <Button variant="contained" color="primary">Register for free</Button>
+                  </Link>
+                </Box>
+              </Box>
             </InfoBlock>
           </Grid>
           <Grid item xs={12} md={6}>
@@ -348,6 +463,87 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
             </Grid>
           </Grid>
         </Grid>
+
+        <Section backgroundColor="secondary">
+          <Grid container direction="row" justify="space-around">
+            <Grid item xs={10} md={8}>
+              <Typography component="h2" align="center" className={`${classes.mediumGutter} ${classes.titleMega} ${classes.white}`}>
+                Line-up
+              </Typography>
+              <Typography className={classes.white} align="center" gutterBottom>
+                The online conference will comprise three different time zones situated around the
+                world. <br />For each zone, we have prepared an exciting line-up of events:
+              </Typography>
+            </Grid>
+          </Grid>
+
+          <Container className={classes.container} fixed maxWidth="lg">
+            <Grid container alignItems="stretch">
+              <Grid item xs={12} md={4} justify="center" alignItems="center">
+                <Typography component="h3" variant="h4" align="center" className={`${classes.white} ${classes.smallGutter}`}>Europe, Africa, <br /> Middle-East</Typography>
+                <Typography color="primary" align="center" gutterBottom>(CET) 10h - 13h <br /> June 2nd</Typography>
+              </Grid>
+              <Grid item xs={12} md={4}>
+                <Typography component="h3" variant="h4" align="center" className={`${classes.white} ${classes.smallGutter}`}>North & South <br /> America</Typography>
+                <Typography color="primary" align="center" gutterBottom>(EDT) 11h30 - 14h30 <br /> June 2nd</Typography>
+              </Grid>
+              <Grid item xs={12} md={4}>
+                <Typography component="h3" variant="h4" align="center" className={`${classes.white} ${classes.smallGutter}`}>Asia, Australia <br /> & Oceania</Typography>
+                <Typography color="primary" align="center" gutterBottom>(JST) 14h - 17h <br /> June 3rd</Typography>
+              </Grid>
+              <Grid item xs={12} className={classes.lineUpBlock}>
+                <Box p={4} mb={2}>
+                  <Typography align="center" component="p" variant="h5" className={`${classes.white} ${classes.smallGutter}`}>Keynote Speaker</Typography>
+                  <Typography align="center" className={classes.white} variant="body2">
+                    This section is for our inspiring, thought-provoking, and <br />
+                    sometimes un-settling keynotes to challenge our basic beliefs.
+                  </Typography>
+                </Box>
+              </Grid>
+              <Grid item xs={12} className={classes.lineUpBlock}>
+                <Box p={4} mb={2}>
+                  <Typography align="center" component="p" variant="h5" className={`${classes.white} ${classes.smallGutter}`}>Creative Sessions</Typography>
+                  <Typography align="center" className={classes.white} variant="body2">
+                    Interactive creative sessions will harness the power of collective
+                    intelligence<br /> to explore some of the crucial problems that we are currently
+                    facing.<br /> A great opportunity for networking!
+                  </Typography>
+                </Box>
+              </Grid>
+              <Grid item xs={12} className={classes.lineUpBlock}>
+                <Box p={4}>
+                  <Typography align="center" component="p" variant="h5" className={`${classes.white} ${classes.smallGutter}`}>Paper Sessions</Typography>
+                  <Typography align="center" className={classes.white} variant="body2">
+                    High value-added paper sessions for researchers to get feedback on<br />
+                    their work and exhibit their ideas in the physical conference in October.
+                  </Typography>
+                </Box>
+              </Grid>
+            </Grid>
+          </Container>
+        </Section>
+
+        <Section backgroundColor="white">
+          <Container className={classes.container} fixed maxWidth="lg">
+            <Grid container direction="row" justify="space-around">
+              <Grid item xs={12} md={4}>
+                <Typography component="h2" variant="h2" align="center" className={classes.smallGutter}>Europe, Africa, Middle-East</Typography>
+                <Typography color="secondary" align="center" gutterBottom>(CET) 10h - 13h <br /> June 2nd</Typography>
+                <TimeTable data={timeTables.eam} />
+              </Grid>
+              <Grid item xs={12} md={4}>
+                <Typography component="h2" variant="h2" align="center" className={classes.smallGutter}>North & South America</Typography>
+                <Typography color="secondary" align="center" gutterBottom>(EDT) 11h30 - 14h30 <br /> June 2nd</Typography>
+                <TimeTable data={timeTables.ncsa} />
+              </Grid>
+              <Grid item xs={12} md={4}>
+                <Typography component="h2" variant="h2" align="center" className={classes.smallGutter}>Asia, Australia & Oceania</Typography>
+                <Typography color="secondary" align="center" gutterBottom>(JST) 14h - 17h <br /> June 3rd</Typography>
+                <TimeTable data={timeTables.aao} />
+              </Grid>
+            </Grid>
+          </Container>
+        </Section>
 
         <Section backgroundColor="secondary">
           <Grid container direction="row" justify="space-around">
@@ -602,7 +798,7 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
           <Grid container direction="row">
             <Grid xs={12} lg={6} item className={classes.intergrationBlock}>
               <Typography variant="h4" gutterBottom>
-                Subscribe for the Online Conference
+                Register for free for the Online Conference
               </Typography>
               <FormEventSubscribe />
             </Grid>
@@ -713,7 +909,7 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
               </Grid>
             </Grid>
             <Grid container direction="row" justify="space-around" alignItems="center">
-              <Grid xs={12} md={4} style={{ marginLeft: 'auto' }}>
+              <Grid item xs={12} md={4} style={{ marginLeft: 'auto' }}>
                 <a href="https://www.linkedin.com/company/third-conference-on-creating-value/" title="Linked-in of Martin Calnan">
                   <LinkedInIcon className={classes.white} fontSize="large" />
                 </a>
