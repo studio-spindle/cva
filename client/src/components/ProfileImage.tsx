@@ -5,6 +5,7 @@ import { Box, makeStyles } from '@material-ui/core';
 const useStyles = makeStyles(() => ({
   profileImage: {
     width: '5rem',
+    marginRight: '1rem',
     '& img': {
       borderRadius: '50%',
       width: '100%',
