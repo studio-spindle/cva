@@ -372,7 +372,7 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
               </Typography>
               <Box display="flex" justifyContent="flex-end" flexDirection="row" alignItems="center">
                 <Box pr={2}>
-                  <Link underline="always" target="_blank" href="/downloads/Third_Global_Conference_on_Creating_Value.pdf">
+                  <Link underline="always" download target="_blank" href="/downloads/Third_Global_Conference_on_Creating_Value.pdf">
                     <Button color="primary">Download Brochure</Button>
                   </Link>
                 </Box>
