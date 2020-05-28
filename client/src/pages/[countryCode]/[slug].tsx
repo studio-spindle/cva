@@ -108,8 +108,9 @@ const BlogTemplate: NextPage<BlogTemplateProps> = ({ content, data }) => {
 };
 
 BlogTemplate.getInitialProps = async (context: NextPageContext): Promise<BlogTemplateProps> => {
-  const { slug } = context.query;
-  const content = await import(`../../posts/jp/${slug}.md`);
+  const { slug, countryCode } = context.query;
+  const postUrl = `${countryCode && typeof countryCode === 'string' ? countryCode.toUpperCase() : ''}/${slug}`;
+  const content = await import(`../../posts/${postUrl}.md`);
   const config = await import('../../data/config.json');
   const data = matter(content.default) as DocumentFrontMatter<PostBlog>;
 
