@@ -145,7 +145,7 @@ const AboutList: FC<AboutListInterface> = ({ listItems }) => (
   </List>
 );
 
-const About: NextPage = () => {
+const JoinUs: NextPage = () => {
   const classes: ClassNameMap<string> = useStyles({});
   return (
     <>
@@ -211,4 +211,4 @@ const About: NextPage = () => {
   );
 };
 
-export default About;
+export default JoinUs;
