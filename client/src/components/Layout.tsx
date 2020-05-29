@@ -150,7 +150,7 @@ const Layout: FC<LayoutProps> = (({
             <Grid xs={10} item>
               <Box display="flex" alignItems="center">
                 <Link href="/">
-                  <a className={classes.link}>
+                  <a className={classes.link} aria-label="Go to the homepage">
                     <Logo white={invertHeader} />
                   </a>
                 </Link>
@@ -169,7 +169,10 @@ const Layout: FC<LayoutProps> = (({
             </Grid>
             <Grid xs={2} md="auto" item>
               <IconButton
-                aria-label="menu"
+                id="main-nav-button"
+                aria-label="Show navigation menu"
+                aria-haspopup="true"
+                aria-controls="main-nav"
                 color="secondary"
                 edge="end"
                 onClick={handleDrawerOpen}
@@ -195,10 +198,15 @@ const Layout: FC<LayoutProps> = (({
         classes={{
           paper: classes.drawerPaper,
         }}
+        aria-expanded={open}
       >
         <div className={classes.drawerHeader}>
           <Grid container alignItems="flex-start" justify="flex-end">
-            <IconButton className={classes.closeIcon} onClick={handleDrawerClose}>
+            <IconButton
+              aria-label="Hide navigation menu"
+              className={classes.closeIcon}
+              onClick={handleDrawerClose}
+            >
               <CancelIcon className={classes.largeIcon} />
             </IconButton>
           </Grid>

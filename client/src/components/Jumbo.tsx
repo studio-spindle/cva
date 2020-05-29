@@ -81,7 +81,7 @@ const Jumbo: FC = () => {
               {intro}
             </Typography>
             <Link href="/events/third-global-conference-on-creating-value" passHref>
-              <Button color="primary" variant="contained" endIcon={<ArrowForwardRounded />}>
+              <Button color="primary" variant="contained" endIcon={<ArrowForwardRounded />} aria-label="Go to the upcoming event page">
                 View Upcoming Event
               </Button>
             </Link>
