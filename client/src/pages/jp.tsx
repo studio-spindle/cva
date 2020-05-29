@@ -9,7 +9,7 @@ import Loading from '../components/Loading';
 const Blog: NextPage = () => {
   const posts: Data<PostBlog>[] | null = usePosts('JP');
   return (
-    <Page title="Japan" siteTitle="Japan">
+    <Page title="Japan" siteTitle="Japan" siteDescription="Read more news from Japan | Creating Value Alliance">
       <Container maxWidth="md">
         {posts === null && <Loading />}
         {posts && (

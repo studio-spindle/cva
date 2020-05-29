@@ -13,7 +13,7 @@ const contactsGlobal = [
 ];
 
 const Contact: NextPage = () => (
-  <Page title="Contact" siteTitle="Contact">
+  <Page title="Contact" siteTitle="Contact" siteDescription="Contact Creating Value Alliance">
     <Grid container alignItems="stretch">
       <Grid item xs={12} md={3}>
         <Typography variant="h5" component="h2" gutterBottom>

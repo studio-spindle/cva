@@ -7,7 +7,7 @@ import Page from '../templates/Page';
 // import Loading from '../components/Loading';
 
 const Blog: NextPage = () => (
-  <Page title="Netherlands" siteTitle="Netherlands">
+  <Page title="Netherlands" siteTitle="Netherlands" siteDescription="Read more news from the Netherlands | Creating Value Alliance">
     <Container maxWidth="md">
       <Typography>Coming soon</Typography>
     </Container>

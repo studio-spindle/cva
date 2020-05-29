@@ -149,7 +149,12 @@ const JoinUs: NextPage = () => {
   const classes: ClassNameMap<string> = useStyles({});
   return (
     <>
-      <Layout siteTitle="About Creating Value Alliance">
+      <Layout
+        siteTitle="About Creating Value Alliance"
+        siteDescription="Join the Creating Value Alliance to
+          realize purposeful, sustainable and prosperous societies, companies, institutions,
+          NGO’s, and think-tanks."
+      >
         <Section noPadding>
           <Grid container justify="space-around" className={classes.firstSection}>
             <Grid item xs={10} md={8}>
