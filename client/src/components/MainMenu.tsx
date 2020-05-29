@@ -27,7 +27,12 @@ const useStyles = makeStyles((theme: Theme) => ({
 const MainMenu: FC = () => {
   const classes = useStyles({});
   return (
-    <List component="nav" aria-label="main main-navigation">
+    <List
+      component="nav"
+      aria-label="main main-navigation"
+      aria-labelledby="main-nav-button"
+      id="main-nav"
+    >
       {pages.map(({ href, title }) => (
         <ListItem
           button

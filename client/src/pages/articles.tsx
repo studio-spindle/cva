@@ -59,7 +59,7 @@ const Articles: NextPage = () => {
   };
 
   return (
-    <Page title="Articles" siteTitle="Articles">
+    <Page title="Articles" siteTitle="Articles" siteDescription="Browse through the articles from the Creating Value Alliance journal">
       <Grid className={classes.hero} container direction="row" justify="center" alignItems="center">
         <Grid xs={12} md={6} item>
           <FuzzySearch

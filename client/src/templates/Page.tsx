@@ -25,13 +25,14 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 interface PageProps {
   siteTitle: string;
+  siteDescription: string;
   title?: string;
 }
 
-const Page: FC<PageProps> = ({ children, title, siteTitle }) => {
+const Page: FC<PageProps> = ({ children, title, siteTitle, siteDescription }) => {
   const classes = useStyles({});
   return (
-    <Layout siteTitle={siteTitle}>
+    <Layout siteTitle={siteTitle} siteDescription={siteDescription}>
       <Container component="article" className={classes.container} maxWidth="lg">
         <Grid container component="article" direction="column" justify="center" className={classes.firstContent}>
           {title && (

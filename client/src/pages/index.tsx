@@ -70,11 +70,15 @@ interface IndexProps {
   description: string;
 }
 
-const Index: NextPage<IndexProps> = ({ description }) => {
+const Index: NextPage<IndexProps> = () => {
   const classes: ClassNameMap<string> = useStyles({});
 
   return (
-    <Layout siteTitle="Home | Creating Value Alliance" siteDescription={description} homePage>
+    <Layout
+      siteTitle="Home | Creating Value Alliance"
+      siteDescription="Together we stand as an international alliance, help grow the creation of value and spread the value creation mindset."
+      homePage
+    >
       <Jumbo />
 
       <Section first>
