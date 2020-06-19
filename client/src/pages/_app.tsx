@@ -24,6 +24,14 @@ export default class MyApp extends App {
         <Head>
           <title>Creating Value Alliance</title>
           <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
+          <script type="application/ld+json">
+          {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "url": "https://creatingvalue.co/",
+            "logo": "https://creatingvalue.co/images/generic/cva_logo_web-color.png"
+          }
+          </script>
         </Head>
         <ThemeProvider theme={theme}>
           <ApolloProvider client={apolloClient}>
