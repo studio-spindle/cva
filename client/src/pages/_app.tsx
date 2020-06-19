@@ -1,3 +1,4 @@
+/* eslint-disable react/no-danger */
 import React from 'react';
 import App from 'next/app';
 import Head from 'next/head';
@@ -6,6 +7,13 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { ApolloProvider } from '@apollo/react-hooks';
 import theme from '../theme';
 import apolloClient from '../apollo/apolloClient';
+
+const jsonLdSchema = `{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "url": "https://creatingvalue.co/",
+  "logo": "https://creatingvalue.co/images/generic/cva_logo_web-color.png"
+}`;
 
 export default class MyApp extends App {
   componentDidMount(): void {
@@ -24,14 +32,7 @@ export default class MyApp extends App {
         <Head>
           <title>Creating Value Alliance</title>
           <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
-          <script type="application/ld+json">
-          {
-            "@context": "https://schema.org",
-            "@type": "Organization",
-            "url": "https://creatingvalue.co/",
-            "logo": "https://creatingvalue.co/images/generic/cva_logo_web-color.png"
-          }
-          </script>
+          <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdSchema }} />
         </Head>
         <ThemeProvider theme={theme}>
           <ApolloProvider client={apolloClient}>
