@@ -28,8 +28,8 @@ const jsonLdSchema = `{
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "Third Global Conference on Creating Value",
-  "startDate": "2020-10-20T09:00-18:00",
-  "endDate": "2020-10-20T09:00-18:00",
+  "startDate": "2020-10-20T09:00:00+00:00",
+  "endDate": "2020-10-20T18:00:00+00:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "eventStatus": "https://schema.org/EventScheduled",
   "location": {
@@ -46,7 +46,7 @@ const jsonLdSchema = `{
   },
   "image": [
     "https://creatingvalue.co/images/events/EDP/background_louvre_sm.jpg",
-    "https://creatingvalue.co/images/events/EDP/background_louvre_lg.jpg",
+    "https://creatingvalue.co/images/events/EDP/background_louvre_lg.jpg"
   ],
   "description": "The Global Conference on Creating Value in Paris aims to increase our understanding of what it means to create value in a constantly changing environment.",
   "offers": {
@@ -68,7 +68,7 @@ const jsonLdSchema = `{
     { "@type": "Person", "name": "Wayne Visser", "sameAs": "http://www.waynevisser.com/" },
     { "@type": "Person", "name": "Gautam Mahajan", "sameAs": "https://www.linkedin.com/in/mahajancvf/" },
     { "@type": "Person", "name": "Martin Calnan", "sameAs": "https://pontsbschool.com/about-the-school/staff-2/" },
-    { "@type": "Person", "name": "Dr. Martijn Rademakers", "sameAs": "https://www.uva.nl/profiel/r/a/m.f.l.rademakers/m.f.l.rademakers.html" },
+    { "@type": "Person", "name": "Dr. Martijn Rademakers", "sameAs": "https://www.uva.nl/profiel/r/a/m.f.l.rademakers/m.f.l.rademakers.html" }
   ],
   "organizer": {
     "@type": "Organization",
