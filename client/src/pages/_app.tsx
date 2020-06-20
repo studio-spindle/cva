@@ -8,7 +8,7 @@ import { ApolloProvider } from '@apollo/react-hooks';
 import theme from '../theme';
 import apolloClient from '../apollo/apolloClient';
 
-const jsonLdSchema = `{
+const jsonLdSiteSchema = `{
   "@context": "https://schema.org",
   "@type": "Organization",
   "url": "https://creatingvalue.co/",
@@ -33,7 +33,7 @@ export default class MyApp extends App {
           <title>Creating Value Alliance</title>
           <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
           <meta name="google-site-verification" content="TwxF4DYSSiF0WP0Xf6g64ka1QMXPPR_bXItDshj37ps" />
-          <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdSchema }} />
+          <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdSiteSchema }} />
         </Head>
         <ThemeProvider theme={theme}>
           <ApolloProvider client={apolloClient}>

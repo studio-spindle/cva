@@ -2,7 +2,6 @@ import { FC } from 'react';
 import {
   Container,
   Grid,
-  Theme,
   Typography,
   Box,
   Button,
@@ -10,7 +9,6 @@ import {
   Link,
 } from '@material-ui/core';
 import { LinkedIn as LinkedInIcon } from '@material-ui/icons';
-import { makeStyles } from '@material-ui/core/styles';
 import { ClassNameMap } from '@material-ui/core/styles/withStyles';
 import { PostEvent } from '../shared.types';
 import Layout from '../components/Layout';
@@ -22,269 +20,62 @@ import Truncate from '../components/Truncate';
 import InfoBlock from '../components/InfoBlock';
 import FormEventSubscribe from '../components/FormEventSubscribe';
 import TimeTable from '../components/TimeTable';
-
+import useStyles from './Event.style';
 import WeezeEvent from '../third-party/WeezeEvent';
+import timeTables from './Event.content.timeTables';
 
-const useStyles = makeStyles((theme: Theme) => ({
-  '@global': {
-    body: {
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      backgroundAttachment: 'fixed',
-    },
-    [theme.breakpoints.down('sm')]: {
-      body: {
-        backgroundImage: "url('/images/events/EDP/background_louvre_sm.jpg')",
-      },
-    },
-    [theme.breakpoints.only('md')]: {
-      body: {
-        backgroundImage: "url('/images/events/EDP/background_louvre_lg.jpg')",
-      },
-    },
-    [theme.breakpoints.up('lg')]: {
-      body: {
-        backgroundImage: "url('/images/events/EDP/background_louvre_xxl.jpg')",
-      },
-    },
-    footer: {
-      marginTop: [['0'], '!important'],
-      backgroundColor: theme.palette.secondary.dark,
-      '& small': {
-        color: theme.palette.common.white,
-      },
-      '& .divider': {
-        borderColor: theme.palette.common.white,
-      },
-    },
+const jsonLdSchema = `{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "Third Global Conference on Creating Value",
+  "startDate": "2020-10-20T09:00-18:00",
+  "endDate": "2020-10-20T09:00-18:00",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "location": {
+    "@type": "Place",
+    "name": "École des Ponts Business School",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "6 Place Du Colonel",
+      "addressLocality": "paris",
+      "postalCode": "75012",
+      "addressRegion": "",
+      "addressCountry": "Paris"
+    }
   },
-  logoEDP: {
-    width: '320px',
-    maxWidth: '100%',
-    height: '140px',
-    objectFit: 'cover',
-  },
-  partnerBar: {
-    padding: `${theme.spacing(6)}px 0`,
-    backgroundColor: theme.palette.common.white,
-  },
-  logoPartner: {
-    height: '3.5rem',
-  },
-  conferenceBg: {
-    backgroundImage: "url('/images/events/EDP/background_conference_notes.jpg')",
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundAttachment: 'fixed',
-  },
-  titleMega: {
-    fontFamily: theme.typography.h1.fontFamily,
-  },
-  [theme.breakpoints.down('sm')]: {
-    titleMega: {
-      fontSize: '2rem',
-      lineHeight: '2.8rem',
-    },
-  },
-  [theme.breakpoints.up('lg')]: {
-    titleMega: {
-      fontSize: '4rem',
-      lineHeight: '4.8rem',
-    },
-  },
-  smallGutter: {
-    marginBottom: theme.spacing(1),
-  },
-  mediumGutter: {
-    marginBottom: theme.spacing(4),
-  },
-  intergrationBlock: {
-    padding: theme.spacing(8),
-  },
-  eventMeta: {
-    paddingTop: theme.spacing(2),
-  },
-  eventMetaBorderLeft: {
-    borderLeft: `1px solid ${theme.palette.common.white}`,
-    paddingLeft: theme.spacing(2),
-  },
-  white: {
-    color: theme.palette.common.white,
-  },
-  iconJumbo: {
-    fontSize: '3.5rem',
-    color: theme.palette.grey[500],
-  },
-  speaker: {
-    padding: theme.spacing(3),
-  },
-  testimonial: {
-    backgroundColor: theme.palette.primary.main,
-    margin: theme.spacing(3),
-    padding: theme.spacing(3),
-    height: '100%',
-    color: 'white',
-  },
-  testimonialTitle: {
-    marginBottom: theme.spacing(3),
-    height: '4rem',
-    textAlign: 'center',
-    verticalAlign: 'center',
-  },
-  testimonialBody: {
-    fontStyle: 'italic',
-  },
-  lineUpBlock: {
-    '&:nth-child(even) > div': {
-      backgroundColor: theme.palette.primary.main,
-    },
-    '&:nth-child(odd) > div': {
-      backgroundColor: '#5BBF8C',
-    },
-  },
-  [theme.breakpoints.down('md')]: {
-    firstContent: {
-      marginTop: theme.spacing(8),
-      paddingBottom: theme.spacing(10),
-    },
-    CTAContainer: {
-      marginTop: theme.spacing(6),
-      justifyContent: 'center',
-    },
-    testimonialContainer: {
-      marginBottom: theme.spacing(4),
-    },
-    partnerBar: {
-      justifyContent: 'center',
-      flexDirection: 'column',
-      alignItems: 'center',
-      alignContent: 'center',
-    },
-    logoPartner: {
-      marginTop: theme.spacing(3),
-      marginBottom: theme.spacing(3),
-    },
-    footerGutter: {
-      marginBottom: theme.spacing(4),
-    },
-  },
-  [theme.breakpoints.up('md')]: {
-    firstContent: {
-      marginTop: theme.spacing(8),
-      paddingBottom: theme.spacing(30),
-    },
-    CTAContainer: {
-      justifyContent: 'flex-end',
-    },
-    partnerBar: {
-      justifyContent: 'space-evenly',
-      flexDirection: 'row',
-    },
-  },
-}));
-
-const timeTables = {
-  eam: [
-    {
-      itemTitle: '10h - 10h55 (CET) Check-in, Keynotes and Q&A',
-      listItems: [
-        '10\' Participants check in',
-        '05\' Opening by Gautam Mahajan 25\' Keynote Speaker',
-        '15\' Q&A moderated by Martin Calan',
-      ],
-      key: 'eam0',
-    },
-    {
-      itemTitle: '11h - 12h (CET) Parallel Creative Sessions',
-      listItems: [
-        '05\' Participants check in',
-        '10\' Panelists introduce their wicked problem',
-        '35\' Online moderated sharing and discussing ideas 10\' Panelists wrap up',
-      ],
-      key: 'eam1',
-    },
-    {
-      itemTitle: '12h05 - 13h (CET) Parallel Paper Sessions',
-      listItems: [
-        '05\' Participants check in',
-        '05\' Intro by Karina Burgdorff Jensen',
-        '20\' Parallel paper presentations + discussion, round 1 02',
-        '02\' Time to switch \'online room\'',
-        '20\' Parallel paper presentations + discussion, round 2',
-        '03\' Wrap-up by Karina Burgdorff Jensen',
-      ],
-      key: 'eam2',
-    },
+  "image": [
+    "https://creatingvalue.co/images/events/EDP/background_louvre_sm.jpg",
+    "https://creatingvalue.co/images/events/EDP/background_louvre_lg.jpg",
   ],
-  ncsa: [
-    {
-      itemTitle: '11h30 - 12h25 (EDT) Check-in, Keynotes and Q&A',
-      listItems: [
-        '10\' Participants check in',
-        '05\' Opening by Gautam Mahajan',
-        '25\' Keynote Speaker',
-        '15\' Q&A moderated by Martijn Rademakers',
-      ],
-      key: 'ncsa0',
-    },
-    {
-      itemTitle: '12h30 - 13h30 (EDT) Parallel Creative Sessions',
-      listItems: [
-        '05\' Participants check in',
-        '10\' Panelists introduce their wicked problem',
-        '35\' Online moderated sharing and discussing ideas',
-        '10\' Panelists wrap up',
-      ],
-      key: 'ncsa1',
-    },
-    {
-      itemTitle: '13h35 - 14h30 (EDT) Parallel Paper Sessions',
-      listItems: [
-        '05\' Participants check in',
-        '05\' Intro by Karina Burgdorff Jensen',
-        '20\' Parallel paper presentations + discussion, round 1',
-        '02\' Time to switch \'online room\'',
-        '20\' Parallel paper presentations + discussion, round 2',
-        '03\' Wrap-up by Karina Burgdorff Jensen',
-      ],
-      key: 'ncsa2',
-    },
+  "description": "The Global Conference on Creating Value in Paris aims to increase our understanding of what it means to create value in a constantly changing environment.",
+  "offers": {
+    "@type": "Offer",
+    "url": "https://creatingvalue.co/events/third-global-conference-on-creating-value",
+    "price": "350",
+    "priceCurrency": "EUR",
+    "availability": "https://schema.org/InStock",
+    "validFrom": "2020-10-20T09:00",
+    "alternateName": "Early Bird",
+    "description": "Ticket includes: 2 day access to all conferences, lunch, coffee breaks, networking app."
+  },
+  "performer": [
+    { "@type": "Person", "name": "Riel Miller", "sameAs": "https://rielmiller.com" },
+    { "@type": "Person", "name": "Kokubu Katshiko", "sameAs": "https://www.b.kobe-u.ac.jp/en/faculty/kokubu/" },
+    { "@type": "Person", "name": "Diane Magers", "sameAs": "https://cxuniversity.com/cx-thought-leaders/diane-magers/" },
+    { "@type": "Person", "name": "Hermann Simon", "sameAs": "http://hermannsimon.com/" },
+    { "@type": "Person", "name": "Stephen Vargo", "sameAs": "https://en.wikipedia.org/wiki/Stephen_Vargo" },
+    { "@type": "Person", "name": "Wayne Visser", "sameAs": "http://www.waynevisser.com/" },
+    { "@type": "Person", "name": "Gautam Mahajan", "sameAs": "https://www.linkedin.com/in/mahajancvf/" },
+    { "@type": "Person", "name": "Martin Calnan", "sameAs": "https://pontsbschool.com/about-the-school/staff-2/" },
+    { "@type": "Person", "name": "Dr. Martijn Rademakers", "sameAs": "https://www.uva.nl/profiel/r/a/m.f.l.rademakers/m.f.l.rademakers.html" },
   ],
-  aao: [
-    {
-      itemTitle: '14h00 - 14h55 (JST) Check-in, Keynotes and Q&A',
-      listItems: [
-        '10\' Participants check in',
-        '05\' Opening by Gautam Mahajan',
-        '25\' Keynote Speaker',
-        '15\' Q&A moderated by Gautam Mahajan',
-      ],
-      key: 'aao0',
-    },
-    {
-      itemTitle: '15h - 16h (JST) Parallel Creative Sessions',
-      listItems: [
-        '05\' Participants check in',
-        '10\' Panelists introduce their wicked problem',
-        '35\' Online moderated sharing and discussing ideas',
-        '10\' Panelists wrap up',
-      ],
-      key: 'aao1',
-    },
-    {
-      itemTitle: '16h05 - 17h (JST) Parallel Paper Sessions',
-      listItems: [
-        '05\' Participants check in',
-        '05\' Intro by Karina Burgdorff Jensen',
-        '20\' Parallel paper presentations + discussion, round 1',
-        '02\' Time to switch \'online room\'',
-        '20\' Parallel paper presentations + discussion, round 2',
-        '03\' Wrap-up by Karina Burgdorff Jensen',
-      ],
-      key: 'aao2',
-    },
-  ],
-};
+  "organizer": {
+    "@type": "Organization",
+    "name": "Creating Value Alliance",
+    "url": "https://creatingvalue.co/"
+  }
+}`;
 
 interface EventTemplateProps {
   data: PostEvent;
@@ -296,7 +87,7 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
   const { title, location } = data;
 
   return (
-    <Layout siteTitle={title} invertHeader>
+    <Layout siteTitle={title} invertHeader structuredData={jsonLdSchema}>
       <Container component="article" className={classes.container} maxWidth={false} disableGutters>
 
         <Grid container direction="row" justify="space-around" className={classes.firstContent}>
