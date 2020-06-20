@@ -122,10 +122,11 @@ interface LayoutProps {
   siteDescription?: string;
   invertHeader?: boolean;
   homePage?: boolean;
+  structuredData?: string;
 }
 
 const Layout: FC<LayoutProps> = (({
-  siteTitle, siteDescription, invertHeader, children, homePage,
+  siteTitle, siteDescription, invertHeader, children, homePage, structuredData,
 }) => {
   const classes = useStyles({});
   const [open, setOpen] = useState(false);
@@ -140,7 +141,11 @@ const Layout: FC<LayoutProps> = (({
 
   return (
     <>
-      <Meta siteTitle={siteTitle} siteDescription={siteDescription} />
+      <Meta
+        siteTitle={siteTitle}
+        siteDescription={siteDescription}
+        structuredData={structuredData}
+      />
       <AppBar
         position="static"
         className={`${classes.appBar} ${open ? classes.appBarShift : classes.appBarFull}`}
