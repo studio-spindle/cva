@@ -11,6 +11,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "NODE_ENV=development next src",
+    "prebuild": "node ./src/scripts/buildSitemap.js",
     "build": "next build src",
     "start": "next start src",
     "lintTs": "tsc --noEmit -p ./src",
