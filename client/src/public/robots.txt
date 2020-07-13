@@ -1,4 +1,7 @@
+Sitemap: https://www.creatingvalue.co/sitemap.xml
+
 User-agent: *
 Allow: /*
 
-Sitemap: https://www.creatingvalue.co/sitemap.xml
+User-agent: Googlebot-Image
+Disallow: /images/generic/logo_cva_old.png
