@@ -25,7 +25,9 @@ Now you can open the client in the browser window by opening `http://localhost:3
 
 ## Development
 
-For developing the user interface navigate to the `./client` folder. In that folder you will find a readme with instructions on how to run this application.
+- User Interface: `./client`
+- Server (for Mailchimp subscription): `./server`
+- Articles (Weaviate): `./weaviate`
 
 ## Deployment
 
