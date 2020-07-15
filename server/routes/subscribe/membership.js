@@ -3,7 +3,7 @@ const router = express.Router();
 const nodeMailer = require('nodemailer');
 const { requiredEnv } = require('../../lib/requiredEnv');
 
-router.post('/', (req, res, next) => {
+router.post('/', (req, res) => {
 
   requiredEnv(['GOOGLE_ACCOUNT', 'GOOGLE_PASSWORD', 'EMAIL_TO_1'], function (error) {
     if (error) {
