@@ -5,3 +5,4 @@ client/src/.next
 env.json
 server/env.json
 client/.now
+server/coverage

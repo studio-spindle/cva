@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "env NODE_ENV=development nodemon app",
     "test": "NODE_ENV=development jest --runInBand --detectOpenHandles",
-    "test:watch": "yarn test --watch"
+    "test:watch": "yarn test --watch",
+    "test:coverage": "yarn test --collect-coverage"
   },
   "keywords": [],
   "author": "",
