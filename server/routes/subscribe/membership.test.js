@@ -23,7 +23,7 @@ describe("/subscribe/membership", () => {
     process.env = OLD_ENV; // restore old env
   });
 
-  it("requires mandatory process.env variables", async () => {
+  it("requires mandatory process.env variables", async (done) => {
     const errMsg =
       "Required ENV variables are not set: [GOOGLE_ACCOUNT, GOOGLE_PASSWORD, EMAIL_TO_1]";
     nodeMailer.createTransport.mockReturnValue({
@@ -41,9 +41,11 @@ describe("/subscribe/membership", () => {
 
     expect(nodeMailer.createTransport().verify).not.toHaveBeenCalled();
     expect(nodeMailer.createTransport().sendMail).not.toHaveBeenCalled();
+
+    done();
   });
 
-  it("handles error when server is not ready to accept messages", async () => {
+  it("handles error when server is not ready to accept messages", async (done) => {
     const errMsg = "this thing failed..";
     process.env.GOOGLE_ACCOUNT = "test";
     process.env.GOOGLE_PASSWORD = "password";
@@ -64,9 +66,11 @@ describe("/subscribe/membership", () => {
 
     expect(nodeMailer.createTransport().verify).toHaveBeenCalled();
     expect(nodeMailer.createTransport().sendMail).not.toHaveBeenCalled();
+
+    done();
   });
 
-  it("succesfully sends an e-mail", async () => {
+  it("succesfully sends an e-mail", async (done) => {
     process.env.GOOGLE_ACCOUNT = "test";
     process.env.GOOGLE_PASSWORD = "password";
     process.env.EMAIL_TO_1 = "test@gmail.com";
@@ -94,5 +98,7 @@ describe("/subscribe/membership", () => {
 
     expect(nodeMailer.createTransport().verify).toHaveBeenCalled();
     expect(nodeMailer.createTransport().sendMail).toHaveBeenCalled();
+
+    done();
   });
 });
