@@ -2,7 +2,6 @@ const request = require("supertest");
 const app = require("../../app.js");
 const nodeMailer = require("nodemailer");
 
-let spy = jest.spyOn(global.console, "error").mockImplementation();
 const OLD_ENV = process.env;
 
 jest.mock("nodemailer", () => ({
@@ -20,15 +19,11 @@ const userMock = {
 };
 
 describe("/subscribe/membership", () => {
-  afterEach(() => {
-    spy.mockClear();
-  });
   afterAll(() => {
     process.env = OLD_ENV; // restore old env
-    spy.mockRestore();
   });
 
-  it("requires mandatory process.env variables", async (done) => {
+  it("requires mandatory process.env variables", async () => {
     const errMsg =
       "Required ENV variables are not set: [GOOGLE_ACCOUNT, GOOGLE_PASSWORD, EMAIL_TO_1]";
     nodeMailer.createTransport.mockReturnValue({
@@ -46,15 +41,9 @@ describe("/subscribe/membership", () => {
 
     expect(nodeMailer.createTransport().verify).not.toHaveBeenCalled();
     expect(nodeMailer.createTransport().sendMail).not.toHaveBeenCalled();
-
-    // not catching the error...
-    // expect(spy).toHaveBeenCalled();
-    // expect(spy).toHaveBeenCalledWith(errMsg);
-
-    done();
   });
 
-  it("handles error when server is not ready to accept messages", async (done) => {
+  it("handles error when server is not ready to accept messages", async () => {
     const errMsg = "this thing failed..";
     process.env.GOOGLE_ACCOUNT = "test";
     process.env.GOOGLE_PASSWORD = "password";
@@ -75,15 +64,9 @@ describe("/subscribe/membership", () => {
 
     expect(nodeMailer.createTransport().verify).toHaveBeenCalled();
     expect(nodeMailer.createTransport().sendMail).not.toHaveBeenCalled();
-
-    // not catching the error...
-    // expect(spy).toHaveBeenCalled();
-    // expect(spy).toHaveBeenCalledWith(errMsg);
-
-    done();
   });
 
-  it("succesfully sends an e-mail", async (done) => {
+  it("succesfully sends an e-mail", async () => {
     process.env.GOOGLE_ACCOUNT = "test";
     process.env.GOOGLE_PASSWORD = "password";
     process.env.EMAIL_TO_1 = "test@gmail.com";
@@ -111,7 +94,5 @@ describe("/subscribe/membership", () => {
 
     expect(nodeMailer.createTransport().verify).toHaveBeenCalled();
     expect(nodeMailer.createTransport().sendMail).toHaveBeenCalled();
-
-    done();
   });
 });

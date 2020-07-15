@@ -12,7 +12,7 @@ router.post('/', (req, res, next) => {
   } = req.body;
 
   if (!EMAIL) {
-    res.status(404).send({ message: 'Failed, no email has been provided.' });
+    res.status(400).send({ message: 'Failed, no email has been provided.' });
     return;
   }
 

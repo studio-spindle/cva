@@ -11,7 +11,7 @@ describe('CORS', () => {
     spy.mockRestore();
   });
 
-  it('does not allow a request without origin', async (done) => {
+  it('does not allow a request without origin', async () => {
     const msg = 'Error: No origin has been set';
     const res = await request(app)
       .get('/test');
@@ -19,29 +19,25 @@ describe('CORS', () => {
     expect(res.status).toBe(500);
     expect(spy).toHaveBeenCalled();
     expect(spy).toHaveBeenCalledWith(expect.stringContaining(msg));
-
-    done();
   });
 
-  it('notifies if the origin is not correct', async (done) => {
+  it('notifies if the origin is not correct', async () => {
     const msg = 'Error: The CORS policy for this site does not allow access from http://example.com.';
     const res = await request(app)
       .get('/test')
       .set('Origin', 'http://example.com');
   
-      expect(res.status).toBe(500);
-      expect(spy).toHaveBeenCalled();
-      expect(spy).toHaveBeenCalledWith(expect.stringContaining(msg));
-    done();
+    expect(res.status).toBe(500);
+    expect(spy).toHaveBeenCalled();
+    expect(spy).toHaveBeenCalledWith(expect.stringContaining(msg));
   });
 
-  it('allows requests having correct origin header', async (done) => {
+  it('allows requests having correct origin header', async () => {
     const res = await request(app)
       .get('/test')
       .set('Origin', 'http://localhost:3000');
   
     expect(res.status).toBe(404);
-    done();
   });
 });
 

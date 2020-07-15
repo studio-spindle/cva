@@ -6,6 +6,7 @@ const requiredEnv = (varsArray, cb) => {
     error = "Required ENV variables are not set: [" + unsetEnv.join(', ') + "]";
   }
   cb(error);
+  return !!error;
 }
 
 module.exports = { requiredEnv };
