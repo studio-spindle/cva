@@ -7,7 +7,7 @@ describe("/subscribe/mailchimp/", () => {
       .post("/subscribe/mailchimp")
       .set("Origin", "http://localhost:3000");
 
-    expect(res.status).toBe(404);
+    expect(res.status).toBe(400);
     expect(res.body).toEqual(
       expect.objectContaining({
         message: "Failed, no email has been provided.",
@@ -17,7 +17,7 @@ describe("/subscribe/mailchimp/", () => {
     done();
   });
 
-  it("when fetch rejects it returns 500", async (done) => {
+  it("when fetch rejects it returns 500", async () => {
     fetch.mockReject(new Error("fake error message"));
     const res = await request(app)
       .post("/subscribe/mailchimp")
@@ -27,11 +27,9 @@ describe("/subscribe/mailchimp/", () => {
       .set("Origin", "http://localhost:3000");
 
     expect(res.status).toBe(500);
-
-    done();
   });
 
-  it("when subscriber exists it returns 422", async (done) => {
+  it("when subscriber exists it returns 422", async () => {
     fetch.mockResponse(
       JSON.stringify({
         errors: [{ error_code: "ERROR_CONTACT_EXISTS" }],
@@ -45,11 +43,9 @@ describe("/subscribe/mailchimp/", () => {
       .set("Origin", "http://localhost:3000");
 
     expect(res.status).toBe(422);
-
-    done();
   });
 
-  it("subscribes a user", async (done) => {
+  it("subscribes a user", async () => {
     fetch.mockResponse(JSON.stringify(''));
     const res = await request(app)
       .post("/subscribe/mailchimp")
@@ -59,7 +55,5 @@ describe("/subscribe/mailchimp/", () => {
       .set("Origin", "http://localhost:3000");
 
     expect(res.status).toBe(200);
-
-    done();
   });
 });
