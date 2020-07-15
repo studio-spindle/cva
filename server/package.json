@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "serve": "node -r dotenv/config index",
     "dev": "env NODE_ENV=development nodemon app",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "NODE_ENV=development jest --runInBand --detectOpenHandles",
+    "test:watch": "yarn test --watch",
+    "test:coverage": "yarn test --collect-coverage"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +21,16 @@
     "nodemailer": "^6.4.6"
   },
   "devDependencies": {
-    "nodemon": "^2.0.3"
+    "jest": "^26.1.0",
+    "jest-fetch-mock": "^3.0.3",
+    "nodemon": "^2.0.3",
+    "supertest": "^4.0.2"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "automock": false,
+    "setupFiles": [
+      "./setupJest.js"
+    ]
   }
 }

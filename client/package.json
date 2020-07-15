@@ -18,8 +18,7 @@
     "lintEs": "node_modules/.bin/eslint --ext .tsx ..",
     "lint:fix": "node_modules/.bin/eslint --fix --ext .tsx ..",
     "lint": "yarn lintEs && yarn lintTs",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "now-build": "next build"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
