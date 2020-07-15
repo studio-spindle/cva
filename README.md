@@ -31,6 +31,6 @@ Now you can open the client in the browser window by opening `http://localhost:3
 
 ## Deployment
 
-T.B.D.
+Deployment is managed via Github. Once a push has been done an automated task will deploy this project. A typical deployment will take about +/- 15 mins.
 
-.
+Bug: Occasionally the build will fail. One example is that the disk space is full. (json.log: no space left on device). Since this is managed elsewhere this repo has no control over this and will not be notified...
