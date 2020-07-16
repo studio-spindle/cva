@@ -5,6 +5,8 @@ const app = express();
 
 const clientHostname = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://creatingvalue.co';
 
+console.log(clientHostname);
+
 // Middleware
 app.use(express.json());
 app.use(cors({
