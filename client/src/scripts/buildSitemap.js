@@ -13,6 +13,10 @@ const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
     <loc>${url}${path}</loc>
     <lastmod>${pathsObj[path].lastModified ? formatDate(new Date(pathsObj[path].lastModified)) : today}</lastmod>
   </url>`).join('')}
+  <url>
+    <loc>${url}/images/generic/cva_logo_web-color.png</loc>
+    <lastmod>2020-06-17</lastmod>
+  </url>
 </urlset>`;
 
 fs.writeFileSync('./src/public/sitemap.xml', sitemapXml);
