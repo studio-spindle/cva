@@ -43,4 +43,8 @@
     <loc>https://creatingvalue.co/NL/foo</loc>
     <lastmod>2020-05-01</lastmod>
   </url>
+  <url>
+    <loc>https://creatingvalue.co/images/generic/cva_logo_web-color.png</loc>
+    <lastmod>2020-06-17</lastmod>
+  </url>
 </urlset>
