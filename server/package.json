@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "serve": "node index",
     "dev": "env NODE_ENV=development nodemon app",
     "test": "NODE_ENV=development jest --runInBand --detectOpenHandles",
     "test:watch": "yarn test --watch",
