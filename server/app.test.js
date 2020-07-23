@@ -12,7 +12,7 @@ describe('CORS', () => {
   });
 
   it('does not allow a request without origin', async (done) => {
-    const msg = 'Error: No origin has been set';
+    const msg = 'CORS origin is not set.';
     const res = await request(app)
       .get('/');
   
@@ -46,4 +46,3 @@ describe('CORS', () => {
     done();
   });
 });
-
