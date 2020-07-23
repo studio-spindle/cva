@@ -10,11 +10,11 @@ jest.mock("nodemailer", () => ({
 
 const userMock = {
   MEMBERSHIP: "Individual",
-  SALUTATION: "",
+  SALUTATION: "A salutation",
   FNAME: "John",
   LNAME: "Doe",
   COMPANY: "Foobar Inc.",
-  TITLE: "",
+  TITLE: "A title",
   EMAIL: "test@gmail.com",
 };
 
@@ -25,10 +25,11 @@ describe("/subscribe/membership", () => {
 
   it("requires mandatory process.env variables", async (done) => {
     const errMsg =
-      "Required ENV variables are not set: [GOOGLE_ACCOUNT, GOOGLE_PASSWORD, EMAIL_TO_1]";
+      "Required ENV variables are not set: [GOOGLE_USER, GOOGLE_REFRESH_TOKEN, GOOGLE_ACCESS_TOKEN, GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, EMAIL_TO_1]";
     nodeMailer.createTransport.mockReturnValue({
       verify: jest.fn(),
       sendMail: jest.fn(),
+      on: jest.fn(),
     });
 
     const res = await request(app)
@@ -47,13 +48,17 @@ describe("/subscribe/membership", () => {
 
   it("handles error when server is not ready to accept messages", async (done) => {
     const errMsg = "this thing failed..";
-    process.env.GOOGLE_ACCOUNT = "test";
-    process.env.GOOGLE_PASSWORD = "password";
+    process.env.GOOGLE_USER = "user";
+    process.env.GOOGLE_REFRESH_TOKEN = "refresh";
+    process.env.GOOGLE_ACCESS_TOKEN = "access";
+    process.env.GOOGLE_CLIENT_ID = "client";
+    process.env.GOOGLE_CLIENT_SECRET = "secret";
     process.env.EMAIL_TO_1 = "test@gmail.com";
 
     nodeMailer.createTransport.mockReturnValue({
       verify: jest.fn().mockRejectedValue(errMsg),
       sendMail: jest.fn(),
+      on: jest.fn(),
     });
 
     const res = await request(app)
@@ -71,8 +76,11 @@ describe("/subscribe/membership", () => {
   });
 
   it("succesfully sends an e-mail", async (done) => {
-    process.env.GOOGLE_ACCOUNT = "test";
-    process.env.GOOGLE_PASSWORD = "password";
+    process.env.GOOGLE_USER = "user";
+    process.env.GOOGLE_REFRESH_TOKEN = "refresh";
+    process.env.GOOGLE_ACCESS_TOKEN = "access";
+    process.env.GOOGLE_CLIENT_ID = "client";
+    process.env.GOOGLE_CLIENT_SECRET = "secret";
     process.env.EMAIL_TO_1 = "test@gmail.com";
 
     const info = {
@@ -87,6 +95,7 @@ describe("/subscribe/membership", () => {
       sendMail: jest.fn((options, cb) => {
         return cb(null, info);
       }),
+      on: jest.fn(),
     });
 
     const res = await request(app)
