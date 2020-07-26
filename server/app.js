@@ -7,22 +7,19 @@ const whitelist = ["http://localhost:3000", "https://creatingvalue.co"];
 
 // Middleware
 app.use(express.json());
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      if (whitelist.indexOf(origin) !== -1) {
-        callback(null, true);
-      } else {
-        var msg = !origin
-          ? "CORS origin is not set."
-          : `The CORS policy for this site does not allow access from ${origin}.`;
-        callback(
-          new Error(msg)
-        );
-      }
-    },
-  })
-);
+
+app.use(cors({
+  origin: function(origin, callback){
+    if(!origin) return callback(null, true);
+    if(whitelist.indexOf(origin) === -1){
+      var msg = 'The CORS policy for this site does not ' +
+                'allow access from the specified Origin.';
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  }
+}));
+
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // Routes
