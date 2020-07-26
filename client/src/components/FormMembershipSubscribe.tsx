@@ -65,10 +65,10 @@ const FormMembershipSubscribe: FC = () => {
     };
     fetch(urlSubscribeMembership, requestSettings)
       .then((res) => {
-        if (res.ok) {
-          setServerResponse({ type: 'success', message: 'You have been subscribed!' });
+        if (!res.ok) {
+          throw new Error(res.statusText);
         }
-        throw new Error(res.statusText);
+        setServerResponse({ type: 'success', message: 'You have been subscribed!' });
       })
       .catch((fetchError) => {
         // eslint-disable-next-line no-console
