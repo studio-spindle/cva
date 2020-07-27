@@ -1,4 +1,4 @@
-name: Test
+name: Client
 
 on:
   pull_request:
@@ -7,13 +7,13 @@ on:
 
 jobs:
   test:
-    name: Server
+    name: Lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
 
       - name: install
-        run: cd ./server && yarn install
+        run: cd ./client && yarn install
 
-      - name: test
-        run: cd ./server && yarn test          
+      - name: lint
+        run: cd ./client && yarn lint
