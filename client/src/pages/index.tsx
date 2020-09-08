@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { NextPage } from 'next';
 import { Grid, Container, Box, Typography, Theme } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -72,6 +73,13 @@ interface IndexProps {
 
 const Index: NextPage<IndexProps> = () => {
   const classes: ClassNameMap<string> = useStyles({});
+
+  useEffect(() => {
+    if (process.env.APP_VERSION) {
+      // eslint-disable-next-line no-console
+      console.info('Version: ', process.env.APP_VERSION);
+    }
+  }, []);
 
   return (
     <Layout
