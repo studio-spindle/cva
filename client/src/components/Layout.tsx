@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
-import { FC, useState } from 'react';
+import { FC, useState, useEffect } from 'react';
 import Link from 'next/link';
 import {
   AppBar,
@@ -17,6 +17,7 @@ import Meta from './Meta';
 import Logo from './Logo';
 import MainMenu from './MainMenu';
 import Footer from './Footer';
+import { initGA, logPageView } from '../googleAnalytics';
 
 export const drawerWidth = 240;
 
@@ -130,6 +131,14 @@ const Layout: FC<LayoutProps> = (({
 }) => {
   const classes = useStyles({});
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (!window.GA_INITIALIZED) {
+      initGA();
+      window.GA_INITIALIZED = true;
+    }
+    logPageView();
+  }, []);
 
   const handleDrawerOpen = (): void => {
     setOpen(true);
