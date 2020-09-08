@@ -1,6 +1,6 @@
 {
   "name": "cva",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A blog which uses Markdown and a Weaviate Knowledge graph to populate the content.",
   "keywords": [
     "Weaviate",
@@ -12,7 +12,7 @@
   "scripts": {
     "dev": "NODE_ENV=development next src",
     "prebuild": "node ./src/scripts/buildSitemap.js",
-    "build": "next build src",
+    "build": "APP_VERSION=$npm_package_version next build src",
     "start": "next start src",
     "lintTs": "tsc --noEmit -p ./src",
     "lintEs": "node_modules/.bin/eslint --ext .tsx ./",
