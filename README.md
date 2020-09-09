@@ -3,13 +3,13 @@
 
 The scientific papers (Articles) are stored in a [knowledge graph](https://www.semi.technology/documentation/weaviate/current/about/philosophy.html). The tool used is [Weaviate](https://github.com/semi-technologies/weaviate).
 
-- [Building this application](#building-a-production-build)
+- [Building a production build](#building-a-production-build)
 - [Development](#development)
 - [Deployment](#deployment)
 
 ## Building a production build
 
-To start this application first build the client:
+To start this application first build it:
 
 ```bash
 $ docker-compose build --no-cache

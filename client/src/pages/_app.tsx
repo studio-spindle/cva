@@ -32,7 +32,7 @@ export default class MyApp extends App {
         <Head>
           <title>Creating Value Alliance</title>
           <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
-          <meta name="google-site-verification" content="TwxF4DYSSiF0WP0Xf6g64ka1QMXPPR_bXItDshj37ps" />
+          <meta name="google-site-verification" content="ye_bC1UgA2n5CqcohVV55f7YHahZlE1UWPzhfOmTTWk" />
           <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdSiteSchema }} />
         </Head>
         <ThemeProvider theme={theme}>
