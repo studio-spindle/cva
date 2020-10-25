@@ -23,6 +23,7 @@ import TimeTable from '../components/TimeTable';
 import useStyles from './Event.style';
 import WeezeEvent from '../third-party/WeezeEvent';
 import timeTables from './Event.content.timeTables';
+import Badge from '../components/Badge';
 
 const jsonLdSchema = `{
   "@context": "https://schema.org",
@@ -82,7 +83,7 @@ interface EventTemplateProps {
 }
 
 const Event: FC<EventTemplateProps> = ({ data }) => {
-  const classes: ClassNameMap<string> = useStyles({});
+  const classes: ClassNameMap = useStyles({});
 
   const { title, location } = data;
 
@@ -91,10 +92,17 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
       <Container component="article" className={classes.container} maxWidth={false} disableGutters>
 
         <Grid container direction="row" justify="space-around" className={classes.firstContent}>
+          <Grid container xs={10} md={8} justify="space-between">
+            <Grid item>
+              <Box className={classes.logoEDP}>
+                <img src="/images/events/EDP/logo_EDP.svg" alt="Logo Ecole des ponts business school" />
+              </Box>
+            </Grid>
+            <Grid item>
+              <Badge large />
+            </Grid>
+          </Grid>
           <Grid item xs={10} md={8}>
-            <Box className={classes.logoEDP}>
-              <img src="/images/events/EDP/logo_EDP.svg" alt="Logo Ecole des ponts business school" />
-            </Box>
             <Box maxWidth="800px">
               <Typography component="h1" className={`${classes.titleMega} ${classes.white}`} gutterBottom>
                 {title}
@@ -270,7 +278,7 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
 
           <Container className={classes.container} fixed maxWidth="lg">
             <Grid container alignItems="stretch">
-              <Grid item xs={12} md={4} justify="center" alignItems="center">
+              <Grid item xs={12} md={4} alignItems="center">
                 <Typography component="h3" variant="h4" align="center" className={`${classes.white} ${classes.smallGutter}`}>Europe, Africa, <br /> Middle-East</Typography>
                 <Typography color="primary" align="center" gutterBottom>(CET) 10h - 13h <br /> June 2nd</Typography>
               </Grid>
