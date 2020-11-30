@@ -91,17 +91,36 @@ const FuzzySearch: FC<FuzzySearchProps> = ({
 
   useEffect((): void => {
     if (data) {
+      window.dataLayer.push({
+        event: {
+          type: 'SearchArticles',
+          term,
+          results: data,
+        },
+      });
+
       setFieldError(false);
       onSearchResultsUpdate({
         noResults: false,
         articles: data?.Get?.Things?.Article,
       });
     }
+  }, [data, term, onSearchResultsUpdate]);
+
+  useEffect((): void => {
     if (error) {
+      window.dataLayer.push({
+        event: {
+          type: 'SearchArticles',
+          term,
+          results: [error?.message || 'error'],
+        },
+      });
+
       setFieldError(true);
       onSearchResultsUpdate({ noResults: true });
     }
-  }, [data, error, onSearchResultsUpdate]);
+  }, [error, term, onSearchResultsUpdate]);
 
   useEffect(() => {
     if (handleClearInput) {

@@ -1,6 +1,7 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import { Container, Grid, Typography } from '@material-ui/core';
+import { useRouter } from 'next/router';
 import Layout from '../components/Layout';
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -31,6 +32,18 @@ interface PageProps {
 
 const Page: FC<PageProps> = ({ children, title, siteTitle, siteDescription }) => {
   const classes = useStyles({});
+  const router = useRouter();
+
+  useEffect(() => {
+    window.dataLayer.push({
+      event: {
+        type: 'PageView',
+        pageTitle: siteTitle,
+        pagePath: router.pathname,
+      },
+    });
+  }, [router.pathname, siteTitle]);
+
   return (
     <Layout siteTitle={siteTitle} siteDescription={siteDescription}>
       <Container component="article" className={classes.container} maxWidth="lg">
