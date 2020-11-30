@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
 import { FC, useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 import {
   AppBar,
@@ -131,6 +132,7 @@ const Layout: FC<LayoutProps> = (({
 }) => {
   const classes = useStyles({});
   const [open, setOpen] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     if (!window.GA_INITIALIZED) {
@@ -139,6 +141,16 @@ const Layout: FC<LayoutProps> = (({
     }
     logPageView();
   }, []);
+
+  useEffect(() => {
+    window.dataLayer.push({
+      event: {
+        type: 'PageView',
+        pageTitle: siteTitle,
+        pagePath: router.pathname,
+      },
+    });
+  }, [router.pathname, siteTitle]);
 
   const handleDrawerOpen = (): void => {
     setOpen(true);
