@@ -1,6 +1,6 @@
 FROM python:3.7
 
-RUN pip3 install -Iv weaviate-client==0.3.7
+RUN pip3 install weaviate-client
 
 COPY import.py import.py
 
