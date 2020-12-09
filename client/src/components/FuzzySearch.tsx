@@ -92,11 +92,8 @@ const FuzzySearch: FC<FuzzySearchProps> = ({
   useEffect((): void => {
     if (data) {
       window.dataLayer.push({
-        event: {
-          type: 'SearchArticles',
-          term,
-          results: data,
-        },
+        event: 'search articles',
+        articleResults: data,
       });
 
       setFieldError(false);
@@ -110,11 +107,8 @@ const FuzzySearch: FC<FuzzySearchProps> = ({
   useEffect((): void => {
     if (error) {
       window.dataLayer.push({
-        event: {
-          type: 'SearchArticles',
-          term,
-          results: [error?.message || 'error'],
-        },
+        event: 'search articles',
+        articleResults: error?.message || 'error',
       });
 
       setFieldError(true);

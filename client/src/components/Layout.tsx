@@ -144,11 +144,9 @@ const Layout: FC<LayoutProps> = (({
 
   useEffect(() => {
     window.dataLayer.push({
-      event: {
-        type: 'PageView',
-        pageTitle: siteTitle,
-        pagePath: router.pathname,
-      },
+      event: 'pageview',
+      pageTitle: siteTitle,
+      path: router.pathname,
     });
   }, [router.pathname, siteTitle]);
 
