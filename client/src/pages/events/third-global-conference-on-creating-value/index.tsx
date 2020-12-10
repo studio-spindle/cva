@@ -68,13 +68,13 @@ const ThirdConference: NextPage = () => {
                   Bourgoin, 75012 Paris
                 </Typography>
               </Grid>
-              <Grid item xs={12} md={3}>
-                <Box className={classes.CTAContainer} display="flex">
-                  <Link href="#anchor-integrations">
-                    <Button variant="contained" color="primary">Get Tickets</Button>
-                  </Link>
-                </Box>
-              </Grid>
+              {/* <Grid item xs={12} md={3}> */}
+              {/*  <Box className={classes.CTAContainer} display="flex"> */}
+              {/*    <Link href="#anchor-integrations"> */}
+              {/*      <Button variant="contained" color="primary">Get Tickets</Button> */}
+              {/*    </Link> */}
+              {/*  </Box> */}
+              {/* </Grid> */}
             </Grid>
           </Grid>
         </Grid>
