@@ -31,6 +31,7 @@ interface PageProps {
 
 const Page: FC<PageProps> = ({ children, title, siteTitle, siteDescription }) => {
   const classes = useStyles({});
+
   return (
     <Layout siteTitle={siteTitle} siteDescription={siteDescription}>
       <Container component="article" className={classes.container} maxWidth="lg">

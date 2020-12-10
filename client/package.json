@@ -1,6 +1,6 @@
 {
   "name": "cva",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "A blog which uses Markdown and a Weaviate Knowledge graph to populate the content.",
   "keywords": [
     "Weaviate",
@@ -41,6 +41,7 @@
     "@types/webpack-env": "^1.15.1",
     "@types/yup": "^0.26.37",
     "apollo-boost": "^0.4.7",
+    "clsx": "^1.1.1",
     "cross-fetch": "^3.0.5",
     "fs-extra": "^9.0.1",
     "graphql": "^14.6.0",

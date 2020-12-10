@@ -18,6 +18,7 @@ const EventList: FC = () => (
         intro={upcomingConferenceDetails.intro}
         location={upcomingConferenceDetails.location}
         date="October 20 and 21st"
+        cancelled
       >
         <Box alignItems="center" display="flex">
           <Box mr={0.5}>

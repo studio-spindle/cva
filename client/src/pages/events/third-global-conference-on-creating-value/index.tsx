@@ -1,100 +1,54 @@
-import { FC } from 'react';
-import {
-  Container,
-  Grid,
-  Typography,
-  Box,
-  Button,
-  Hidden,
-  Link,
-} from '@material-ui/core';
-import { LinkedIn as LinkedInIcon } from '@material-ui/icons';
+import { NextPage } from 'next';
+import { Box, Button, Container, Grid, Hidden, Link, Typography } from '@material-ui/core';
 import { ClassNameMap } from '@material-ui/core/styles/withStyles';
-import { PostEvent } from '../shared.types';
-import Layout from '../components/Layout';
-import Section from '../components/Section';
-import ProfileImage from '../components/ProfileImage';
-import Divider from '../components/Divider';
-import Speaker from '../components/Speaker';
-import Truncate from '../components/Truncate';
-import InfoBlock from '../components/InfoBlock';
-import FormEventSubscribe from '../components/FormEventSubscribe';
-import TimeTable from '../components/TimeTable';
-import useStyles from './Event.style';
-import WeezeEvent from '../third-party/WeezeEvent';
-import timeTables from './Event.content.timeTables';
+import { LinkedIn as LinkedInIcon } from '@material-ui/icons';
+import { PostEvent } from '../../../shared.types';
+import Layout from '../../../components/Layout';
+import Section from '../../../components/Section';
+import ProfileImage from '../../../components/ProfileImage';
+import Divider from '../../../components/Divider';
+import Speaker from '../../../components/Speaker';
+import Truncate from '../../../components/Truncate';
+import InfoBlock from '../../../components/InfoBlock';
+import FormEventSubscribe from '../../../components/FormEventSubscribe';
+import TimeTable from '../../../components/TimeTable';
+import WeezeEvent from '../../../third-party/WeezeEvent';
+import Badge from '../../../components/Badge';
+import useStyles from './useStyles';
+import timeTables from './timeTables';
+import jsonLdSchema from './jsonld.json';
 
-const jsonLdSchema = `{
-  "@context": "https://schema.org",
-  "@type": "Event",
-  "name": "Third Global Conference on Creating Value",
-  "startDate": "2020-10-20T09:00:00+00:00",
-  "endDate": "2020-10-20T18:00:00+00:00",
-  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-  "eventStatus": "https://schema.org/EventScheduled",
-  "location": {
-    "@type": "Place",
-    "name": "École des Ponts Business School",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "6 Place Du Colonel",
-      "addressLocality": "paris",
-      "postalCode": "75012",
-      "addressRegion": "",
-      "addressCountry": "Paris"
-    }
-  },
-  "image": [
-    "https://creatingvalue.co/images/events/EDP/background_louvre_sm.jpg",
-    "https://creatingvalue.co/images/events/EDP/background_louvre_lg.jpg"
-  ],
-  "description": "The Global Conference on Creating Value in Paris aims to increase our understanding of what it means to create value in a constantly changing environment.",
-  "offers": {
-    "@type": "Offer",
-    "url": "https://creatingvalue.co/events/third-global-conference-on-creating-value",
-    "price": "350",
-    "priceCurrency": "EUR",
-    "availability": "https://schema.org/InStock",
-    "validFrom": "2020-10-20T09:00",
-    "alternateName": "Early Bird",
-    "description": "Ticket includes: 2 day access to all conferences, lunch, coffee breaks, networking app."
-  },
-  "performer": [
-    { "@type": "Person", "name": "Riel Miller", "sameAs": "https://rielmiller.com" },
-    { "@type": "Person", "name": "Kokubu Katshiko", "sameAs": "https://www.b.kobe-u.ac.jp/en/faculty/kokubu/" },
-    { "@type": "Person", "name": "Diane Magers", "sameAs": "https://cxuniversity.com/cx-thought-leaders/diane-magers/" },
-    { "@type": "Person", "name": "Hermann Simon", "sameAs": "http://hermannsimon.com/" },
-    { "@type": "Person", "name": "Stephen Vargo", "sameAs": "https://en.wikipedia.org/wiki/Stephen_Vargo" },
-    { "@type": "Person", "name": "Wayne Visser", "sameAs": "http://www.waynevisser.com/" },
-    { "@type": "Person", "name": "Gautam Mahajan", "sameAs": "https://www.linkedin.com/in/mahajancvf/" },
-    { "@type": "Person", "name": "Martin Calnan", "sameAs": "https://pontsbschool.com/about-the-school/staff-2/" },
-    { "@type": "Person", "name": "Dr. Martijn Rademakers", "sameAs": "https://www.uva.nl/profiel/r/a/m.f.l.rademakers/m.f.l.rademakers.html" }
-  ],
-  "organizer": {
-    "@type": "Organization",
-    "name": "Creating Value Alliance",
-    "url": "https://creatingvalue.co/"
-  }
-}`;
+export const eventDetails: PostEvent = {
+  title: 'Third Global Conference on Creating Value',
+  intro: 'What does it mean to create value in constantly changing environment? Participate in the conference, where experts and you share knowledge and provide feedback.',
+  location: 'Ecole Des Ponts Business School',
+  city: 'Paris, France',
+  address: '6-8 Avenue Blaise Pascal, 77420 Champs-sur-Marne, France',
+  date: 'June 2-3',
+  timeStampEpoch: 1591092000,
+};
 
-interface EventTemplateProps {
-  data: PostEvent;
-}
+const ThirdConference: NextPage = () => {
+  const classes: ClassNameMap = useStyles({});
 
-const Event: FC<EventTemplateProps> = ({ data }) => {
-  const classes: ClassNameMap<string> = useStyles({});
-
-  const { title, location } = data;
+  const { title, location } = eventDetails;
 
   return (
-    <Layout siteTitle={title} invertHeader structuredData={jsonLdSchema}>
+    <Layout siteTitle={title} invertHeader structuredData={JSON.stringify(jsonLdSchema)}>
       <Container component="article" className={classes.container} maxWidth={false} disableGutters>
 
         <Grid container direction="row" justify="space-around" className={classes.firstContent}>
+          <Grid container xs={10} md={8} justify="space-between">
+            <Grid item>
+              <Box className={classes.logoEDP}>
+                <img src="/images/events/EDP/logo_EDP.svg" alt="Logo Ecole des ponts business school" />
+              </Box>
+            </Grid>
+            <Grid item>
+              <Badge large />
+            </Grid>
+          </Grid>
           <Grid item xs={10} md={8}>
-            <Box className={classes.logoEDP}>
-              <img src="/images/events/EDP/logo_EDP.svg" alt="Logo Ecole des ponts business school" />
-            </Box>
             <Box maxWidth="800px">
               <Typography component="h1" className={`${classes.titleMega} ${classes.white}`} gutterBottom>
                 {title}
@@ -114,13 +68,13 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
                   Bourgoin, 75012 Paris
                 </Typography>
               </Grid>
-              <Grid item xs={12} md={3}>
-                <Box className={classes.CTAContainer} display="flex">
-                  <Link href="#anchor-integrations">
-                    <Button variant="contained" color="primary">Get Tickets</Button>
-                  </Link>
-                </Box>
-              </Grid>
+              {/* <Grid item xs={12} md={3}> */}
+              {/*  <Box className={classes.CTAContainer} display="flex"> */}
+              {/*    <Link href="#anchor-integrations"> */}
+              {/*      <Button variant="contained" color="primary">Get Tickets</Button> */}
+              {/*    </Link> */}
+              {/*  </Box> */}
+              {/* </Grid> */}
             </Grid>
           </Grid>
         </Grid>
@@ -270,7 +224,7 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
 
           <Container className={classes.container} fixed maxWidth="lg">
             <Grid container alignItems="stretch">
-              <Grid item xs={12} md={4} justify="center" alignItems="center">
+              <Grid item xs={12} md={4} alignItems="center">
                 <Typography component="h3" variant="h4" align="center" className={`${classes.white} ${classes.smallGutter}`}>Europe, Africa, <br /> Middle-East</Typography>
                 <Typography color="primary" align="center" gutterBottom>(CET) 10h - 13h <br /> June 2nd</Typography>
               </Grid>
@@ -714,4 +668,4 @@ const Event: FC<EventTemplateProps> = ({ data }) => {
   );
 };
 
-export default Event;
+export default ThirdConference;
